@@ -1,6 +1,6 @@
 package com.logigear.test.ta_dashboard.data_object;
 
-public class Page extends BaseDataObject{
+public class Page{
 
 	private String _pageName, _parentName, _numberOfColumns, _displayAfter;
 	private boolean _isPublic;
