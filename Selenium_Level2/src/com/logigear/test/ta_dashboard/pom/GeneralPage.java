@@ -53,9 +53,9 @@ public class GeneralPage extends BasePOM {
 		this.lnkPanel = new Element(getLocator("lnkPanel").getBy());
 	}
 	
-	public void setPagename(String abc)
+	public void setPagename(String pageName)
 	{
-		Element e = new Element(getLocator("lnkPage").getBy(abc));
+		Element e = new Element(getLocator("lnkPage").getBy(pageName));
 	}
 
 	/**
@@ -186,4 +186,6 @@ public class GeneralPage extends BasePOM {
 		String result = element.getText();
 		return result;
 	}
-	}
+	
+}
+

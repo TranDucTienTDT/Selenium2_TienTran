@@ -5,11 +5,10 @@ public class Page{
 	private String _pageName, _parentName, _numberOfColumns, _displayAfter;
 	private boolean _isPublic;
 
-	public Page() {
-	}
 	public Page(String pageName) {
 		_pageName = pageName;
 	}
+	
 	public Page(String pageName, String parentName, String numberOfColumns, String displayAfter, boolean isPublic) {
 		this._pageName = pageName;
 		this._parentName = parentName;

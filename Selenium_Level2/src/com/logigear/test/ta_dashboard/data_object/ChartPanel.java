@@ -1,7 +1,9 @@
 package com.logigear.test.ta_dashboard.data_object;
 
 public class ChartPanel extends GeneralPanel{
-	private String _chartTitle, _chartType, _category, _categoryCaption, _series, _seriesCaption, _legends, _style;
+	private String _chartTitle, _chartType, _category, _categoryCaption, _series, _seriesCaption;
+	private Style _style;
+	private Legends _legends;
 	private boolean isShowTitle;
 	private String[] _dataLabels;
 	
@@ -41,16 +43,16 @@ public class ChartPanel extends GeneralPanel{
 	public void setSeriesCaption(String _seriesCaption) {
 		this._seriesCaption = _seriesCaption;
 	}
-	public String getLegends() {
+	public Legends getLegends() {
 		return _legends;
 	}
-	public void setLegends(String _legends) {
+	public void setLegends(Legends _legends) {
 		this._legends = _legends;
 	}
-	public String getStyle() {
+	public Style getStyle() {
 		return _style;
 	}
-	public void setStyle(String _style) {
+	public void setStyle(Style _style) {
 		this._style = _style;
 	}
 	public boolean getIsShowTitle() {
@@ -66,10 +68,54 @@ public class ChartPanel extends GeneralPanel{
 		this._dataLabels = _dataLabels;
 	}
 	
-	public ChartPanel(String panelType, String displayName, String series) {
-		this._panelType = panelType;
+	public ChartPanel(String displayName, String series) {
+		this._panelType = PanelType.CHART;
 		this._displayName = displayName;
 		this._series = series;
 	}
 	
+	public enum Style {
+		STYLE2D("2D"),
+		STYLE3D("3D");
+		
+		public String getValue() {
+			return _style;
+		}
+
+		public void setValue(String style) {
+			this._style = style;
+		}
+
+		private String _style;
+		
+		private Style(String style) {
+			this._style = style;
+		}
+	}
+	
+	public enum Legends {
+		NONE,
+		TOP,
+		RIGHT,
+		BOTTOM,
+		LEFT;
+		
+//		private String _legends;
+//		
+//		private Legends(String legends) {
+//			this._legends = legends;
+//		}
+//		
+//		public String getValue() {
+//			return _legends;
+//		}
+//
+//		public void setValue(String legends) {
+//			this._legends = legends;
+//		}
+	}
+	
+	public enum DataLabels {
+		SERIES, CATEGORIES, VALUE, PERCENTAGE; 
+	}
 }

@@ -60,7 +60,6 @@ public class PageDialog extends GeneralPage {
 			logger.printMessage("In \"Public\" checkbox, check it: " + isPublic);
 			chkIsPublic.check();
 		}
-		btnOK.click();
 		return new PageDialog();
 	}
 
@@ -85,30 +84,13 @@ public class PageDialog extends GeneralPage {
 			return false;
 		}
 	}
-
-	public void setField(Page data) {
-		Page page = new Page();
-		page.loadDefaultData();
-		
-		if (!page.getPageName().equals(null))
-			txtPageName.setValue(page.getPageName());
-		
-		if (!page.getParentName().equals(null) && !page.getParentName().equals("Select parent"))
-			cboParentPage.selectByText(page.getParentName());
-		
-		if (!page.getNumberOfColumns().equals(null))
-			cboNumberOfColumns.selectByText(page.getNumberOfColumns());
-		
-		if (!page.getDisplayAfter().equals(null))
-			txtPageName.setValue(page.getDisplayAfter());
-		
-		if (page.isIsPublic())
-			chkIsPublic.check();
+	
+	public void addNewPage(Page page)
+	{
+		openPageDialog();
+		fillInfoInPageDialog(page);
+		btnOK.click();
+		return;
 	}
 	
-	public HomePage submit()
-	{
-		btnOK.click();
-		return new HomePage();
-	}
 }

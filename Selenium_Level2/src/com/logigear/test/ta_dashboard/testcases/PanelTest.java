@@ -18,7 +18,7 @@ public class PanelTest extends BaseTest{
 		{
 			//init data
 			Page page = new Page("TestPage");
-			ChartPanel chartPanel = new ChartPanel("Chart", "Chart Panel Test", "Name");
+			ChartPanel chartPanel = new ChartPanel("Chart Panel Test", "Name");
 			
 //			Step	Navigate to Dashboard login page
 //			Step	Select a specific repository 
@@ -28,9 +28,14 @@ public class PanelTest extends BaseTest{
 //			Step	Click 'Add Page' button
 //			Step	Enter Page Name
 //			Step	Click 'OK' button
-			PanelDialog panelDialog = homePage.openPageDialog()
-												.fillInfoInPageDialog(page)
-												.openPanelDialog(true);
+			
+			
+//			PanelDialog panelDialog = homePage.addNewPage(page)
+//												.openPanelDialog(true)
+//												.fillInforInPanelDialog(chartPanel)
+//												.clickCancelButton();
+												
+												
 //			Step	Click 'Choose Panels' button below 'main_hung' button
 //			Step	Click 'Create new panel' button
 //			Step	Enter a name to Display Name
@@ -44,6 +49,11 @@ public class PanelTest extends BaseTest{
 //			Step	Click 'Administer' link
 //			Step	Click 'Panels' link
 //			Step	Click 'Check All' link
+			
+//			homePage.gotoPanelPage()
+//						.clickCheckAllLinkedButton()
+//						.IsCheckboxChecked();
+			
 //			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are checked
 //			Step	Click 'Uncheck All' link
 //			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are unchecked
