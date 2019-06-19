@@ -29,6 +29,15 @@ public class Element extends BaseElement {
 	public Element(String xpath) {
 		super(xpath);
 	}
+	
+	/**
+	 * @author: tien.duc.tran
+	 * @Description: Constructor for dynamic locator 
+	 * @param: dynamicLocator, placeValue
+	 */
+	public Element(String dynamicLocator, String placeValue) {
+		super(dynamicLocator, placeValue);
+	}
 
 	public void enter(String text) {
 		clear();

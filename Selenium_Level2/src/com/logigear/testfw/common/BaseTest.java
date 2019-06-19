@@ -74,7 +74,7 @@ public class BaseTest {
 		String USERNAME = "administrator";
 		String PASSWORD = "";
 		String SAMPLE_REPO = "SampleRepository";
-		HomePage homePage = new LoginPage().login(USERNAME, PASSWORD, SAMPLE_REPO);
+		HomePage homePage = new LoginPage().login(SAMPLE_REPO, USERNAME, PASSWORD);
 		return homePage;
 	}
 }

@@ -32,6 +32,16 @@ abstract class BaseElement{
 	public BaseElement(String xpath) {
 		this._byLocator = By.xpath(xpath);
 	}
+	
+	/**
+	 * @author: tien.duc.tran
+	 * @Description: Constructor for dynamic locator 
+	 * @param: dynamicLocator, placeValue
+	 */
+	
+	public BaseElement(String dynamicLocator, String placeValue) {
+		this._byLocator = By.xpath(String.format(dynamicLocator, placeValue));
+	}
 
 	protected By getLocator() {
 		return this._byLocator;
