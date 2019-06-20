@@ -25,15 +25,15 @@ public class PanelTest_Tien extends BaseTest{
 //		Select Heat Maps type
 //		VP: Verify that heatmap panel setting form is displayed with corresponding panel type selected
 //		
-		HomePage homePage = precondition();
+		//HomePage homePage = precondition();
 
-		PanelDialog addNewPanelPage = homePage.waitForLoading().openPanelListPage().clickLinkAddNew();
+		//PanelDialog addNewPanelPage = homePage.waitForLoading().openPanelListPage().clickLinkAddNew();
 
-		addNewPanelPage.clickIndicatorRadioButton();
-		
-		addNewPanelPage.clickReportRadioButton();
-		
-		addNewPanelPage.clickHeatMapRadioButton();
+//		addNewPanelPage.clickIndicatorRadioButton();
+//		
+//		addNewPanelPage.clickReportRadioButton();
+//		
+//		addNewPanelPage.clickHeatMapRadioButton();
 //
 	}
 }

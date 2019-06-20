@@ -1,9 +1,10 @@
 package com.logigear.test.ta_dashboard.pom;
 
 import com.logigear.test.ta_dashboard.data_object.Page;
+import com.logigear.testfw.common.BasePOM;
 import com.logigear.testfw.element.Element;
 
-public class PageDialog extends GeneralPage {
+public class PageDialog extends BasePOM {
 	// Element
 	protected Element txtPageName;
 	protected Element cboParentPage;
@@ -42,7 +43,7 @@ public class PageDialog extends GeneralPage {
 			String displayAfter, boolean isPublic) {
 		if (txtPageName.getText() == null || txtPageName.getText() != pageName) {
 			logger.printMessage("In \"Page Name\" textbox, enter: " + pageName);
-			txtPageName.enter(parentName);
+			txtPageName.enter(pageName);
 		}
 		if (parentName != null && cboParentPage.getText() != parentName) {
 			logger.printMessage("In \"Parent Page\" combobox, select: " + parentName);
@@ -62,35 +63,13 @@ public class PageDialog extends GeneralPage {
 		}
 		return new PageDialog();
 	}
-
+	
+	//@author hanh.nguyen
 	public PageDialog fillInfoInPageDialog(Page page) {
 		fillInfoInPageDialog(page.getPageName(), page.getParentName(), page.getNumberOfColumns(),
 				page.getDisplayAfter(), page.isIsPublic());
 		return new PageDialog();
 	}
 
-	/**
-	 * @author nhan.tran
-	 * @Des: Check unable to open add page again
-	 * @param:
-	 * @return true if cannot open dialog false if can open dialog
-	 */
-
-	public boolean isOpenAddPageAgains() {
-		try {
-			selectAddPage();
-			return true;
-		} catch (Exception error) {
-			return false;
-		}
-	}
-	
-	public void addNewPage(Page page)
-	{
-		openPageDialog();
-		fillInfoInPageDialog(page);
-		btnOK.click();
-		return;
-	}
 	
 }

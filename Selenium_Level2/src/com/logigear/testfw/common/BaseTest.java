@@ -10,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import com.logigear.test.ta_dashboard.pom.GeneralPage;
 import com.logigear.test.ta_dashboard.pom.HomePage;
 import com.logigear.test.ta_dashboard.pom.LoginPage;
 import com.logigear.testfw.conf.DriverConfig;
@@ -70,11 +71,11 @@ public class BaseTest {
 	 * 
 	 * */
 	
-	public HomePage precondition() {
+	public GeneralPage precondition() {
+		String SAMPLE_REPO = "SampleRepository";
 		String USERNAME = "administrator";
 		String PASSWORD = "";
-		String SAMPLE_REPO = "SampleRepository";
 		HomePage homePage = new LoginPage().login(SAMPLE_REPO, USERNAME, PASSWORD);
-		return homePage;
+		return new GeneralPage(GeneralPage.class);
 	}
 }

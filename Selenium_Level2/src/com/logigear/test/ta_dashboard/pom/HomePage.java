@@ -51,8 +51,9 @@ public class HomePage extends GeneralPage {
 	 * 
 	 */
 	
-	public PanelListPage openPanelListPage() {
-		this.selectMenuItem(itemAdminister, lnkPanel);
-		return new PanelListPage();
-	}
+//	public PanelPage openPanelListPage() {
+//		this.selectMenuItem(itemAdminister, lnkPanel);
+//		return new PanelPage();
+//	}
+	
 }

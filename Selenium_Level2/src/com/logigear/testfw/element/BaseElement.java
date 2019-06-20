@@ -83,6 +83,11 @@ abstract class BaseElement{
 //		LOG.info(String.format("Wait for control %s to be clickabled", getLocator().toString()));
 		return TestExecutor.getInstance().getCurrentDriver().waitForClickable(getLocator(), timeOutInSeconds);
 	}
+	
+	public void waitForDisappear(int timeOutInSeconds) {
+		TestExecutor.getInstance().getCurrentDriver().waitForInvisibility(getLocator(), timeOutInSeconds);
+	}
+	
 //
 //	@Deprecated
 //	public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {

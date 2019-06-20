@@ -1,8 +1,0 @@
-{
-	"default": {
-		"lnkAddNew": {
-			"type": "xpath",
-			"value": "//a[text()='Add New']"
-		}
-	}
-}

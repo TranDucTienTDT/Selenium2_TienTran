@@ -1,5 +1,6 @@
 package com.logigear.test.ta_dashboard.pom;
 
+import com.logigear.test.ta_dashboard.data_object.ChartPanel;
 import com.logigear.test.ta_dashboard.data_object.Page;
 import com.logigear.testfw.common.BasePOM;
 import com.logigear.testfw.common.Common;
@@ -13,10 +14,9 @@ import com.logigear.testfw.common.Common;
 import com.logigear.testfw.common.TestExecutor;
 import com.logigear.testfw.driver.BaseDriver;
 import com.logigear.testfw.element.Element;
+import com.logigear.testfw.utilities.Logger;
 
 public class GeneralPage extends BasePOM {
-
-	protected com.logigear.testfw.utilities.Logger logger = new com.logigear.testfw.utilities.Logger();
 
 	// Variable
 	private String xpathMainSection = ("//div[@id='container']//li//a[contains(.,'%s')]");
@@ -30,11 +30,15 @@ public class GeneralPage extends BasePOM {
 	protected Element lnkChoosePanels;
 	protected Element btnCreateNewPanel;
 	protected Element lnkCreatePanel;
-	protected Element itemAdminister;
-	protected Element lnkPanel;
 	protected Element lnkPage;
-	public Page page;
-	
+	protected Element lnkDelete;
+	protected Element lnkEdit;
+	protected Element lnkAdminister;
+	protected Element lnkDataProfile;
+	protected Element lnkPanels;
+	public PageDialog pageDialog = new PageDialog();
+	public PanelDialog panelDialog = new PanelDialog();
+	public PanelConfigurationDialog panelConfigurationDialog = new PanelConfigurationDialog();
 	
 	public GeneralPage(Class<?> derivedClass) {
 		super(derivedClass);
@@ -49,13 +53,16 @@ public class GeneralPage extends BasePOM {
 		this.lnkChoosePanels = new Element(getLocator("lnkChoosePanels").getBy());
 		this.btnCreateNewPanel = new Element(getLocator("btnCreateNewPanel").getBy());
 		this.lnkCreatePanel = new Element(getLocator("lnkCreatePanel").getBy());
-		this.itemAdminister = new Element(getLocator("itemAdminister").getBy());
-		this.lnkPanel = new Element(getLocator("lnkPanel").getBy());
+		this.lnkDelete = new Element(getLocator("lnkDelete").getBy());
+		this.lnkEdit = new Element(getLocator("lnkEdit").getBy());
+		this.lnkAdminister = new Element(getLocator("lnkAdminister").getBy());
+		this.lnkDataProfile = new Element(getLocator("lnkDataProfile").getBy());
+		this.lnkPanels = new Element(getLocator("lnkPanels").getBy());
 	}
 	
-	public void setPagename(String pageName)
+	public Element setPagename(String pageName)
 	{
-		Element e = new Element(getLocator("lnkPage").getBy(pageName));
+		return new Element(getLocator("lnkPage").getBy(pageName));
 	}
 
 	/**
@@ -68,26 +75,6 @@ public class GeneralPage extends BasePOM {
 		lnkGlobalSetting.click();
 		lnkAddPage.click();
 		return new PageDialog();
-	}
-
-	/**
-	 * Open Add New Panel dialog.
-	 *
-	 * @author hanh.nguyen
-	 * @param isFromChoosePanels open the dialog from "Choose Panels" linked button
-	 *                           or from "Global Setting" linked button
-	 */
-	public PanelDialog openPanelDialog(boolean isFromChoosePanels) {
-		logger.printMessage("Open \"Add New Panel\" dialog.");
-		if (isFromChoosePanels) {
-			lnkChoosePanels.click();
-			btnCreateNewPanel.click();
-		} else if (!isFromChoosePanels) {
-			lnkGlobalSetting.click();
-			lnkCreatePanel.click();
-		}
-		return new PanelDialog();
-
 	}
 
 	/**
@@ -112,19 +99,10 @@ public class GeneralPage extends BasePOM {
 	 */
 	public boolean isPageOpened(String pageName) {
 		String actualTitle = TestExecutor.getInstance().getCurrentDriver().getTitle();
-		return actualTitle.contains(pageName);
+		boolean isOpened = actualTitle.contains(pageName);
+		logger.printMessage("Is page \"" + pageName + "\" opened: " + isOpened);
+		return isOpened;
 	}
-
-	 /* @author nhan.tran
-	 * @Des: select menu add new page from Global Setting menu
-	 * @return: true if open dialog is successfully
-	 * */
-	
-	 public PageDialog selectAddPage()
-		{
-			selectMenuItem(lnkGlobalSetting, lnkAddPage);
-			return new PageDialog();
-		}
 
 	/**
 	 * @author: duy.nguyen
@@ -168,7 +146,6 @@ public class GeneralPage extends BasePOM {
 	 * @Description: get the currently URL
 	 * @param: url (output) URL
 	 */
-
 	public String getUrl() {
 		String url = TestExecutor.getInstance().getCurrentDriver().getCurrentUrl();
 		return url;
@@ -178,7 +155,6 @@ public class GeneralPage extends BasePOM {
 	 * @author NhanTran
 	 * @description: getText of element
 	 * */
-	
 	public String getTextOfElementAfter(String elementBefore)
 	{
 		String xpath = String.format("//ul[./li/a[text()='%s']]/li)[2]", elementBefore);
@@ -187,5 +163,64 @@ public class GeneralPage extends BasePOM {
 		return result;
 	}
 	
+	/**
+	 * Open Add New Panel dialog.
+	 *
+	 * @author hanh.nguyen
+	 * @param isFromChoosePanels open the dialog from "Choose Panels" linked button
+	 *                           or from "Global Setting" linked button
+	 */
+	public PanelDialog openPanelDialog(boolean isFromChoosePanels) {
+		logger.printMessage("Open \"Add New Panel\" dialog.");
+		if (isFromChoosePanels) {
+			lnkChoosePanels.click();
+			btnCreateNewPanel.click();
+		} else if (!isFromChoosePanels) {
+			lnkGlobalSetting.click();
+			lnkCreatePanel.click();
+		}
+		return new PanelDialog();
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage addNewPage(Page page)
+	{
+		logger.printMessage("Add a Page: " + page.getPageName());
+		openPageDialog();
+		pageDialog.fillInfoInPageDialog(page);
+		pageDialog.btnOK.click();
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage addChartPanel(ChartPanel chartPanel, boolean isFromChoosePanels) {
+		logger.printMessage("Add a Chart Panel: " + chartPanel.getDisplayName());
+		openPanelDialog(isFromChoosePanels);
+		panelDialog.fillInforInChartPanelDialog(chartPanel);
+		panelDialog.btnOK.click();
+		panelDialog.btnOK.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage cancelPanelConfiguration() {
+		panelConfigurationDialog.cancelPanelConfiguration();
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage deletePage(String pageName) {
+		logger.printMessage("Delete page: " + pageName);
+		selectMenuItem(lnkGlobalSetting, lnkDelete);
+		TestExecutor.getInstance().getCurrentDriver().switchTo().alert().accept();
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public PanelPage gotoPanelPage() {
+		logger.printMessage("Go to Panel Page.");
+		selectMenuItem(lnkAdminister, lnkPanels);
+		return new PanelPage();
+	}
 }
 

@@ -20,7 +20,7 @@
 			"type": "xpath",
 			"value": "//a[text()='Logout']"
 		},
-		"itemAdminister": {
+		"lnkAdminister": {
 			"type": "xpath",
 			"value": "//a[text()='Administer']"
 		},
@@ -28,7 +28,7 @@
 			"type": "xpath",
 			"value": "//a[text()='Data Profiles']"
 		},
-		"lnkPanel": {
+		"lnkPanels": {
 			"type": "xpath",
 			"value": "//a[text()='Panels']"
 		},
@@ -63,6 +63,14 @@
 		"lnkPage": {
 			"type": "xpath",
 			"value": "//li[a[text()='%s']]"
+		},
+		"lnkDelete": {
+			"type": "xpath",
+			"value": "//li[@class='mn-setting']//li[a[text()='Delete']]"
+		},
+		"lnkEdit": {
+			"type": "xpath",
+			"value": "//li[@class='mn-setting']//li[a[text()='Edit']]"
 		}
 	}
 }

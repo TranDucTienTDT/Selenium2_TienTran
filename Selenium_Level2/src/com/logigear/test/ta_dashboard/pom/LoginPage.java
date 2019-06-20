@@ -20,8 +20,6 @@ public class LoginPage extends BasePOM{
 	@Override
 	public void initPageElements()
 	{
-		
-		
 		this.cbbRepo = new Element(getLocator("cbbRepo").getBy());
 		this.txtUsername = new Element(getLocator("txtUsername").getBy());
 		this.txtPassword = new Element(getLocator("txtPassword").getBy());

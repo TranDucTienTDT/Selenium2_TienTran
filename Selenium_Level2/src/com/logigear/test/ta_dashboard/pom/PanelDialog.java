@@ -3,11 +3,12 @@ package com.logigear.test.ta_dashboard.pom;
 import com.logigear.test.ta_dashboard.data_object.ChartPanel;
 import com.logigear.test.ta_dashboard.data_object.ChartPanel.Style;
 import com.logigear.test.ta_dashboard.data_object.GeneralPanel.PanelType;
+import com.logigear.testfw.common.BasePOM;
 import com.logigear.testfw.element.Element;
 
-public class PanelDialog extends GeneralPage{
+public class PanelDialog extends BasePOM{
 	//General in Panel dialog
-	protected Element tabDisplaySetting;
+	protected Element tabDisplaySettings;
 	protected Element radChart;
 	protected Element radIndicator;
 	protected Element radReport;
@@ -47,7 +48,7 @@ public class PanelDialog extends GeneralPage{
 	@Override
 	public void initPageElements() {
 		//General in Panel dialog
-		this.tabDisplaySetting = new Element(getLocator("tabDisplaySetting").getBy());
+		this.tabDisplaySettings = new Element(getLocator("tabDisplaySettings").getBy());
 		this.radChart = new Element(getLocator("radChart").getBy());
 		this.radIndicator = new Element(getLocator("radIndicator").getBy());
 		this.radReport = new Element(getLocator("radReport").getBy());
@@ -138,7 +139,7 @@ public class PanelDialog extends GeneralPage{
 			logger.printMessage("In \"Display Name\" combobox, select: " + dataProfile);
 			cbbDataProfile.selectByText(dataProfile);
 		}
-		if(txtDisplayName.getText() == null || (txtDisplayName.getText() != displayName && displayName != null)) {
+		if(!displayName.equals(null) && (txtDisplayName.getText().equals(null) || txtDisplayName.getText() != displayName)) {
 			logger.printMessage("In \"Display Name\" textbox, enter: " + displayName);
 			txtDisplayName.enter(displayName);
 		}
@@ -149,7 +150,8 @@ public class PanelDialog extends GeneralPage{
 	public PanelDialog fillInforInChartPanelDialog(ChartPanel chartPanel) {
 		selectPanelType(PanelType.CHART);
 		fillInforInGeneralPanelDialog(chartPanel.getDataProfile(), chartPanel.getDisplayName());
-		if(txtChartTitle.getText() != null || (txtChartTitle.getText() != chartPanel.getChartTitle() && chartPanel.getChartTitle() != null)) {
+		if(!chartPanel.getChartTitle().equals(null) && (txtChartTitle.getText().equals(null) || txtChartTitle.getText() != chartPanel.getChartTitle()))
+		{
 			logger.printMessage("In \"Chart Title\" textbox, enter: " + chartPanel.getChartTitle());
 			txtChartTitle.enter(chartPanel.getChartTitle());
 		}
@@ -184,12 +186,6 @@ public class PanelDialog extends GeneralPage{
 		return new PanelDialog();
 	}
 	
-	//@author hanh.nguyen
-	public void addChartPanel(ChartPanel chartPanel) {
-		openPanelDialog(false);
-		fillInforInChartPanelDialog(chartPanel);
-		btnOK.click();
-		return;
-	}
+	
 	
 }
