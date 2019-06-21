@@ -1,5 +1,8 @@
 package com.logigear.test.ta_dashboard.testcases;
 
+import javax.annotation.PostConstruct;
+
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;
@@ -10,8 +13,11 @@ import com.logigear.test.ta_dashboard.pom.GeneralPage;
 import com.logigear.test.ta_dashboard.pom.HomePage;
 import com.logigear.test.ta_dashboard.pom.LoginPage;
 import com.logigear.test.ta_dashboard.pom.PanelConfigurationDialog;
+import com.logigear.test.ta_dashboard.pom.PanelPage;
 import com.logigear.test.ta_dashboard.pom.PanelPage.LinkedText;
 import com.logigear.testfw.common.BaseTest;
+
+import junit.framework.Assert;
 
 public class PanelTest extends BaseTest{
 	
@@ -22,6 +28,7 @@ public class PanelTest extends BaseTest{
 			Page page = new Page("TestPage");
 			ChartPanel chartPanel1 = new ChartPanel("ChartPanel1", "Name");
 			ChartPanel chartPanel2 = new ChartPanel("ChartPanel2", "Name");
+			String[] check = {chartPanel1.getDisplayName(), chartPanel2.getDisplayName()};
 			
 //			Step	Navigate to Dashboard login page
 //			Step	Select a specific repository 
@@ -43,23 +50,32 @@ public class PanelTest extends BaseTest{
 //			Step	Click 'Panels' link
 //			Step	Click 'Check All' link
 			
-			GeneralPage generalPage = precondition();
-			generalPage.addNewPage(page)
-					.addChartPanel(chartPanel1, true)
-					.cancelPanelConfiguration()							
-					.addChartPanel(chartPanel2, true)	
-					.cancelPanelConfiguration()
-					.gotoPanelPage()
-					.clickLinkedText(LinkedText.CHECK_ALL);
+			HomePage homePage = precondition();
+			PanelPage panelPage = homePage.addNewPage(page)
+											.addChartPanel(chartPanel1, true)
+											.cancelPanelConfiguration()							
+											.addChartPanel(chartPanel2, true)	
+											.cancelPanelConfiguration()
+											.gotoPanelPage()
+											.clickLinkedText(LinkedText.CHECK_ALL);
 			
-//			homePage.gotoPanelPage()
-//						.clickCheckAllLinkedButton()
-//						.IsCheckboxChecked();
+//			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are checked					
+			boolean areChecked = panelPage.arePanelCheckboxChecked(check);
+			Assert.assertEquals(areChecked, true);
 			
-//			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are checked
 //			Step	Click 'Uncheck All' link
 //			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are unchecked
 			
-		
+			boolean areUnchecked = panelPage.clickLinkedText(LinkedText.UNCHECK_ALL)
+											.arePanelCheckboxChecked(check);
+			Assert.assertEquals(areUnchecked, false);
 	}
+		
+		@AfterMethod
+		public void postCondition() {
+			logger.printMessage("Post-conditions: delete page and panels");
+			PanelPage panelPage = new PanelPage();
+			panelPage.deleteAllPanels()
+						.deletePage("TestPage");
+		}
 }

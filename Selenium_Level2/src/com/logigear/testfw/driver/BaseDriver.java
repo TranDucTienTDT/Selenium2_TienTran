@@ -154,4 +154,15 @@ public class BaseDriver {
 		}
 		return element;
 	}
+	
+	public void waitForAlertPopupPresent(int timeOutInSeconds) {
+		try {
+			LOG.info(String.format("Wait for alert popup presented."));
+			WebDriverWait wait = new WebDriverWait(getWebDriver(), timeOutInSeconds);
+			wait.until(ExpectedConditions.alertIsPresent());
+		} catch (Exception error) {
+			LOG.severe(String.format("Has error: %s", error.getMessage()));
+			throw error;
+		}
+	}
 }

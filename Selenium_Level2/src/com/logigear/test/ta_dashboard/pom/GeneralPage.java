@@ -6,6 +6,8 @@ import com.logigear.testfw.common.BasePOM;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.common.TestExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -15,6 +17,8 @@ import com.logigear.testfw.common.TestExecutor;
 import com.logigear.testfw.driver.BaseDriver;
 import com.logigear.testfw.element.Element;
 import com.logigear.testfw.utilities.Logger;
+
+import bsh.org.objectweb.asm.Constants;
 
 public class GeneralPage extends BasePOM {
 
@@ -36,9 +40,11 @@ public class GeneralPage extends BasePOM {
 	protected Element lnkAdminister;
 	protected Element lnkDataProfile;
 	protected Element lnkPanels;
+	//protected Element allLnkInSecondLine;
 	public PageDialog pageDialog = new PageDialog();
 	public PanelDialog panelDialog = new PanelDialog();
 	public PanelConfigurationDialog panelConfigurationDialog = new PanelConfigurationDialog();
+	public PanelPage panelPage = new PanelPage();
 	
 	public GeneralPage(Class<?> derivedClass) {
 		super(derivedClass);
@@ -60,10 +66,14 @@ public class GeneralPage extends BasePOM {
 		this.lnkPanels = new Element(getLocator("lnkPanels").getBy());
 	}
 	
-	public Element setPagename(String pageName)
+	public void lnkPage(String pageName)
 	{
-		return new Element(getLocator("lnkPage").getBy(pageName));
+		new Element(getLocator("lnkPage").getBy(pageName));
 	}
+	
+//	public int getNumbersOfLinkedButtonInSecondLine() {
+//		return Element(getLocator("allLnkInSecondLine").getBy());
+//	}
 
 	/**
 	 * Open Add New Page dialog or Edit Page dialog.
@@ -170,14 +180,17 @@ public class GeneralPage extends BasePOM {
 	 * @param isFromChoosePanels open the dialog from "Choose Panels" linked button
 	 *                           or from "Global Setting" linked button
 	 */
+	
 	public PanelDialog openPanelDialog(boolean isFromChoosePanels) {
 		logger.printMessage("Open \"Add New Panel\" dialog.");
 		if (isFromChoosePanels) {
-			lnkChoosePanels.click();
+			if(lnkChoosePanels.isAttributePresent("class")) {
+				lnkChoosePanels.moveToElement();
+				lnkChoosePanels.click();
+			}
 			btnCreateNewPanel.click();
 		} else if (!isFromChoosePanels) {
-			lnkGlobalSetting.click();
-			lnkCreatePanel.click();
+			selectMenuItem(lnkGlobalSetting, lnkCreatePanel);
 		}
 		return new PanelDialog();
 	}
@@ -189,6 +202,7 @@ public class GeneralPage extends BasePOM {
 		openPageDialog();
 		pageDialog.fillInfoInPageDialog(page);
 		pageDialog.btnOK.click();
+		pageDialog.btnOK.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return this;
 	}
 	
@@ -212,15 +226,27 @@ public class GeneralPage extends BasePOM {
 	public GeneralPage deletePage(String pageName) {
 		logger.printMessage("Delete page: " + pageName);
 		selectMenuItem(lnkGlobalSetting, lnkDelete);
-		TestExecutor.getInstance().getCurrentDriver().switchTo().alert().accept();
+		acceptAlertPopup();
 		return this;
 	}
+	
+	//@author hanh.nguyen
+	public void acceptAlertPopup() {
+		TestExecutor.getInstance().getCurrentDriver().waitForAlertPopupPresent(Common.ELEMENT_TIMEOUT);
+		TestExecutor.getInstance().getCurrentDriver().switchTo().alert().accept();
+	}
+	
+//	public GeneralPage deleteAllPage() {
+//		
+//	}
 	
 	//@author hanh.nguyen
 	public PanelPage gotoPanelPage() {
 		logger.printMessage("Go to Panel Page.");
 		selectMenuItem(lnkAdminister, lnkPanels);
+		//panelPage.lnkAddNew.waitForDisplay(Common.ELEMENT_TIMEOUT);
 		return new PanelPage();
 	}
+	
 }
 

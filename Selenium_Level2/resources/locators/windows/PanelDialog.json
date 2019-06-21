@@ -118,11 +118,15 @@
 		},
 		"btnOK": {
 			"type": "xpath",
-			"value": "//input[@id='OK']"
+			"value": "//div[input[@id='btnSaveAs']]/input[@id='OK']"
 		},
 		"btnCancel": {
 			"type": "xpath",
-			"value": "//input[@id='Cancel']"
+			"value": "//div[input[@id='btnSaveAs']]/input[@id='Cancel']"
+		},
+		"fdPanelSettings": {
+			"type": "xpath",
+			"value": "//fieldset[legend[text()='%s']]"
 		}
 	}
 }

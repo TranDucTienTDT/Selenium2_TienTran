@@ -45,15 +45,4 @@ public class HomePage extends GeneralPage {
 		return tabExecutionDashboard.isExisted();
 	}
 	
-	/**
-	 * @author tien.duc.tran
-	 * @description select Panel menu item
-	 * 
-	 */
-	
-//	public PanelPage openPanelListPage() {
-//		this.selectMenuItem(itemAdminister, lnkPanel);
-//		return new PanelPage();
-//	}
-	
 }

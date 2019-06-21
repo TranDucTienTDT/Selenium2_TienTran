@@ -17,6 +17,7 @@ public class PanelDialog extends BasePOM{
 	protected Element cbbDataProfile;
 	protected Element btnOK;
 	protected Element btnCancel;
+	protected Element fdPanelSettings;
 	
 	//In Chart Panel
 	protected Element txtChartTitle;
@@ -81,6 +82,10 @@ public class PanelDialog extends BasePOM{
 		//In Indicator panel
 		this.txtIndicatorTitle = new Element(getLocator("txtIndicatorTitle").getBy());
 	}
+	
+	public void fdPanelSettings(PanelSettingType panelSettingType) {
+		new Element(getLocator("fdPanelSettings").getBy(panelSettingType.getValue()));
+	}
 
 	/*
 	 * Author: Tien Tran
@@ -139,7 +144,7 @@ public class PanelDialog extends BasePOM{
 			logger.printMessage("In \"Display Name\" combobox, select: " + dataProfile);
 			cbbDataProfile.selectByText(dataProfile);
 		}
-		if(!displayName.equals(null) && (txtDisplayName.getText().equals(null) || txtDisplayName.getText() != displayName)) {
+		if(displayName != null && (txtDisplayName.getText() == null || txtDisplayName.getText() != displayName)) {
 			logger.printMessage("In \"Display Name\" textbox, enter: " + displayName);
 			txtDisplayName.enter(displayName);
 		}
@@ -150,7 +155,7 @@ public class PanelDialog extends BasePOM{
 	public PanelDialog fillInforInChartPanelDialog(ChartPanel chartPanel) {
 		selectPanelType(PanelType.CHART);
 		fillInforInGeneralPanelDialog(chartPanel.getDataProfile(), chartPanel.getDisplayName());
-		if(!chartPanel.getChartTitle().equals(null) && (txtChartTitle.getText().equals(null) || txtChartTitle.getText() != chartPanel.getChartTitle()))
+		if(chartPanel.getChartTitle() != null && (txtChartTitle.getText() == null || txtChartTitle.getText() != chartPanel.getChartTitle()))
 		{
 			logger.printMessage("In \"Chart Title\" textbox, enter: " + chartPanel.getChartTitle());
 			txtChartTitle.enter(chartPanel.getChartTitle());
@@ -175,17 +180,45 @@ public class PanelDialog extends BasePOM{
 			logger.printMessage("Check in radio button \"3D\".");
 			radChartStyle3D.check();
 		}
-		if(chartPanel.getChartType() != cbbChartType.getText() && chartPanel.getChartType() != null) {
-			logger.printMessage("In \"Chart Type\" combobox, select: " + chartPanel.getChartType());
-			cbbChartType.selectByText(chartPanel.getChartType());
-		}
 		if(chartPanel.getSeries() != null && chartPanel.getSeries() != cbbSeriesField.getText()) {
 			logger.printMessage("In \"Series\" combobox, select: " + chartPanel.getSeries());
-			cbbSeriesField.selectByText(chartPanel.getSeries());
+			cbbSeriesField.selectByValue(chartPanel.getSeries().toLowerCase());
 		}
 		return new PanelDialog();
 	}
 	
+	public enum PanelSettingType{
+		CHART("Chart Settings"),
+		INDICATOR("Indicator Settings"),
+		REPORT(""),
+		HEAT_MAP("Heat Map Settings");
+		
+		private String _panelSettingType;
+		
+		public String getValue() {
+			return _panelSettingType;
+		}
+
+		public void setValue(String panelSettingType) {
+			this._panelSettingType = panelSettingType;
+		}
+
+		private PanelSettingType(String panelSettingType) {
+			this._panelSettingType = panelSettingType;
+		}
+	}
 	
+	public boolean isPanelSettingFormDisplayed(PanelSettingType panelSettingType) {
+		fdPanelSettings(panelSettingType);
+		boolean isDisplayed = false;
+		if(panelSettingType == panelSettingType.REPORT) {
+			if(!fdPanelSettings.isExisted()) {
+				isDisplayed = true;
+			}
+		}
+		isDisplayed = fdPanelSettings.isDisplayed();
+		logger.printMessage("Is Panel Setting From displayed: " + isDisplayed);
+		return isDisplayed;
+	}
 	
 }

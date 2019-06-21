@@ -50,7 +50,7 @@
 		},
 		"lnkChoosePanels": {
 			"type": "xpath",
-			"value": "//li[@class='mn-panels']"
+			"value": "//li[@class='mn-panels']/a"
 		},
 		"btnCreateNewPanel": {
 			"type": "xpath",
@@ -71,6 +71,10 @@
 		"lnkEdit": {
 			"type": "xpath",
 			"value": "//li[@class='mn-setting']//li[a[text()='Edit']]"
+		},
+		"allLnkInSecondLine": {
+			"type": "xpath",
+			"value": "count(//ul[li[@class='mn-setting']]/li)"
 		}
 	}
 }

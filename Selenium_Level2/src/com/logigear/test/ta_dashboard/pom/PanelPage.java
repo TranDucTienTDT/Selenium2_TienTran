@@ -1,5 +1,11 @@
 package com.logigear.test.ta_dashboard.pom;
 
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import com.logigear.testfw.element.Element;
 
 public class PanelPage extends GeneralPage {
@@ -9,7 +15,7 @@ public class PanelPage extends GeneralPage {
 	protected Element lnkCheckAll;
 	protected Element lnkUncheckAll;
 	protected Element chkDeletePanel;
-	
+	protected Element lnkPanelName;
 	public PanelPage() {
 		super(PanelPage.class);
 	}
@@ -21,12 +27,13 @@ public class PanelPage extends GeneralPage {
 		this.lnkDeleteInTopPage = new Element(getLocator("lnkDeleteInTopPage").getBy());
 		this.lnkCheckAll = new Element(getLocator("lnkCheckAll").getBy());
 		this.lnkUncheckAll = new Element(getLocator("lnkUncheckAll").getBy());
+		
 	}
 	
-	public Element setPanelName(String panelName) {
-		return new Element(getLocator("lnkUncheckAll").getBy(panelName));
+	public void lnkPanelName(String panelName) {
+		this.lnkPanelName =  new Element(getLocator("lnkUncheckAll").getBy(panelName));
 	}
-
+	
 	/*
 	 * Author: Tien Tran
 	 * Method name: clickLinkAddNew()
@@ -83,8 +90,30 @@ public class PanelPage extends GeneralPage {
 	
 	//@author hanh.nguyen
 	public boolean isPanelCheckboxChecked(String panelName) {
-		return setPanelName(panelName).isSelected();
+		lnkPanelName(panelName);
+		boolean isChecked = this.lnkPanelName.isSelected();
+		logger.printMessage("The checkbox of panel \"" + panelName + "\" is checked: " + isChecked);
+		return isChecked;
 	}
 	
+	//@author hanh.nguyen
+	public boolean arePanelCheckboxChecked (String[] pageNames) {
+		ArrayList<Boolean> areCheck = new ArrayList<Boolean>(pageNames.length);
+		for(int i = 0; i <= pageNames.length; i++) {
+			Collections.fill(areCheck, isPanelCheckboxChecked(pageNames[i]));
+		}
+		if(areCheck.contains(false))
+			return false;
+		else
+			return true;
+	}
 	
+	//@author hanh.nguyen
+	public PanelPage deleteAllPanels() {
+		logger.printMessage("Delete all panels in Panel Page.");
+		clickLinkedText(LinkedText.CHECK_ALL);
+		clickLinkedText(LinkedText.DELETE_IN_TOP);
+		acceptAlertPopup();
+		return new PanelPage();
+	}
 }

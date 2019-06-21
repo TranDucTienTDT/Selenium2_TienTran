@@ -25,6 +25,7 @@ import com.logigear.testfw.driver.DriverManager;
  */
 public class BaseTest {
 	protected static final Logger LOG = LogWrapper.createLogger(BaseTest.class.getName());
+	protected com.logigear.testfw.utilities.Logger logger = new com.logigear.testfw.utilities.Logger();
 	
 	@Parameters({ "environment" })
     @BeforeMethod(alwaysRun = true)
@@ -71,11 +72,12 @@ public class BaseTest {
 	 * 
 	 * */
 	
-	public GeneralPage precondition() {
+	public HomePage precondition() {
+		logger.printMessage("Precondition: Login with valid username and password.");
 		String SAMPLE_REPO = "SampleRepository";
 		String USERNAME = "administrator";
 		String PASSWORD = "";
 		HomePage homePage = new LoginPage().login(SAMPLE_REPO, USERNAME, PASSWORD);
-		return new GeneralPage(GeneralPage.class);
+		return homePage;
 	}
 }

@@ -6,7 +6,7 @@
 		},
 		"cboParentPage": {
 			"type": "xpath",
-			"value": "//select[@id=''parent']"
+			"value": "//select[@id='parent']"
 		},
 		"cboNumberOfColumns": {
 			"type": "xpath",

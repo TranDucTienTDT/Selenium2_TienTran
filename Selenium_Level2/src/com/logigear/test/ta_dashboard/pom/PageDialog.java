@@ -41,7 +41,7 @@ public class PageDialog extends BasePOM {
 	 */
 	public PageDialog fillInfoInPageDialog(String pageName, String parentName, String numberOfColumns,
 			String displayAfter, boolean isPublic) {
-		if (txtPageName.getText() == null || txtPageName.getText() != pageName) {
+		if ((pageName != null) && (txtPageName.getText() != null || txtPageName.getText() != pageName)) {
 			logger.printMessage("In \"Page Name\" textbox, enter: " + pageName);
 			txtPageName.enter(pageName);
 		}
@@ -59,7 +59,11 @@ public class PageDialog extends BasePOM {
 		}
 		if (chkIsPublic.isSelected() != isPublic) {
 			logger.printMessage("In \"Public\" checkbox, check it: " + isPublic);
-			chkIsPublic.check();
+			if(isPublic)
+				chkIsPublic.check();
+			else if (!isPublic) {
+				chkIsPublic.uncheck();
+			}
 		}
 		return new PageDialog();
 	}

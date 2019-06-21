@@ -33,6 +33,7 @@ public class LoginPage extends BasePOM{
 	 * @return
 	 */
 	public HomePage login(String repo, String username, String password) {
+		logger.printMessage("Log in with repository: " + repo + ", username: " + username + "and password: " + password);
 		cbbRepo.selectByValue(repo);
 		txtUsername.enter(username);
 		txtPassword.enter(password);
