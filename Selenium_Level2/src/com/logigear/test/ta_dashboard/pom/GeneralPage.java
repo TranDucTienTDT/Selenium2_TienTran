@@ -41,10 +41,12 @@ public class GeneralPage extends BasePOM {
 	protected Element lnkDataProfile;
 	protected Element lnkPanels;
 	//protected Element allLnkInSecondLine;
+	protected Element lnkCreateDataProfile;
 	public PageDialog pageDialog = new PageDialog();
 	public PanelDialog panelDialog = new PanelDialog();
 	public PanelConfigurationDialog panelConfigurationDialog = new PanelConfigurationDialog();
 	public PanelPage panelPage = new PanelPage();
+	public DataProfileSettingPage generalSettingPage = new DataProfileSettingPage();
 	
 	public GeneralPage(Class<?> derivedClass) {
 		super(derivedClass);
@@ -63,6 +65,7 @@ public class GeneralPage extends BasePOM {
 		this.lnkEdit = new Element(getLocator("lnkEdit").getBy());
 		this.lnkAdminister = new Element(getLocator("lnkAdminister").getBy());
 		this.lnkDataProfile = new Element(getLocator("lnkDataProfile").getBy());
+		this.lnkCreateDataProfile = new Element(getLocator("lnkCreateDataProfile").getBy());
 		this.lnkPanels = new Element(getLocator("lnkPanels").getBy());
 	}
 	
@@ -193,6 +196,21 @@ public class GeneralPage extends BasePOM {
 			selectMenuItem(lnkGlobalSetting, lnkCreatePanel);
 		}
 		return new PanelDialog();
+	}
+	
+	/**
+	 * @author: tien.duc.tran
+	 * @Description: createProfile (click Create Profile from Global Setting button)
+	 * @param: profileName, itemType
+	 * 
+	 */
+	public DataProfileSettingPage createProfile(String profileName, String itemType) {
+		logger.printMessage("Create a new data profile.");
+		selectMenuItem(lnkGlobalSetting, lnkCreateDataProfile);
+		generalSettingPage.txtProfileName.enter(profileName);
+		generalSettingPage.cbbEntityType.selectByText(itemType);
+		generalSettingPage.btnNext.click();
+		return new DataProfileSettingPage();
 	}
 	
 	//@author hanh.nguyen

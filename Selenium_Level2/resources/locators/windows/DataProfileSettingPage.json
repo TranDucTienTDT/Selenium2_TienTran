@@ -1,0 +1,24 @@
+{
+	"default": {
+		"lnkMenuOption": {
+			"type": "xpath",
+			"value": "//ul[@id='wstep']/li[text()='%s']"
+		},
+		"rowItem": {
+			"type": "xpath",
+			"value": "//table[@id='profilesettings']/tbody/tr/td/input[@value='%s']"
+		},
+		"txtProfileName": {
+			"type": "xpath",
+			"value": "//input[@id='txtProfileName']"
+		},
+		"cbbEntityType": {
+			"type": "xpath",
+			"value": "//select[@id='cbbEntityType']"
+		},
+		"btnNext": {
+			"type": "xpath",
+			"value": "//input[@type='button' and @value='Next']"
+		}
+	}
+}

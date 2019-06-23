@@ -1,9 +1,6 @@
 package com.logigear.test.ta_dashboard.pom;
 
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 import com.logigear.testfw.element.Element;
@@ -34,16 +31,6 @@ public class PanelPage extends GeneralPage {
 		this.lnkPanelName =  new Element(getLocator("lnkUncheckAll").getBy(panelName));
 	}
 	
-	/*
-	 * Author: Tien Tran
-	 * Method name: clickLinkAddNew()
-	 * Purpose/Description: Click "Add New" on Panel List page.
-	 * 
-	 * */
-	public PanelDialog clickLinkAddNew() {
-		lnkAddNew.click();
-		return new PanelDialog();
-	}
 	
 	//@author hanh.nguyen
 	public enum LinkedText {

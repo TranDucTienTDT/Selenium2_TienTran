@@ -28,6 +28,10 @@
 			"type": "xpath",
 			"value": "//a[text()='Data Profiles']"
 		},
+		"lnkCreateDataProfile": {
+			"type": "xpath",
+			"value": "//li/a[@class='add' and text()='Create Profile']"
+		},
 		"lnkPanels": {
 			"type": "xpath",
 			"value": "//a[text()='Panels']"
