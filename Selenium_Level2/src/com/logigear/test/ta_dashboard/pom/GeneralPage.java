@@ -45,7 +45,6 @@ public class GeneralPage extends BasePOM {
 	public PageDialog pageDialog = new PageDialog();
 	public PanelDialog panelDialog = new PanelDialog();
 	public PanelConfigurationDialog panelConfigurationDialog = new PanelConfigurationDialog();
-	public PanelPage panelPage = new PanelPage();
 	public DPGeneralSettingsPage generalSettingPage = new DPGeneralSettingsPage();
 	
 	public GeneralPage(Class<?> derivedClass) {
@@ -72,6 +71,12 @@ public class GeneralPage extends BasePOM {
 	public void lnkPage(String pageName)
 	{
 		new Element(getLocator("lnkPage").getBy(pageName));
+	}
+	
+	public PanelPage clickMenu()
+	{
+		//..
+		return new PanelPage();
 	}
 	
 //	public int getNumbersOfLinkedButtonInSecondLine() {

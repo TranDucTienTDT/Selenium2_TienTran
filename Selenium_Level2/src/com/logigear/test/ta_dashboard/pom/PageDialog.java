@@ -39,7 +39,7 @@ public class PageDialog extends BasePOM {
 	 * @param afterPage  the after page
 	 * @param isPublic   the is public
 	 */
-	public PageDialog fillInfoInPageDialog(String pageName, String parentName, String numberOfColumns,
+	public void fillInfoInPageDialog(String pageName, String parentName, String numberOfColumns,
 			String displayAfter, boolean isPublic) {
 		if ((pageName != null) && (txtPageName.getText() != null || txtPageName.getText() != pageName)) {
 			logger.printMessage("In \"Page Name\" textbox, enter: " + pageName);
@@ -65,14 +65,15 @@ public class PageDialog extends BasePOM {
 				chkIsPublic.uncheck();
 			}
 		}
-		return new PageDialog();
+		
+		//return this;
 	}
 	
 	//@author hanh.nguyen
-	public PageDialog fillInfoInPageDialog(Page page) {
+	public void fillInfoInPageDialog(Page page) {
 		fillInfoInPageDialog(page.getPageName(), page.getParentName(), page.getNumberOfColumns(),
 				page.getDisplayAfter(), page.isIsPublic());
-		return new PageDialog();
+		//return new PageDialog();
 	}
 
 	

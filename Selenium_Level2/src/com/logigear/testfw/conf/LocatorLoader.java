@@ -95,9 +95,11 @@ public class LocatorLoader {
 			
 		}catch(JSONException e) {
 			// invalid format or value not found. Ignore
+			e.printStackTrace();
 		}
 		catch(NoSuchFileException e) {
 			// invalid format or value not found. Ignore
+			e.printStackTrace();
 		}
 		catch(Exception e) {
 			// file not exit or invalid format

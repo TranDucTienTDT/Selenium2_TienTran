@@ -15,11 +15,12 @@ import com.logigear.test.ta_dashboard.pom.LoginPage;
 import com.logigear.test.ta_dashboard.pom.PanelConfigurationDialog;
 import com.logigear.test.ta_dashboard.pom.PanelPage;
 import com.logigear.test.ta_dashboard.pom.PanelPage.LinkedText;
+import com.logigear.test.ta_dashboard.testcases.Precondition;
 import com.logigear.testfw.common.BaseTest;
 
 import junit.framework.Assert;
 
-public class DA_PANEL_TC064 extends BaseTest{
+public class DA_PANEL_TC064 extends Precondition{
 	
 		@Test
 		public void TC064_Verify_that_Check_All_Uncheck_All_links_are_working_correctly()
