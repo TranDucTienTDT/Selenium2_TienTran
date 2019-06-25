@@ -7,7 +7,7 @@ import com.logigear.test.ta_dashboard.pom.HomePage;
 import com.logigear.test.ta_dashboard.pom.LoginPage;
 import com.logigear.testfw.common.BaseTest;
 
-public class ModifyPageTest extends BaseTest{
+public class ModifyPageTest extends Precondition{
 	
 	@Test
 	public void DA_PANEL_TC064() {

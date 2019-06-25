@@ -11,7 +11,7 @@ import com.logigear.testfw.common.BaseTest;
 
 import junit.framework.Assert;
 
-public class PanelTest_Tien extends BaseTest{
+public class PanelTest_Tien extends Precondition{
 	@Test
 	public void DA_PANEL_TC031() {
 /*

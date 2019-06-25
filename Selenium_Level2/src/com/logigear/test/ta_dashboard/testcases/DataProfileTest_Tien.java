@@ -7,7 +7,7 @@ import com.logigear.test.ta_dashboard.pom.DPGeneralSettingsPage;
 import com.logigear.test.ta_dashboard.pom.HomePage;
 import com.logigear.testfw.common.BaseTest;
 
-public class DataProfileTest_Tien extends BaseTest{
+public class DataProfileTest_Tien extends Precondition{
 
 	@Test
 	public void DA_DP_TC095() {

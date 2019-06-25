@@ -65,19 +65,5 @@ public class BaseTest {
 		}
 	}
 	
-	/*
-	 * @author: tien.duc.tran
-	 * Method name: precondition()
-	 * Purpose/Description: Precondition Login to Dashboard
-	 * 
-	 * */
 	
-	public HomePage precondition() {
-		logger.printMessage("Precondition: Login with valid username and password.");
-		String SAMPLE_REPO = "SampleRepository";
-		String USERNAME = "administrator";
-		String PASSWORD = "";
-		HomePage homePage = new LoginPage().login(SAMPLE_REPO, USERNAME, PASSWORD);
-		return homePage;
-	}
 }
