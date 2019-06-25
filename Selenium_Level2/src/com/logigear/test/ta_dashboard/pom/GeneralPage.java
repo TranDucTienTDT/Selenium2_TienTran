@@ -46,7 +46,7 @@ public class GeneralPage extends BasePOM {
 	public PanelDialog panelDialog = new PanelDialog();
 	public PanelConfigurationDialog panelConfigurationDialog = new PanelConfigurationDialog();
 	public PanelPage panelPage = new PanelPage();
-	public DataProfileSettingPage generalSettingPage = new DataProfileSettingPage();
+	public DPGeneralSettingsPage generalSettingPage = new DPGeneralSettingsPage();
 	
 	public GeneralPage(Class<?> derivedClass) {
 		super(derivedClass);
@@ -198,20 +198,27 @@ public class GeneralPage extends BasePOM {
 		return new PanelDialog();
 	}
 	
+	//@author hanh.nguyen
+	public DPGeneralSettingsPage openGeneralSettingsPageByMenuItem() {
+		logger.printMessage("Open \"General Settings\" page by selecting menu item.");
+		selectMenuItem(lnkGlobalSetting, lnkCreateDataProfile);
+		return new DPGeneralSettingsPage();
+	}
+	
 	/**
 	 * @author: tien.duc.tran
 	 * @Description: createProfile (click Create Profile from Global Setting button)
 	 * @param: profileName, itemType
 	 * 
 	 */
-	public DataProfileSettingPage createProfile(String profileName, String itemType) {
-		logger.printMessage("Create a new data profile.");
-		selectMenuItem(lnkGlobalSetting, lnkCreateDataProfile);
-		generalSettingPage.txtProfileName.enter(profileName);
-		generalSettingPage.cbbEntityType.selectByText(itemType);
-		generalSettingPage.btnNext.click();
-		return new DataProfileSettingPage();
-	}
+//	public DPGeneralSettingsPage createProfile(String profileName, String itemType) {
+//		logger.printMessage("Create a new data profile.");
+//		selectMenuItem(lnkGlobalSetting, lnkCreateDataProfile);
+//		generalSettingPage.txtProfileName.enter(profileName);
+//		generalSettingPage.cbbEntityType.selectByText(itemType);
+//		generalSettingPage.btnNext.click();
+//		return new DPGeneralSettingsPage();
+//	}
 	
 	//@author hanh.nguyen
 	public GeneralPage addNewPage(Page page)

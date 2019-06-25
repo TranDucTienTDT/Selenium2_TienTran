@@ -13,6 +13,7 @@ public class PanelPage extends GeneralPage {
 	protected Element lnkUncheckAll;
 	protected Element chkDeletePanel;
 	protected Element lnkPanelName;
+	
 	public PanelPage() {
 		super(PanelPage.class);
 	}

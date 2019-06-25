@@ -33,7 +33,7 @@ public class LoginPage extends BasePOM{
 	 * @return
 	 */
 	public HomePage login(String repo, String username, String password) {
-		logger.printMessage("Log in with repository: " + repo + ", username: " + username + "and password: " + password);
+		logger.printMessage("Log in with repository: " + repo + ", username: " + username + " and password: " + password);
 		cbbRepo.selectByValue(repo);
 		txtUsername.enter(username);
 		txtPassword.enter(password);
@@ -46,10 +46,10 @@ public class LoginPage extends BasePOM{
 	 * @param timeOutInSeconds
 	 * @return
 	 */
-	public LoginPage waitForLoading(int timeOutInSeconds) {
-		btnLogin.waitForClickable(timeOutInSeconds);
-		return this;
-	}
+//	public LoginPage waitForLoading(int timeOutInSeconds) {
+//		btnLogin.waitForClickable(timeOutInSeconds);
+//		return this;
+//	}
 
 	/**
 	 * 

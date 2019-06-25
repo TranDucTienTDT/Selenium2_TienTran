@@ -1,4 +1,4 @@
-package com.logigear.test.ta_dashboard.testcases;
+package com.logigear.test.ta_dashboard.testcases.PanelTCs;
 
 import javax.annotation.PostConstruct;
 
@@ -19,7 +19,7 @@ import com.logigear.testfw.common.BaseTest;
 
 import junit.framework.Assert;
 
-public class PanelTest extends BaseTest{
+public class DA_PANEL_TC064 extends BaseTest{
 	
 		@Test
 		public void TC064_Verify_that_Check_All_Uncheck_All_links_are_working_correctly()
