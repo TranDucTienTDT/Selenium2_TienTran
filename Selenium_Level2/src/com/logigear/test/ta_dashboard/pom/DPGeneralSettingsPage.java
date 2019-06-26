@@ -2,7 +2,7 @@ package com.logigear.test.ta_dashboard.pom;
 
 import com.logigear.testfw.element.Element;
 
-public class DPGeneralSettingsPage extends GeneralInputDataProfilesPage{
+public class DPGeneralSettingsPage extends GeneralPage{
 	
 	protected Element lnkMenuOption;
 	protected Element txtProfileName;
@@ -10,9 +10,9 @@ public class DPGeneralSettingsPage extends GeneralInputDataProfilesPage{
 	protected Element btnNext;
 	protected Element rowItem;
 	
-//	public DPGeneralSettingsPage() {
-//		super(DPGeneralSettingsPage.class);
-//	}
+	public DPGeneralSettingsPage() {
+		super(DPGeneralSettingsPage.class);
+	}
 
 	@Override
 	public void initPageElements() {

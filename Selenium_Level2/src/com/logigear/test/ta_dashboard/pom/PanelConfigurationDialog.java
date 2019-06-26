@@ -19,11 +19,19 @@ public class PanelConfigurationDialog extends BasePOM{
 	}
 	
 	//@author hanh.nguyen
-	protected GeneralPage cancelPanelConfiguration() {
-		logger.printMessage("In dialog \"Panel Configuration\", click \'Cancel\" button.");
+	public GeneralPage cancelPanelConfiguration() {
+		logger.printMessage("In dialog \"Panel Configuration\", click \"Cancel\" button.");
 		btnCancel.click();
 		btnCancel.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new GeneralPage(GeneralPage.class);
 	}
+	
+	//@author hanh.nguyen
+		public GeneralPage acceptPanelConfiguration() {
+			logger.printMessage("In dialog \"Panel Configuration\", click \"OK\" button.");
+			btnOK.click();
+			btnOK.waitForDisappear(Common.ELEMENT_TIMEOUT);
+			return new GeneralPage(GeneralPage.class);
+		}
 	
 }

@@ -30,25 +30,25 @@ public class PanelTest_Tien extends Precondition{
 		Select Heat Maps type
 		VP: Verify that heatmap panel setting form is displayed with corresponding panel type selected
 */
-		HomePage homePage = precondition();
-
-		homePage.waitForLoading()
-				.gotoPanelPage()
-				.clickLinkedText(LinkedText.ADD_NEW);
-		PanelDialog panelDialog = new PanelDialog();
-		boolean isChartSettingFormDisplayed = panelDialog.isPanelSettingFormDisplayed(PanelSettingType.CHART);
-		Assert.assertTrue(isChartSettingFormDisplayed);
-
-		boolean isIndicatorSettingFormDisplayed = panelDialog.selectPanelType(PanelType.INDICATOR)
-																.isPanelSettingFormDisplayed(PanelSettingType.INDICATOR);
-		Assert.assertTrue(isIndicatorSettingFormDisplayed);
-		
-		boolean isReportSettingFormDisplayed = panelDialog.selectPanelType(PanelType.REPORT)
-				.isPanelSettingFormDisplayed(PanelSettingType.REPORT);
-		Assert.assertTrue(isReportSettingFormDisplayed);
-		
-		boolean isHeatMapsSettingFormDisplayed = panelDialog.selectPanelType(PanelType.HEAT_MAP)
-				.isPanelSettingFormDisplayed(PanelSettingType.HEAT_MAP);
-		Assert.assertTrue(isHeatMapsSettingFormDisplayed);
+//		HomePage homePage = precondition();
+//
+//		homePage.waitForLoading()
+//				.gotoPanelPage()
+//				.clickLinkedText(LinkedText.ADD_NEW);
+//		PanelDialog panelDialog = new PanelDialog();
+//		boolean isChartSettingFormDisplayed = panelDialog.isPanelSettingFormDisplayed(PanelSettingType.CHART);
+//		Assert.assertTrue(isChartSettingFormDisplayed);
+//
+//		boolean isIndicatorSettingFormDisplayed = panelDialog.selectPanelType(PanelType.INDICATOR)
+//																.isPanelSettingFormDisplayed(PanelSettingType.INDICATOR);
+//		Assert.assertTrue(isIndicatorSettingFormDisplayed);
+//		
+//		boolean isReportSettingFormDisplayed = panelDialog.selectPanelType(PanelType.REPORT)
+//				.isPanelSettingFormDisplayed(PanelSettingType.REPORT);
+//		Assert.assertTrue(isReportSettingFormDisplayed);
+//		
+//		boolean isHeatMapsSettingFormDisplayed = panelDialog.selectPanelType(PanelType.HEAT_MAP)
+//				.isPanelSettingFormDisplayed(PanelSettingType.HEAT_MAP);
+//		Assert.assertTrue(isHeatMapsSettingFormDisplayed);
 	}
 }

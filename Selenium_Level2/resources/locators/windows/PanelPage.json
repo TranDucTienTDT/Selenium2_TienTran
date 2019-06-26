@@ -16,9 +16,21 @@
 			"type": "xpath",
 			"value": "//a[text()='UnCheck All']"
 		},
-		"chkDeletePanel": {
+		"lnkDelete": {
 			"type": "xpath",
-			"value": "//tr[td[a[text()='%s']]]//input[@id='chkDelPanel']"
+			"value": "//td[a[text()='%s']]/following-sibling::td/a[text()='Delete']"
+		},
+		"lnkEdit": {
+			"type": "xpath",
+			"value": "//td[a[text()='%s']]/following-sibling::td/a[text()='Edit']"
+		},
+		"chkPanelName": {
+			"type": "xpath",
+			"value": "//td[a[text()='$s']]/preceding-sibling::td/input[@id='chkDelPanel']"
+		},
+		"lnkPanelName": {
+			"type": "xpath",
+			"value": "//a[text()='%s']"
 		}
 	}
 }

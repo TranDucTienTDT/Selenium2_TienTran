@@ -79,6 +79,10 @@
 		"allLnkInSecondLine": {
 			"type": "xpath",
 			"value": "count(//ul[li[@class='mn-setting']]/li)"
+		},
+		"lnkInChoosePanels": {
+			"type": "xpath",
+			"value": "//a[text()='%s']"
 		}
 	}
 }

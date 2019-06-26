@@ -37,4 +37,19 @@ public class Locator {
 		String tmp = String.format(value, args);
 		return LocatorLoader.getByLocator(type, tmp);
 	}
+	
+	//@author hanh.nguyen
+	public By getByWithAltCode(String arg) {
+		String locator;
+		if (arg.contains(" "))
+        {
+            String newArg = arg.replace(" ", "\u00a0");
+            locator = String.format(value, newArg);
+        }
+        else
+        {
+            locator = String.format(value, arg);
+        }
+		return LocatorLoader.getByLocator(type, locator);
+	}
 }

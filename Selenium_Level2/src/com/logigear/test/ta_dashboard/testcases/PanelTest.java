@@ -50,8 +50,8 @@ public class PanelTest extends Precondition{
 //			Step	Click 'Panels' link
 //			Step	Click 'Check All' link
 			
-			HomePage homePage = precondition();
-			PanelPage panelPage = homePage.addNewPage(page)
+			HomePage homePage = preconditionLoginValid();
+			PanelPage panelPage = (PanelPage) homePage.addNewPage(page)
 											.addChartPanel(chartPanel1, false)
 											.cancelPanelConfiguration()							
 											.addChartPanel(chartPanel2, false)	
@@ -66,7 +66,7 @@ public class PanelTest extends Precondition{
 //			Step	Click 'Uncheck All' link
 //			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are unchecked
 			
-			boolean areUnchecked = panelPage.clickLinkedText(LinkedText.UNCHECK_ALL)
+			boolean areUnchecked = ((PanelPage) panelPage.clickLinkedText(LinkedText.UNCHECK_ALL))
 											.arePanelCheckboxChecked(check);
 			Assert.assertEquals(areUnchecked, false);
 	}

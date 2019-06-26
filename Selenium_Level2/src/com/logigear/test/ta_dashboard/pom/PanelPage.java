@@ -11,8 +11,10 @@ public class PanelPage extends GeneralPage {
 	protected Element lnkDeleteInTopPage;
 	protected Element lnkCheckAll;
 	protected Element lnkUncheckAll;
-	protected Element chkDeletePanel;
 	protected Element lnkPanelName;
+	protected Element chkPanelName;
+	protected Element lnkEdit;
+	protected Element lnkDelete;
 	
 	public PanelPage() {
 		super(PanelPage.class);
@@ -29,9 +31,20 @@ public class PanelPage extends GeneralPage {
 	}
 	
 	public void lnkPanelName(String panelName) {
-		this.lnkPanelName =  new Element(getLocator("lnkUncheckAll").getBy(panelName));
+		this.lnkPanelName =  new Element(getLocator("lnkPanelName").getBy(panelName));
 	}
 	
+	public void chkPanelName(String panelName) {
+		this.chkPanelName =  new Element(getLocator("chkPanelName").getBy(panelName));
+	}
+	
+	public void lnkEdit(String panelName) {
+		this.lnkEdit =  new Element(getLocator("lnkEdit").getBy(panelName));
+	}
+	
+	public void lnkDelete(String panelName) {
+		this.lnkDelete =  new Element(getLocator("lnkDelete").getBy(panelName));
+	}
 	
 	//@author hanh.nguyen
 	public enum LinkedText {
@@ -56,7 +69,7 @@ public class PanelPage extends GeneralPage {
 	}
 	
 	//@author hanh.nguyen
-	public PanelPage clickLinkedText(LinkedText text) {
+	public Object clickLinkedText(LinkedText text) {
 		if(text.equals(LinkedText.ADD_NEW)) {
 			logger.printMessage("Click \"Add New\" linked text.");
 			lnkAddNew.click();
@@ -73,7 +86,10 @@ public class PanelPage extends GeneralPage {
 			logger.printMessage("Click \"Uncheck All\" linked text.");
 			lnkUncheckAll.click();
 		}
-		return new PanelPage();
+		if(text.equals(LinkedText.ADD_NEW))
+			return new PanelDialog();
+		else
+			return new PanelPage();
 	}
 	
 	//@author hanh.nguyen
@@ -103,5 +119,13 @@ public class PanelPage extends GeneralPage {
 		clickLinkedText(LinkedText.DELETE_IN_TOP);
 		acceptAlertPopup();
 		return new PanelPage();
+	}
+	
+	//@author hanh.nguyen
+	public PanelDialog clickEditLinkedText(String panelName) {
+		logger.printMessage("Click in \"Edit\" linked text of panel: " + panelName);
+		lnkEdit(panelName);
+		lnkEdit.click();
+		return new PanelDialog();
 	}
 }

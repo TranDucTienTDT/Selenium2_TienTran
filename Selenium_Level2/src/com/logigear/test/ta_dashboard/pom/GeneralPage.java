@@ -42,10 +42,11 @@ public class GeneralPage extends BasePOM {
 	protected Element lnkPanels;
 	//protected Element allLnkInSecondLine;
 	protected Element lnkCreateDataProfile;
+	protected Element lnkInChoosePanels;
+	
 	public PageDialog pageDialog = new PageDialog();
 	public PanelDialog panelDialog = new PanelDialog();
 	public PanelConfigurationDialog panelConfigurationDialog = new PanelConfigurationDialog();
-	public DPGeneralSettingsPage generalSettingPage = new DPGeneralSettingsPage();
 	
 	public GeneralPage(Class<?> derivedClass) {
 		super(derivedClass);
@@ -70,14 +71,18 @@ public class GeneralPage extends BasePOM {
 	
 	public void lnkPage(String pageName)
 	{
-		new Element(getLocator("lnkPage").getBy(pageName));
+		this.lnkPage = new Element(getLocator("lnkPage").getByWithAltCode(pageName));
 	}
 	
-	public PanelPage clickMenu()
-	{
-		//..
-		return new PanelPage();
+	public void lnkInChoosePanels(String lnkText) {
+		this.lnkInChoosePanels = new Element(getLocator("lnkInChoosePanels").getByWithAltCode(lnkText));
 	}
+	
+//	public PanelPage clickMenu()
+//	{
+//		//..
+//		return new PanelPage();
+//	}
 	
 //	public int getNumbersOfLinkedButtonInSecondLine() {
 //		return Element(getLocator("allLnkInSecondLine").getBy());
@@ -192,10 +197,7 @@ public class GeneralPage extends BasePOM {
 	public PanelDialog openPanelDialog(boolean isFromChoosePanels) {
 		logger.printMessage("Open \"Add New Panel\" dialog.");
 		if (isFromChoosePanels) {
-			if(lnkChoosePanels.isAttributePresent("class")) {
-				lnkChoosePanels.moveToElement();
-				lnkChoosePanels.click();
-			}
+			openChoosePanelsTab();
 			btnCreateNewPanel.click();
 		} else if (!isFromChoosePanels) {
 			selectMenuItem(lnkGlobalSetting, lnkCreatePanel);
@@ -238,11 +240,8 @@ public class GeneralPage extends BasePOM {
 	
 	//@author hanh.nguyen
 	public GeneralPage addChartPanel(ChartPanel chartPanel, boolean isFromChoosePanels) {
-		logger.printMessage("Add a Chart Panel: " + chartPanel.getDisplayName());
 		openPanelDialog(isFromChoosePanels);
-		panelDialog.fillInforInChartPanelDialog(chartPanel);
-		panelDialog.btnOK.click();
-		panelDialog.btnOK.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		panelDialog.addChartPanel(chartPanel);
 		return this;
 	}
 	
@@ -255,6 +254,8 @@ public class GeneralPage extends BasePOM {
 	//@author hanh.nguyen
 	public GeneralPage deletePage(String pageName) {
 		logger.printMessage("Delete page: " + pageName);
+		lnkPage(pageName);
+		lnkPage.click();
 		selectMenuItem(lnkGlobalSetting, lnkDelete);
 		acceptAlertPopup();
 		return this;
@@ -274,8 +275,25 @@ public class GeneralPage extends BasePOM {
 	public PanelPage gotoPanelPage() {
 		logger.printMessage("Go to Panel Page.");
 		selectMenuItem(lnkAdminister, lnkPanels);
-		//panelPage.lnkAddNew.waitForDisplay(Common.ELEMENT_TIMEOUT);
 		return new PanelPage();
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage openChoosePanelsTab() {
+		if(lnkChoosePanels.isAttributePresent("class")) {
+			logger.printMessage("Click in \"Choose Panels\" button to open \"Choose Panels\" tab.");
+			lnkChoosePanels.moveToElement();
+			lnkChoosePanels.click();
+		}
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public PanelConfigurationDialog clickLinkedTextInChoosePanelsTab(String lnkText) {
+		logger.printMessage("In \"Choose Panels\" tab, click: " + lnkText);
+		lnkInChoosePanels(lnkText);
+		lnkInChoosePanels.click();
+		return new PanelConfigurationDialog();
 	}
 	
 }

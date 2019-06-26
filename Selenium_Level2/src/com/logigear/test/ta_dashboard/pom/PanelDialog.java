@@ -1,9 +1,13 @@
 package com.logigear.test.ta_dashboard.pom;
 
+import java.util.Arrays;
+
 import com.logigear.test.ta_dashboard.data_object.ChartPanel;
+import com.logigear.test.ta_dashboard.data_object.ChartPanel.Legends;
 import com.logigear.test.ta_dashboard.data_object.ChartPanel.Style;
 import com.logigear.test.ta_dashboard.data_object.GeneralPanel.PanelType;
 import com.logigear.testfw.common.BasePOM;
+import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
 public class PanelDialog extends BasePOM{
@@ -84,7 +88,7 @@ public class PanelDialog extends BasePOM{
 	}
 	
 	public void fdPanelSettings(PanelSettingType panelSettingType) {
-		new Element(getLocator("fdPanelSettings").getBy(panelSettingType.getValue()));
+		this.fdPanelSettings = new Element(getLocator("fdPanelSettings").getBy(panelSettingType.getValue()));
 	}
 
 	/*
@@ -118,7 +122,7 @@ public class PanelDialog extends BasePOM{
 	}
 	
 	//@author hanh.nguyen
-	public PanelDialog selectPanelType(PanelType panelType) {
+	public void selectPanelType(PanelType panelType) {
 		if(panelType == PanelType.CHART) {
 			logger.printMessage("Select \"Chart\" radio button");
 			radChart.check();
@@ -135,11 +139,10 @@ public class PanelDialog extends BasePOM{
 			logger.printMessage("Select \"Heat Map\" radio button");
 			radHeatMap.check();
 		}
-		return new PanelDialog();
 	}
 	
 	//@author hanh.nguyen
-	public PanelDialog fillInforInGeneralPanelDialog(String dataProfile, String displayName) {
+	public void fillInforInGeneralPanelDialog(String dataProfile, String displayName) {
 		if(dataProfile != null && dataProfile != txtDisplayName.getText()) {
 			logger.printMessage("In \"Display Name\" combobox, select: " + dataProfile);
 			cbbDataProfile.selectByText(dataProfile);
@@ -148,11 +151,10 @@ public class PanelDialog extends BasePOM{
 			logger.printMessage("In \"Display Name\" textbox, enter: " + displayName);
 			txtDisplayName.enter(displayName);
 		}
-		return new PanelDialog();	
 	}
 	
 	//@author hanh.nguyen
-	public PanelDialog fillInforInChartPanelDialog(ChartPanel chartPanel) {
+	public void fillInforInChartPanelDialog(ChartPanel chartPanel) {
 		selectPanelType(PanelType.CHART);
 		fillInforInGeneralPanelDialog(chartPanel.getDataProfile(), chartPanel.getDisplayName());
 		if(chartPanel.getChartTitle() != null && (txtChartTitle.getText() == null || txtChartTitle.getText() != chartPanel.getChartTitle()))
@@ -168,10 +170,7 @@ public class PanelDialog extends BasePOM{
 			logger.printMessage("Uncheck in checkbox \"Show Title\".");
 			chkShowTitle.uncheck();
 		}
-		if(chartPanel.getChartType() != cbbChartType.getText() && chartPanel.getChartType() != null) {
-			logger.printMessage("In \"Chart Type\" combobox, select: " + chartPanel.getChartType());
-			cbbChartType.selectByText(chartPanel.getChartType());
-		}
+		selectChartType(chartPanel.getChartType());
 		if(chartPanel.getStyle() == Style.STYLE2D) {
 			logger.printMessage("Check in radio button \"2D\".");
 			radChartStyle2D.check();
@@ -184,10 +183,10 @@ public class PanelDialog extends BasePOM{
 			logger.printMessage("In \"Series\" combobox, select: " + chartPanel.getSeries());
 			cbbSeriesField.selectByValue(chartPanel.getSeries().toLowerCase());
 		}
-		return new PanelDialog();
+		selectLegendsField(chartPanel.getLegends());
 	}
 	
-	public enum PanelSettingType{
+	public enum PanelSettingType {
 		CHART("Chart Settings"),
 		INDICATOR("Indicator Settings"),
 		REPORT(""),
@@ -221,4 +220,161 @@ public class PanelDialog extends BasePOM{
 		return isDisplayed;
 	}
 	
+	//@author hanh.nguyen
+	public enum ChartType {
+		PIE("Pie"),
+		SINGLE_BAR("Single Bar"),
+		STACKED_BAR("Stacked Bar"),
+		GROUP_BAR("Group Bar"),
+		LINE("Line");
+		
+		private String _chartType;
+		
+		public String getValue() {
+			return _chartType;
+		}
+
+		public void setValue(String chartType) {
+			this._chartType = chartType;
+		}
+
+		private ChartType(String chartType) {
+			this._chartType = chartType;
+		}
+	}
+	
+	//@author hanh.nguyen
+	public PanelDialog selectChartType(String chartType) {
+		if(chartType != cbbChartType.getText() && chartType != null) {
+			logger.printMessage("In \"Chart Type\" combobox, select: " + chartType);
+			cbbChartType.selectByText(chartType);
+		}
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public boolean isChartTypeComboboxDisplayCorrectly(String expectedValue) {
+		boolean isCorrect = false;
+		String actualValue = cbbChartType.getSelectedOption();
+		if(expectedValue.equalsIgnoreCase(actualValue))
+			isCorrect = true;
+		logger.printMessage("\"Chart Type\" combobox displayed correctly: " + isCorrect);
+		return isCorrect;
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage closePanelDialog() {
+		logger.printMessage("Close Panel dialog.");
+		btnCancel.click();
+		btnCancel.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		return new GeneralPage(GeneralPage.class);
+	}
+	
+	public enum ChartPanelFields {
+		DATA_PROFILE, DISPLAY_NAME, CHART_TITLE, CHART_TYPE, SHOW_TITLE, STYLE, CATEGORY, CATEGORY_CAPTION, SERIES, 
+		SERIES_CAPTION, LEGENDS, DATA_lABELS;
+	}
+	
+	public String getAllSettingsInChartPanelDialog(String[] ignoredField) {
+		String dataProfile = "", displayName = "", chartTitle = "", chartType = "", category = "", categoryCaption = "", 
+				series = "", seriesCaption = "", legends = "", dataLabels = "";
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.DATA_PROFILE.toString()::equals)) {
+			dataProfile = cbbDataProfile.getSelectedOption();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.DISPLAY_NAME.toString()::equals)) {
+			displayName = txtDisplayName.getText();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.CHART_TITLE.toString()::equals)) {
+			chartTitle = txtChartTitle.getText();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.CHART_TYPE.toString()::equals)) {
+			chartType = cbbChartType.getSelectedOption();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.CATEGORY.toString()::equals)) {
+			category = cbbCategoryField.getSelectedOption();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.CATEGORY_CAPTION.toString()::equals)) {
+			categoryCaption = txtCategoryCaption.getText();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.SERIES.toString()::equals)) {
+			series = cbbSeriesField.getSelectedOption();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.SERIES_CAPTION.toString()::equals)) {
+			seriesCaption = txtSeriesCaption.getText();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.LEGENDS.toString()::equals)) {
+			legends = getLegendsFieldsValue();
+		}
+		if(!Arrays.stream(ignoredField).anyMatch(ChartPanelFields.DATA_lABELS.toString()::equals)) {
+			dataLabels = getDataLabelsValue();
+		}
+		String value = dataProfile + displayName + chartTitle + chartType + category + categoryCaption + series + seriesCaption
+				       + legends + dataLabels;
+		return value;
+	}
+	
+	public String getLegendsFieldsValue() {
+		String legendValue = "";
+		if(radLegendsNone.isAttributePresent("checked")) {
+			legendValue = "None";
+		}
+		else if (radLegendsTop.isAttributePresent("checked")) {
+			legendValue = "Top";
+		}
+		else if (radLegendsRight.isAttributePresent("checked")) {
+			legendValue = "Right";
+		}
+		else if (radLegendsBottom.isAttributePresent("checked")) {
+			legendValue = "Bottom";
+		}
+		else if (radLegendsLeft.isAttributePresent("checked")) {
+			legendValue = "Left";
+		}
+		return legendValue;
+	}
+	
+	public String getDataLabelsValue() {
+		String dataLabelsValue = "";
+		if(chkDataLabelsSeries.isSelected())
+			dataLabelsValue = dataLabelsValue + "Seiries";
+		if(chkDataLabelsCategories.isSelected())
+			dataLabelsValue = dataLabelsValue + "Categories";
+		if(chkDataLabelsValue.isSelected())
+			dataLabelsValue = dataLabelsValue + "Value";	
+		if(chkDataLabelsPercentage.isSelected())
+			dataLabelsValue = dataLabelsValue + "Percentage";
+		return dataLabelsValue;
+	}
+	
+	public PanelDialog selectLegendsField(Legends legend) {
+		if(legend == Legends.NONE) {
+			logger.printMessage("Select \"None\" radio button");
+			radLegendsNone.check();
+		}
+		if(legend == Legends.TOP) {
+			logger.printMessage("Select \"Top\" radio button");
+			radLegendsTop.check();
+		}
+		if(legend == Legends.RIGHT) {
+			logger.printMessage("Select \"Right\" radio button");
+			radLegendsRight.check();
+		}
+		if(legend == Legends.BOTTOM) {
+			logger.printMessage("Select \"Bottom\" radio button");
+			radLegendsBottom.check();
+		}
+		if(legend == Legends.LEFT) {
+			logger.printMessage("Select \"Left\" radio button");
+			radLegendsLeft.check();
+		}
+		return this;
+	}
+	
+	public PanelPage addChartPanel(ChartPanel chartPanel) {
+		logger.printMessage("Add a Chart Panel: " + chartPanel.getDisplayName());
+		fillInforInChartPanelDialog(chartPanel);
+		btnOK.click();
+		btnOK.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		return new PanelPage();
+	}
 }

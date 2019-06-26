@@ -13,7 +13,7 @@ public class Precondition extends BaseTest{
 	 * 
 	 * */
 	
-	public HomePage precondition() {
+	public HomePage preconditionLoginValid() {
 		logger.printMessage("Precondition: Login with valid username and password.");
 		String SAMPLE_REPO = "SampleRepository";
 		String USERNAME = "administrator";

@@ -2,6 +2,7 @@ package com.logigear.test.ta_dashboard.pom;
 
 import com.logigear.test.ta_dashboard.data_object.Page;
 import com.logigear.testfw.common.BasePOM;
+import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
 public class PageDialog extends BasePOM {
@@ -65,16 +66,12 @@ public class PageDialog extends BasePOM {
 				chkIsPublic.uncheck();
 			}
 		}
-		
-		//return this;
 	}
 	
 	//@author hanh.nguyen
 	public void fillInfoInPageDialog(Page page) {
 		fillInfoInPageDialog(page.getPageName(), page.getParentName(), page.getNumberOfColumns(),
 				page.getDisplayAfter(), page.isIsPublic());
-		//return new PageDialog();
 	}
 
-	
 }

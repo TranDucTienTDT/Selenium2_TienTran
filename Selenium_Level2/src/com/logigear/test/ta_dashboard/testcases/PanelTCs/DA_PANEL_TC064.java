@@ -51,25 +51,25 @@ public class DA_PANEL_TC064 extends Precondition{
 //			Step	Click 'Panels' link
 //			Step	Click 'Check All' link
 			
-			HomePage homePage = precondition();
-			PanelPage panelPage = homePage.addNewPage(page)
-											.addChartPanel(chartPanel1, false)
-											.cancelPanelConfiguration()							
-											.addChartPanel(chartPanel2, false)	
-											.cancelPanelConfiguration()
-											.gotoPanelPage()
-											.clickLinkedText(LinkedText.CHECK_ALL);
+			HomePage homePage = preconditionLoginValid();
+			PanelPage panelPage = (PanelPage) homePage.addNewPage(page)
+														.addChartPanel(chartPanel1, false)
+														.cancelPanelConfiguration()							
+														.addChartPanel(chartPanel2, false)	
+														.cancelPanelConfiguration()
+														.gotoPanelPage()
+														.clickLinkedText(LinkedText.CHECK_ALL);
 			
 //			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are checked					
 			boolean areChecked = panelPage.arePanelCheckboxChecked(check);
-			Assert.assertEquals(areChecked, true);
+			Assert.assertTrue(areChecked);
 			
 //			Step	Click 'Uncheck All' link
 //			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are unchecked
 			
-			boolean areUnchecked = panelPage.clickLinkedText(LinkedText.UNCHECK_ALL)
-											.arePanelCheckboxChecked(check);
-			Assert.assertEquals(areUnchecked, false);
+			boolean areUnchecked = ((PanelPage) panelPage.clickLinkedText(LinkedText.UNCHECK_ALL))
+															.arePanelCheckboxChecked(check);
+			Assert.assertFalse(areUnchecked);
 	}
 		
 		@AfterMethod

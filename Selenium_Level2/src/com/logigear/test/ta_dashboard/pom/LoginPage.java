@@ -46,10 +46,10 @@ public class LoginPage extends BasePOM{
 	 * @param timeOutInSeconds
 	 * @return
 	 */
-//	public LoginPage waitForLoading(int timeOutInSeconds) {
-//		btnLogin.waitForClickable(timeOutInSeconds);
-//		return this;
-//	}
+	public LoginPage waitForLoading(int timeOutInSeconds) {
+		btnLogin.waitForClickable(timeOutInSeconds);
+		return this;
+	}
 
 	/**
 	 * 
