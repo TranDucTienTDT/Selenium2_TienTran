@@ -76,9 +76,9 @@
 			"type": "xpath",
 			"value": "//li[@class='mn-setting']//li[a[text()='Edit']]"
 		},
-		"allLnkInSecondLine": {
+		"listPages": {
 			"type": "xpath",
-			"value": "count(//ul[li[@class='mn-setting']]/li)"
+			"value": "//ul[li[@class='mn-setting']]/li[a[text()]]"
 		},
 		"lnkInChoosePanels": {
 			"type": "xpath",

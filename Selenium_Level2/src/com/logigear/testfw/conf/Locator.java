@@ -52,4 +52,16 @@ public class Locator {
         }
 		return LocatorLoader.getByLocator(type, locator);
 	}
+	
+	//@author hanh.nguyen
+	public By getByWithAltCode(Object... arg) {
+		String locator = String.format(value, arg);
+		for(Object x : arg) {
+			if(x.toString().contains(" ")) {
+				Object newArg = x.toString().replace(" ", "\u00a0");
+				locator = String.format(value, newArg);
+			}
+		}
+		return LocatorLoader.getByLocator(type, locator);	
+	}
 }

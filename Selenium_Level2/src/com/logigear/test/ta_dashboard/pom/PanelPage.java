@@ -106,10 +106,14 @@ public class PanelPage extends GeneralPage {
 		for(int i = 0; i <= pageNames.length; i++) {
 			Collections.fill(areCheck, isPanelCheckboxChecked(pageNames[i]));
 		}
-		if(areCheck.contains(false))
+		if(areCheck.contains(false)) {
+			logger.printMessage("The panel checkboxes are not checked all.");
 			return false;
-		else
+		}
+		else {
+			logger.printMessage("The panel checkboxes are checked all.");
 			return true;
+		}
 	}
 	
 	//@author hanh.nguyen

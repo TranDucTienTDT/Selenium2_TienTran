@@ -5,6 +5,7 @@ import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
 public class PanelConfigurationDialog extends BasePOM{
+	
 	 protected Element btnCancel;
 	 protected Element btnOK;
 

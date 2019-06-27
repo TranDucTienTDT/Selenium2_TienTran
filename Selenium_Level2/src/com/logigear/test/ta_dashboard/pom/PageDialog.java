@@ -48,7 +48,7 @@ public class PageDialog extends BasePOM {
 		}
 		if (parentName != null && cboParentPage.getText() != parentName) {
 			logger.printMessage("In \"Parent Page\" combobox, select: " + parentName);
-			cboParentPage.selectByText(parentName);
+			cboParentPage.selectByTextContains(parentName);
 		}
 		if (numberOfColumns != null && cboParentPage.getText() != numberOfColumns) {
 			logger.printMessage("In \"Number of Columns\" combobox, select: " + numberOfColumns);

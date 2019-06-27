@@ -5,10 +5,8 @@ import com.logigear.testfw.element.Element;
 public class DPDisplayFieldsPage extends GeneralPage{
 	
 	protected Element lnkMenuOption;
-	protected Element txtProfileName;
-	protected Element cbbEntityType;
+	protected Element chkDisplayField;
 	protected Element btnNext;
-	protected Element rowItem;
 	
 	public DPDisplayFieldsPage() {
 		super(DPDisplayFieldsPage.class);
@@ -18,10 +16,46 @@ public class DPDisplayFieldsPage extends GeneralPage{
 	public void initPageElements() {
 		super.initPageElements();	
 		this.lnkMenuOption = new Element(getLocator("lnkMenuOption").getBy("General Settings"));
-		this.txtProfileName = new Element(getLocator("txtProfileName").getBy());
-		this.cbbEntityType = new Element(getLocator("cbbEntityType").getBy());
 		this.btnNext = new Element(getLocator("btnNext").getBy());
-		this.rowItem = new Element(getLocator("rowItem").getBy());
+	}
+	
+	public void chkDisplayField(String chkValue) {
+		this.chkDisplayField = new Element(getLocator("chkDisplayField").getBy(chkValue));
+	}
+	
+	//@author hanh.nguyen
+	public enum DPDisplayFieldsCheckbox {
+		NAME("name");
+		
+		String _dpDisplayFieldsCheckbox;
+		
+		public String getValue() {
+			return _dpDisplayFieldsCheckbox;
+		}
+
+		public void setValue(String dpDisplayFieldsCheckbox) {
+			this._dpDisplayFieldsCheckbox = dpDisplayFieldsCheckbox;
+		}
+
+		private DPDisplayFieldsCheckbox(String dpDisplayFieldsCheckbox) {
+			this._dpDisplayFieldsCheckbox = dpDisplayFieldsCheckbox;
+		}
+	}
+	
+	//@author hanh.nguyen
+	public void selectDataProfilesDisplayField(String... displayField) {
+		logger.printMessage("In \"Display Fields\" page, check on: " + displayField);
+		for(String item : displayField) {
+			chkDisplayField(item);
+			chkDisplayField.check();
+		}
+	}
+	
+	//@author hanh.nguyen
+	public DPSortFieldsPage submitDataProfilesDisplayFieldPage(String... displayField) {
+		logger.printMessage("Submit \"Display Fields\" page.");
+		selectDataProfilesDisplayField(displayField);
+		return new DPSortFieldsPage();
 	}
 
 }

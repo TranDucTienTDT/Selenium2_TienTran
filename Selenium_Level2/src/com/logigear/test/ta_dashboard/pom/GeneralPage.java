@@ -1,30 +1,20 @@
 package com.logigear.test.ta_dashboard.pom;
 
+import java.awt.List;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.openqa.selenium.WebElement;
+
 import com.logigear.test.ta_dashboard.data_object.ChartPanel;
 import com.logigear.test.ta_dashboard.data_object.Page;
 import com.logigear.testfw.common.BasePOM;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.common.TestExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
-
-import com.logigear.testfw.common.BasePOM;
-import com.logigear.testfw.common.Common;
-import com.logigear.testfw.common.TestExecutor;
-import com.logigear.testfw.driver.BaseDriver;
 import com.logigear.testfw.element.Element;
-import com.logigear.testfw.utilities.Logger;
-
-import bsh.org.objectweb.asm.Constants;
 
 public class GeneralPage extends BasePOM {
-
-	// Variable
-	private String xpathMainSection = ("//div[@id='container']//li//a[contains(.,'%s')]");
-	private String xpathSubSection = ("//div[@id='container']//li/a[contains(.,'%s')]");
 
 	// Element
 	protected Element lnkMyProfile;
@@ -40,9 +30,9 @@ public class GeneralPage extends BasePOM {
 	protected Element lnkAdminister;
 	protected Element lnkDataProfile;
 	protected Element lnkPanels;
-	//protected Element allLnkInSecondLine;
 	protected Element lnkCreateDataProfile;
 	protected Element lnkInChoosePanels;
+	protected Element listPages;
 	
 	public PageDialog pageDialog = new PageDialog();
 	public PanelDialog panelDialog = new PanelDialog();
@@ -67,6 +57,7 @@ public class GeneralPage extends BasePOM {
 		this.lnkDataProfile = new Element(getLocator("lnkDataProfile").getBy());
 		this.lnkCreateDataProfile = new Element(getLocator("lnkCreateDataProfile").getBy());
 		this.lnkPanels = new Element(getLocator("lnkPanels").getBy());
+		this.listPages = new Element(getLocator("listPages").getBy());
 	}
 	
 	public void lnkPage(String pageName)
@@ -125,43 +116,6 @@ public class GeneralPage extends BasePOM {
 		boolean isOpened = actualTitle.contains(pageName);
 		logger.printMessage("Is page \"" + pageName + "\" opened: " + isOpened);
 		return isOpened;
-	}
-
-	/**
-	 * @author: duy.nguyen
-	 * @Description: Navigate to the page
-	 * @param: menuPath The full path can be separated by "/"
-	 */
-
-	public void goToPage(String menuPath, int timeOutInSeconds) {
-		if (menuPath.contains("/")) {
-			String[] path = menuPath.split("/");
-			String path1 = path[0];
-			String path2 = path[1];
-			String xpathMainPath = String.format(xpathMainSection, path1);
-			String xpathSubPath = String.format(xpathSubSection, path2);
-
-			Element lnkXpathMainPath = new Element(xpathMainPath);
-			Element lnkXpathSubPath = new Element(xpathSubPath);
-			try {
-				lnkXpathMainPath.waitForDisplay(timeOutInSeconds);
-				lnkXpathMainPath.click();
-				lnkXpathSubPath.waitForDisplay(timeOutInSeconds);
-				lnkXpathSubPath.click();
-			} catch (Exception error) {
-				throw error;
-			}
-		} else {
-			String xpathMainPath = String.format(xpathMainSection, menuPath);
-			Element lnkXpathMainPath = new Element(xpathMainPath);
-			
-			try {
-				lnkXpathMainPath.waitForDisplay(timeOutInSeconds);
-				lnkXpathMainPath.click();
-			} catch (Exception error) {
-				throw error;
-			}
-		}
 	}
 
 	/**
@@ -254,10 +208,27 @@ public class GeneralPage extends BasePOM {
 	//@author hanh.nguyen
 	public GeneralPage deletePage(String pageName) {
 		logger.printMessage("Delete page: " + pageName);
-		lnkPage(pageName);
-		lnkPage.click();
+		clickPage(pageName);
 		selectMenuItem(lnkGlobalSetting, lnkDelete);
 		acceptAlertPopup();
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage deleteSubPages(String... pageNames) {
+		clickSubPage(pageNames);
+		deletePage(pageNames[pageNames.length - 1]);
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage deletePageHasSubPage(String... pageNames) {
+		ArrayList<String> page = (ArrayList<String>) Arrays.asList(pageNames);
+		for (int i = pageNames.length; i > 0; i--) {
+			pageNames = (String[]) page.toArray();
+			deleteSubPages(pageNames);
+			page.remove(i - 1);
+		}
 		return this;
 	}
 	
@@ -294,6 +265,33 @@ public class GeneralPage extends BasePOM {
 		lnkInChoosePanels(lnkText);
 		lnkInChoosePanels.click();
 		return new PanelConfigurationDialog();
+	}
+	
+//	public boolean validatePagePosition(String[] listPageNames) {
+//		List<WebElement> actualPageName = listPages;
+//		int firstPageIndex = Array.IndexOf(actualPageName, pageName[0]);
+//		
+//	}
+	
+	//@author hanh.nguyen
+	public GeneralPage clickPage(String pageName) {
+		logger.printMessage("Select page: " + pageName);
+		lnkPage(pageName);
+		lnkPage.click();
+		lnkPage.waitForDisplay(Common.ELEMENT_TIMEOUT);
+		return this;
+	}
+	
+	//@author hanh.nguyen
+	public GeneralPage clickSubPage(String... pageNames) {
+		logger.printMessage("Select pages: " + pageNames);
+		for (int i = 0; i < (pageNames.length - 2); i++) {
+			lnkPage(pageNames[i]);
+			lnkPage.moveToElement();
+			lnkPage.waitForDisplay(Common.ELEMENT_TIMEOUT);
+		}
+		clickPage(pageNames[pageNames.length - 1]);
+		return this;
 	}
 	
 }

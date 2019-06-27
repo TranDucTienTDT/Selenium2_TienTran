@@ -8,21 +8,17 @@
 			"type": "xpath",
 			"value": "//table[@id='profilesettings']/tbody/tr/td/input[@value='%s']"
 		},
-		"txtName": {
+		"cbbField": {
 			"type": "xpath",
-			"value": "//input[@id='txtProfileName']"
+			"value": "//select[@id='cbbFields']"
 		},
-		"cbbItemType": {
+		"btnAddLevel": {
 			"type": "xpath",
-			"value": "//select[@id='cbbEntityType']"
+			"value": "//input[@id='btnAddSortField']"
 		},
 		"btnNext": {
 			"type": "xpath",
 			"value": "//input[@type='button' and @value='Next']"
-		},
-		"cbbRelatedData": {
-			"type": "xpath",
-			"value": "//select[@id='cbbSubReport']"
 		}
 	}
 }

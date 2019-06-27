@@ -1,5 +1,6 @@
 package com.logigear.test.ta_dashboard.testcases.PanelTCs;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -8,12 +9,9 @@ import com.logigear.test.ta_dashboard.data_object.ChartPanel.Legends;
 import com.logigear.test.ta_dashboard.pom.HomePage;
 import com.logigear.test.ta_dashboard.pom.PanelDialog;
 import com.logigear.test.ta_dashboard.pom.PanelDialog.ChartPanelFields;
-import com.logigear.test.ta_dashboard.pom.PanelDialog.ChartType;
 import com.logigear.test.ta_dashboard.pom.PanelPage;
 import com.logigear.test.ta_dashboard.pom.PanelPage.LinkedText;
 import com.logigear.test.ta_dashboard.testcases.Precondition;
-
-import org.testng.Assert;
 
 public class DA_PANEL_TC060 extends Precondition {
 

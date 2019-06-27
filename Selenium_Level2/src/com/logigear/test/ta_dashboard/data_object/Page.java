@@ -58,10 +58,10 @@ public class Page{
 	}
 
 	
-	public Page loadDefaultData()
-	{
-		Page page = new Page("Page Name", "Select parent", "2", "Overview", true);
-		return page;
-
+	public Page(String pageName, String parentName) {
+		this._pageName = pageName;
+		this._parentName = parentName;
 	}
+
+	
 }

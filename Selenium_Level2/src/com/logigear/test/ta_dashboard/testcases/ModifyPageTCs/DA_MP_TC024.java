@@ -1,16 +1,14 @@
-package com.logigear.test.ta_dashboard.testcases;
+package com.logigear.test.ta_dashboard.testcases.ModifyPageTCs;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.logigear.test.ta_dashboard.data_object.Page;
 import com.logigear.test.ta_dashboard.pom.HomePage;
-import com.logigear.test.ta_dashboard.pom.LoginPage;
-import com.logigear.testfw.common.BaseTest;
+import com.logigear.test.ta_dashboard.testcases.Precondition;
 
-public class ModifyPageTest extends Precondition{
+public class DA_MP_TC024 extends Precondition{
 	
 	@Test
 	public void DA_MP_TC024() {
