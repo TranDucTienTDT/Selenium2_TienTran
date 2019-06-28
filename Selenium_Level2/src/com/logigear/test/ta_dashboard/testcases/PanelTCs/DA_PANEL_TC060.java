@@ -16,10 +16,10 @@ import com.logigear.test.ta_dashboard.testcases.Precondition;
 public class DA_PANEL_TC060 extends Precondition {
 
 	@Test
-	public void DA_PANEL_TC060()
+	public void TC_DA_PANEL_TC060()
 	{
 
-		logger.printMessage("Verify that all settings within \"Add New Panel\" and \"Edit Panel\" form stay unchanged when user switches between \"Legends\" radio buttons in \"Edit Panel\" form");
+		LOG.info("Verify that all settings within \"Add New Panel\" and \"Edit Panel\" form stay unchanged when user switches between \"Legends\" radio buttons in \"Edit Panel\" form");
 
 		//		Step	Navigate to Dashboard login page
 		//		Step	Login with valid account
@@ -119,7 +119,7 @@ public class DA_PANEL_TC060 extends Precondition {
 
 	@AfterMethod
 	public void postCondition() {
-		logger.printMessage("Post-conditions: delete panels in Panel page.");
+		LOG.info("Post-conditions: delete panels in Panel page.");
 		PanelPage panelPage = new PanelPage();
 		panelPage.deleteAllPanels();
 	}

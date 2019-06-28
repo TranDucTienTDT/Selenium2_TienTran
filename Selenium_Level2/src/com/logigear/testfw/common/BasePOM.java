@@ -15,8 +15,6 @@ import com.logigear.testfw.driver.BaseDriver;
  */
 public abstract class BasePOM {
 	
-	protected com.logigear.testfw.utilities.Logger logger = new com.logigear.testfw.utilities.Logger();
-
 	private Map<String, Locator> locators = null;
 	protected static final Logger LOG = LogWrapper.createLogger(BaseDriver.class.getName());
 

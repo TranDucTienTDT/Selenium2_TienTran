@@ -11,7 +11,7 @@ import com.logigear.test.ta_dashboard.testcases.Precondition;
 public class DA_MP_TC024 extends Precondition{
 	
 	@Test
-	public void DA_MP_TC024() {
+	public void TC_DA_MP_TC024() {
 		
 		System.out.println("Verify that \"Bread Crums\" navigation is correct");
 		
@@ -51,7 +51,7 @@ public class DA_MP_TC024 extends Precondition{
 	
 	@AfterMethod
 	public void postCondition() {
-		logger.printMessage("Post-conditions: delete pages");
+		LOG.info("Post-conditions: delete pages");
 		HomePage homePage = new HomePage();
 		homePage.deletePageHasSubPage("Overview", "Page1", "Page2");
 	}

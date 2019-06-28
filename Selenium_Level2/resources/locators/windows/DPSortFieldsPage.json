@@ -19,6 +19,10 @@
 		"btnNext": {
 			"type": "xpath",
 			"value": "//input[@type='button' and @value='Next']"
+		},
+		"lblSortFieldValue": {
+			"type": "xpath",
+			"value": "//span[text()='%s']"
 		}
 	}
 }

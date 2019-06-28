@@ -1,29 +1,22 @@
 package com.logigear.test.ta_dashboard.testcases;
 
-import javax.annotation.PostConstruct;
-
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
 import org.testng.annotations.Test;
 
 import com.logigear.test.ta_dashboard.data_object.ChartPanel;
 import com.logigear.test.ta_dashboard.data_object.Page;
-import com.logigear.test.ta_dashboard.pom.GeneralPage;
 import com.logigear.test.ta_dashboard.pom.HomePage;
-import com.logigear.test.ta_dashboard.pom.LoginPage;
-import com.logigear.test.ta_dashboard.pom.PanelConfigurationDialog;
 import com.logigear.test.ta_dashboard.pom.PanelPage;
 import com.logigear.test.ta_dashboard.pom.PanelPage.LinkedText;
-import com.logigear.testfw.common.BaseTest;
-
-import junit.framework.Assert;
 
 public class PanelTest extends Precondition{
 	
 		@Test
-		public void TC064_Verify_that_Check_All_Uncheck_All_links_are_working_correctly()
+		public void TC_DA_PANEL_TC064()
 		{
+			LOG.info("Verify that \"Check All/Uncheck All\" links are working correctly");
+			
 			//init data
 			Page page = new Page("TestPage");
 			ChartPanel chartPanel1 = new ChartPanel("ChartPanel1", "Name");
@@ -61,19 +54,19 @@ public class PanelTest extends Precondition{
 			
 //			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are checked					
 			boolean areChecked = panelPage.arePanelCheckboxChecked(check);
-			Assert.assertEquals(areChecked, true);
+			Assert.assertTrue(areChecked, "\"Check All\" links aren't working correctly.");
 			
 //			Step	Click 'Uncheck All' link
 //			VP	Check that 'hung_a' checkbox and 'hung_b' checkbox are unchecked
 			
 			boolean areUnchecked = ((PanelPage) panelPage.clickLinkedText(LinkedText.UNCHECK_ALL))
 											.arePanelCheckboxChecked(check);
-			Assert.assertEquals(areUnchecked, false);
+			Assert.assertFalse(areUnchecked, "\"Uncheck All\" links aren't working correctly.");
 	}
 		
 		@AfterMethod
 		public void postCondition() {
-			logger.printMessage("Post-conditions: delete page and panels");
+			LOG.info("Post-conditions: delete page and panels");
 			PanelPage panelPage = new PanelPage();
 			panelPage.deleteAllPanels()
 						.deletePage("TestPage");

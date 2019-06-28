@@ -39,19 +39,19 @@ public class Locator {
 	}
 	
 	//@author hanh.nguyen
-	public By getByWithAltCode(String arg) {
-		String locator;
-		if (arg.contains(" "))
-        {
-            String newArg = arg.replace(" ", "\u00a0");
-            locator = String.format(value, newArg);
-        }
-        else
-        {
-            locator = String.format(value, arg);
-        }
-		return LocatorLoader.getByLocator(type, locator);
-	}
+//	public By getByWithAltCode(String arg) {
+//		String locator;
+//		if (arg.contains(" "))
+//        {
+//            String newArg = arg.replace(" ", "\u00a0");
+//            locator = String.format(value, newArg);
+//        }
+//        else
+//        {
+//            locator = String.format(value, arg);
+//        }
+//		return LocatorLoader.getByLocator(type, locator);
+//	}
 	
 	//@author hanh.nguyen
 	public By getByWithAltCode(Object... arg) {

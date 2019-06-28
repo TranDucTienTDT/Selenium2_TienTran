@@ -4,6 +4,10 @@
 			"type": "xpath",
 			"value": "//ul[@id='wstep']/li[text()='%s']"
 		},
+		"chkStatisticField": {
+			"type": "xpath",
+			"value": "//td[normalize-space(text())='%s']/input"
+		},
 		"btnBack": {
 			"type": "xpath",
 			"value": "//input[@value='Back']"
@@ -16,17 +20,13 @@
 			"type": "xpath",
 			"value": "//td/input[@value='Cancel']"
 		},
-		"btnNext": {
+		"lnkCheckAll": {
 			"type": "xpath",
-			"value": "//input[@value='Next']"
+			"value": "//a[text()='Check All']"
 		},
-		"chkDisplayField": {
+		"lnkUncheckAll": {
 			"type": "xpath",
-			"value": "//label[normalize-space(text())='%s']/input"
-		},
-		"lblHeaderDisplayFields": {
-			"type": "xpath",
-			"value": "//td[text()='Display Fields']"
+			"value": "//a[text()='Uncheck All']"
 		}
-	}
+	}	
 }

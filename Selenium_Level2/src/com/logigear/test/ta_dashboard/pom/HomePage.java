@@ -64,14 +64,14 @@ public class HomePage extends GeneralPage {
 	
 	//@author hanh.nguyen
 	public PanelDialog clickEditIcon(String panelName) {
-		logger.printMessage("Click in \"Edit\" icon of panel: " + panelName);
+		LOG.info("Click in \"Edit\" icon of panel: " + panelName);
 		iconEdit(panelName);
 		iconEdit.click();
 		return new PanelDialog();
 	}
 	
 	public HomePage deletePanel(String panelName) {
-		logger.printMessage("Delete panel: " + panelName);
+		LOG.info("Delete panel: " + panelName);
 		iconMore(panelName);
 		iconMore.moveToElement();
 		iconRemove(panelName);

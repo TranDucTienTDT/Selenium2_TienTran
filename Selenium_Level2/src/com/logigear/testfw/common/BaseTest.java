@@ -10,9 +10,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
-import com.logigear.test.ta_dashboard.pom.GeneralPage;
-import com.logigear.test.ta_dashboard.pom.HomePage;
-import com.logigear.test.ta_dashboard.pom.LoginPage;
 import com.logigear.testfw.conf.DriverConfig;
 import com.logigear.testfw.conf.LogWrapper;
 import com.logigear.testfw.driver.BaseDriver;
@@ -25,7 +22,6 @@ import com.logigear.testfw.driver.DriverManager;
  */
 public class BaseTest {
 	protected static final Logger LOG = LogWrapper.createLogger(BaseTest.class.getName());
-	protected com.logigear.testfw.utilities.Logger logger = new com.logigear.testfw.utilities.Logger();
 	
 	@Parameters({ "environment" })
     @BeforeMethod(alwaysRun = true)

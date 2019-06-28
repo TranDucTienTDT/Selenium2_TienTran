@@ -2,20 +2,17 @@ package com.logigear.test.ta_dashboard.testcases;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.logigear.test.ta_dashboard.data_object.Page;
 import com.logigear.test.ta_dashboard.pom.HomePage;
-import com.logigear.test.ta_dashboard.pom.LoginPage;
-import com.logigear.testfw.common.BaseTest;
 
 public class ModifyPageTest extends Precondition{
 	
 	@Test
 	public void DA_MP_TC024() {
 		
-		System.out.println("Verify that \"Bread Crums\" navigation is correct");
+		LOG.info("Verify that \"Bread Crums\" navigation is correct");
 		
 //		Step	Navigate to Dashboard login page		
 //		Step	Login with valid account	test / test	
@@ -53,7 +50,7 @@ public class ModifyPageTest extends Precondition{
 	
 	@AfterMethod
 	public void postCondition() {
-		logger.printMessage("Post-conditions: delete pages");
+		LOG.info("Post-conditions: delete pages");
 		HomePage homePage = new HomePage();
 		homePage.deletePageHasSubPage("Overview", "Page1", "Page2");
 	}
