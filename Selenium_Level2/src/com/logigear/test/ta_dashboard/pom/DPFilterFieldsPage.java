@@ -6,9 +6,8 @@ import com.logigear.test.ta_dashboard.data_object.DataProfile;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
-public class DPFilterFieldsPage extends GeneralPage{
+public class DPFilterFieldsPage extends DPSettingPage{
 	
-	protected Element lnkMenuOption;
 	protected Element rowItem;
 	protected Element cbbAndOrCondition;
 	protected Element cbbField;
@@ -17,7 +16,6 @@ public class DPFilterFieldsPage extends GeneralPage{
 	protected Element btnAdd;
 	protected Element btnRemove;
 	protected Element tableListCondition;
-	protected Element btnNext;
 	
 	public DPFilterFieldsPage() {
 		super(DPFilterFieldsPage.class);
@@ -26,7 +24,6 @@ public class DPFilterFieldsPage extends GeneralPage{
 	@Override
 	public void initPageElements() {
 		super.initPageElements();	
-		this.lnkMenuOption = new Element(getLocator("lnkMenuOption").getBy("Filter Fields"));
 		this.rowItem = new Element(getLocator("rowItem").getBy());
 		this.cbbAndOrCondition = new Element(getLocator("cbbAndOrCondition").getBy());
 		this.cbbField = new Element(getLocator("cbbField").getBy());
@@ -35,7 +32,6 @@ public class DPFilterFieldsPage extends GeneralPage{
 		this.btnAdd = new Element(getLocator("btnAdd").getBy());
 		this.btnRemove = new Element(getLocator("btnRemove").getBy());
 		this.tableListCondition = new Element(getLocator("tableListCondition").getBy());
-		this.btnNext = new Element(getLocator("btnNext").getBy());
 	}
 	
 	//@author hanh.nguyen
@@ -137,7 +133,7 @@ public class DPFilterFieldsPage extends GeneralPage{
 	public DPStatisticFieldsPage submitDataProfilesFilterFieldsPage(String... filterValue) {
 		LOG.info("Submit \"Filter Fields\" page.");
 		addDataProfilesFilterFields(filterValue);
-		btnNext.click();
+		clickButton(GeneralButton.NEXT);
 		btnAdd.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPStatisticFieldsPage();
 	}

@@ -162,21 +162,6 @@ public class GeneralPage extends BasePOM {
 		return new DPGeneralSettingsPage();
 	}
 	
-	/**
-	 * @author: tien.duc.tran
-	 * @Description: createProfile (click Create Profile from Global Setting button)
-	 * @param: profileName, itemType
-	 * 
-	 */
-//	public DPGeneralSettingsPage createProfile(String profileName, String itemType) {
-//		LOG.info("Create a new data profile.");
-//		selectMenuItem(lnkGlobalSetting, lnkCreateDataProfile);
-//		generalSettingPage.txtProfileName.enter(profileName);
-//		generalSettingPage.cbbEntityType.selectByText(itemType);
-//		generalSettingPage.btnNext.click();
-//		return new DPGeneralSettingsPage();
-//	}
-	
 	//@author hanh.nguyen
 	public GeneralPage addNewPage(Page page)
 	{

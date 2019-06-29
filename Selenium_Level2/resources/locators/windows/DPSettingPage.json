@@ -1,0 +1,12 @@
+{
+	"default": {
+		"lnkSettingOption": {
+			"type": "xpath",
+			"value": "//ul[@id='wstep']/li[text()='%s']"
+		},
+		"btnGeneral": {
+			"type": "xpath",
+			"value": "//input[@type='button' and @value='%s']"
+		}
+	}	
+}

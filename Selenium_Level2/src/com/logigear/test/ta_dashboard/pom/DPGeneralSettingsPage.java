@@ -4,13 +4,11 @@ import com.logigear.test.ta_dashboard.data_object.DataProfile;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
-public class DPGeneralSettingsPage extends GeneralPage{
+public class DPGeneralSettingsPage extends DPSettingPage{
 	
-	protected Element lnkMenuOption;
 	protected Element txtName;
 	protected Element cbbItemType;
 	protected Element cbbRelatedData;
-	protected Element btnNext;
 	protected Element rowItem;
 	
 	public DPGeneralSettingsPage() {
@@ -23,26 +21,7 @@ public class DPGeneralSettingsPage extends GeneralPage{
 		this.txtName = new Element(getLocator("txtName").getBy());
 		this.cbbItemType = new Element(getLocator("cbbItemType").getBy());
 		this.cbbRelatedData = new Element(getLocator("cbbRelatedData").getBy());
-		this.btnNext = new Element(getLocator("btnNext").getBy());
 		this.rowItem = new Element(getLocator("rowItem").getBy());
-	}
-	
-	public void lnkMenuOption(String pageName) {
-		this.lnkMenuOption = new Element(getLocator("lnkMenuOption").getBy(pageName));
-	}
-	
-	/**
-	 * @author: tien.duc.tran
-	 * @Description: selectSetting (Check all fields of selected "Item Type" item are populated correctly)
-	 * @param: option
-	 */
-	
-	public DPGeneralSettingsPage selectSetting(String option) {
-		
-		lnkMenuOption = new Element(getLocator("lnkMenuOption").getBy(option));
-		lnkMenuOption.click();
-
-		return this;
 	}
 	
 	/**
@@ -56,39 +35,29 @@ public class DPGeneralSettingsPage extends GeneralPage{
 		return true;
 	}
 	
-	//@author hanh.nguyen
-	public enum TableNavigatedPage{
-		GENERAL_SETTINGS("General Settings"),
-		DISPLAY_FIELDS("Display Fields"),
-		SORT_FIELDS("Sort Fields"),
-		FILTER_FIELDS("Filter Fields"),
-		STATISTIC_FIELDS("Statistic Fields");
-		
-		private String tableNavigatedPage;
-		
-		public String getValue() {
-			return tableNavigatedPage;
-		}
-
-		public void setValue(String _tableNavigatedPage) {
-			this.tableNavigatedPage = _tableNavigatedPage;
-		}
-
-		private TableNavigatedPage(String _tableNavigatedPage) {
-			this.tableNavigatedPage = _tableNavigatedPage;
-		}
-	}
-	
-//	public Object gotoDataProfileCreateProfilePage(TableNavigatedPage pageName) {
-//		switch (key) {
-//		case value:
-//			
-//			break;
+//	//@author hanh.nguyen
+//	public enum TableNavigatedPage{
+//		GENERAL_SETTINGS("General Settings"),
+//		DISPLAY_FIELDS("Display Fields"),
+//		SORT_FIELDS("Sort Fields"),
+//		FILTER_FIELDS("Filter Fields"),
+//		STATISTIC_FIELDS("Statistic Fields");
+//		
+//		private String tableNavigatedPage;
+//		
+//		public String getValue() {
+//			return tableNavigatedPage;
+//		}
 //
-//		default:
-//			break;
+//		public void setValue(String _tableNavigatedPage) {
+//			this.tableNavigatedPage = _tableNavigatedPage;
+//		}
+//
+//		private TableNavigatedPage(String _tableNavigatedPage) {
+//			this.tableNavigatedPage = _tableNavigatedPage;
 //		}
 //	}
+//	
 	
 	//@author hanh.nguyen
 	public void fillInDataProfilesGeneralSettingsPage(String name, String itemType, String relatedData) {
@@ -110,7 +79,7 @@ public class DPGeneralSettingsPage extends GeneralPage{
 	public DPDisplayFieldsPage submitDataProfilesGeneralSettingsPage(String name, String itemType, String relatedData) {
 		LOG.info("Submit \"General Settings\" page.");
 		fillInDataProfilesGeneralSettingsPage(name, itemType, relatedData);
-		btnNext.click();
+		clickButton(GeneralButton.NEXT);
 		txtName.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPDisplayFieldsPage();
 	}

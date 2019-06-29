@@ -6,12 +6,10 @@ import com.logigear.test.ta_dashboard.data_object.DataProfile;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
-public class DPDisplayFieldsPage extends GeneralPage{
+public class DPDisplayFieldsPage extends DPSettingPage{
 	
-	protected Element lnkMenuOption;
 	protected Element chkDisplayField;
 	protected Element lblHeaderDisplayFields;
-	protected Element btnNext;
 	
 	public DPDisplayFieldsPage() {
 		super(DPDisplayFieldsPage.class);
@@ -20,9 +18,7 @@ public class DPDisplayFieldsPage extends GeneralPage{
 	@Override
 	public void initPageElements() {
 		super.initPageElements();	
-		this.lnkMenuOption = new Element(getLocator("lnkMenuOption").getBy("Display Fields"));
 		this.lblHeaderDisplayFields = new Element(getLocator("lblHeaderDisplayFields").getBy());
-		this.btnNext = new Element(getLocator("btnNext").getBy());
 	}
 	
 	public void chkDisplayField(String chkValue) {
@@ -73,7 +69,7 @@ public class DPDisplayFieldsPage extends GeneralPage{
 	public DPSortFieldsPage submitDataProfilesDisplayFieldPage(String... displayField) {
 		LOG.info("Submit \"Display Fields\" page.");
 		selectDataProfilesDisplayField(displayField);
-		btnNext.click();
+		clickButton(GeneralButton.NEXT);
 		lblHeaderDisplayFields.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPSortFieldsPage();
 	}

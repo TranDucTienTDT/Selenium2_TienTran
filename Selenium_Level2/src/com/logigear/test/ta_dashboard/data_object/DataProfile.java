@@ -1,10 +1,10 @@
 package com.logigear.test.ta_dashboard.data_object;
 
 public class DataProfile {
-	
+
 	protected String _name, _itemType, _relatedData;
 	protected String[] _displayField, _sortField, _filterField, _statisticField;
-	
+
 	public String getName() {
 		return _name;
 	}
@@ -47,9 +47,15 @@ public class DataProfile {
 	public void setStatisticField(String[] _statisticField) {
 		this._statisticField = _statisticField;
 	}
+
+	public DataProfile(String name, String itemType, String relatedData) {
+		this._name = name;
+		this._itemType = itemType;
+		this._relatedData = relatedData;
+	}
 	
 	public DataProfile(String name, String itemType, String relatedData, String[] displayField, 
-						String[] sortField, String[] filterField, String[] statisticField) {
+			String[] sortField, String[] filterField, String[] statisticField) {
 		this._name = name;
 		this._itemType = itemType;
 		this._relatedData = relatedData;
@@ -58,9 +64,9 @@ public class DataProfile {
 		this._filterField = filterField;
 		this._statisticField = statisticField;
 	}
-	
+
 	public DataProfile(String name, String itemType, String[] displayField, String[] sortField,
-						String[] filterField, String[] statisticField) {
+			String[] filterField, String[] statisticField) {
 		this._name = name;
 		this._itemType = itemType;
 		this._displayField = displayField;

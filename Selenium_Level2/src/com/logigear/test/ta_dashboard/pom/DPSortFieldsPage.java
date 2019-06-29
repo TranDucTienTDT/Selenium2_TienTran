@@ -6,27 +6,23 @@ import com.logigear.test.ta_dashboard.data_object.DataProfile;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
-public class DPSortFieldsPage extends GeneralPage{
+public class DPSortFieldsPage extends DPSettingPage{
 	
 	public DPSortFieldsPage() {
 		super(DPSortFieldsPage.class);
 	}
 	
-	protected Element lnkMenuOption;
 	protected Element rowItem;
 	protected Element cbbField;
 	protected Element btnAddLevel;
-	protected Element btnNext;
 	protected Element lblSortFieldValue;
 
 	@Override
 	public void initPageElements() {
 		super.initPageElements();	
-		this.lnkMenuOption = new Element(getLocator("lnkMenuOption").getBy("Sort Fields"));
 		this.rowItem = new Element(getLocator("rowItem").getBy());
 		this.cbbField = new Element(getLocator("cbbField").getBy());
 		this.btnAddLevel = new Element(getLocator("btnAddLevel").getBy());
-		this.btnNext = new Element(getLocator("btnNext").getBy());
 	}
 	
 	public void lblSortFieldValue(String sortField) {
@@ -48,7 +44,7 @@ public class DPSortFieldsPage extends GeneralPage{
 	public DPFilterFieldsPage submitDataProfilesSortFieldsPage(String... sortField) {
 		LOG.info("Submit \"Sort Fields\" page.");
 		selectDataProfilesSortFields(sortField);
-		btnNext.click();
+		clickButton(GeneralButton.NEXT);
 		btnAddLevel.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPFilterFieldsPage();
 	}
