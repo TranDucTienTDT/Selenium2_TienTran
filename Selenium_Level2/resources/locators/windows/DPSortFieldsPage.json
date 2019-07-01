@@ -1,13 +1,5 @@
 {
 	"default": {
-		"lnkMenuOption": {
-			"type": "xpath",
-			"value": "//ul[@id='wstep']/li[text()='%s']"
-		},
-		"rowItem": {
-			"type": "xpath",
-			"value": "//table[@id='profilesettings']/tbody/tr/td/input[@value='%s']"
-		},
 		"cbbField": {
 			"type": "xpath",
 			"value": "//select[@id='cbbFields']"

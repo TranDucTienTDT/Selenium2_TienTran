@@ -1,9 +1,5 @@
 {
 	"default": {
-		"lnkMenuOption": {
-			"type": "xpath",
-			"value": "//ul[@id='wstep']/li[text()='%s']"
-		},
 		"chkStatisticField": {
 			"type": "xpath",
 			"value": "//td[normalize-space(text())='%s']/input"

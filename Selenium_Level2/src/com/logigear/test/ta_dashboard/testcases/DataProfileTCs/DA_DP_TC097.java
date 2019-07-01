@@ -1,4 +1,4 @@
-package com.logigear.test.ta_dashboard.testcases;
+package com.logigear.test.ta_dashboard.testcases.DataProfileTCs;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -12,8 +12,9 @@ import com.logigear.test.ta_dashboard.pom.DPGeneralSettingsPage;
 import com.logigear.test.ta_dashboard.pom.DPSortFieldsPage;
 import com.logigear.test.ta_dashboard.pom.DPStatisticFieldsPage;
 import com.logigear.test.ta_dashboard.pom.HomePage;
+import com.logigear.test.ta_dashboard.testcases.Precondition;
 
-public class DataProfileTest extends Precondition{
+public class DA_DP_TC097 extends Precondition{
 	
 		@Test
 		public void TC_DA_DP_TC097()

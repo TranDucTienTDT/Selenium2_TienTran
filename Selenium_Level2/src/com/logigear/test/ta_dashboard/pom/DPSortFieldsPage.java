@@ -6,23 +6,24 @@ import com.logigear.test.ta_dashboard.data_object.DataProfile;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
-public class DPSortFieldsPage extends DPSettingPage{
+public class DPSortFieldsPage extends GeneralPage{
 	
 	public DPSortFieldsPage() {
 		super(DPSortFieldsPage.class);
 	}
 	
-	protected Element rowItem;
 	protected Element cbbField;
 	protected Element btnAddLevel;
 	protected Element lblSortFieldValue;
+	protected Element btnNext;
 
 	@Override
 	public void initPageElements() {
 		super.initPageElements();	
-		this.rowItem = new Element(getLocator("rowItem").getBy());
 		this.cbbField = new Element(getLocator("cbbField").getBy());
 		this.btnAddLevel = new Element(getLocator("btnAddLevel").getBy());
+		this.btnNext = new Element(getLocator("btnNext").getBy());
+		
 	}
 	
 	public void lblSortFieldValue(String sortField) {
@@ -44,8 +45,7 @@ public class DPSortFieldsPage extends DPSettingPage{
 	public DPFilterFieldsPage submitDataProfilesSortFieldsPage(String... sortField) {
 		LOG.info("Submit \"Sort Fields\" page.");
 		selectDataProfilesSortFields(sortField);
-		clickButton(GeneralButton.NEXT);
-		btnAddLevel.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		gotoNextPage();
 		return new DPFilterFieldsPage();
 	}
 	
@@ -69,6 +69,14 @@ public class DPSortFieldsPage extends DPSettingPage{
 			LOG.info("The Sort Field values are displayed correctly.");
 			return true;
 		}
+	}
+	
+	//@author hanh.nguyen	
+	public DPFilterFieldsPage gotoNextPage() {
+		LOG.info("From \"Sort Fields\" page, click \"Next\" to go to \"Filter Fields\" page.");
+		btnNext.click();
+		btnAddLevel.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		return new DPFilterFieldsPage();
 	}
 
 }

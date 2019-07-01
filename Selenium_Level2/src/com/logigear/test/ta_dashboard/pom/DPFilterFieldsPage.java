@@ -1,14 +1,15 @@
 package com.logigear.test.ta_dashboard.pom;
 
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.logigear.test.ta_dashboard.data_object.DataProfile;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
-public class DPFilterFieldsPage extends DPSettingPage{
+public class DPFilterFieldsPage extends GeneralPage{
 	
-	protected Element rowItem;
 	protected Element cbbAndOrCondition;
 	protected Element cbbField;
 	protected Element cbbOperator;
@@ -16,6 +17,7 @@ public class DPFilterFieldsPage extends DPSettingPage{
 	protected Element btnAdd;
 	protected Element btnRemove;
 	protected Element tableListCondition;
+	protected Element btnNext;
 	
 	public DPFilterFieldsPage() {
 		super(DPFilterFieldsPage.class);
@@ -24,7 +26,6 @@ public class DPFilterFieldsPage extends DPSettingPage{
 	@Override
 	public void initPageElements() {
 		super.initPageElements();	
-		this.rowItem = new Element(getLocator("rowItem").getBy());
 		this.cbbAndOrCondition = new Element(getLocator("cbbAndOrCondition").getBy());
 		this.cbbField = new Element(getLocator("cbbField").getBy());
 		this.cbbOperator = new Element(getLocator("cbbOperator").getBy());
@@ -32,6 +33,7 @@ public class DPFilterFieldsPage extends DPSettingPage{
 		this.btnAdd = new Element(getLocator("btnAdd").getBy());
 		this.btnRemove = new Element(getLocator("btnRemove").getBy());
 		this.tableListCondition = new Element(getLocator("tableListCondition").getBy());
+		this.btnNext = new Element(getLocator("btnNext").getBy());
 	}
 	
 	//@author hanh.nguyen
@@ -59,16 +61,16 @@ public class DPFilterFieldsPage extends DPSettingPage{
 	public int findStartNumberInFilterValue(String filterValue) {
 		int start;
 		if(filterValue.startsWith("and")) 
-			start = 5;
-		else if(filterValue.startsWith("or")) 
 			start = 4;
+		else if(filterValue.startsWith("or")) 
+			start = 3;
 		else 
-			start = 1;
+			start = 0;
 		return start;
 	}
 	
 	//@author hanh.nguyen
-	public String[] splitFilterValue(String filterValue){
+	public ArrayList<String> splitFilterValue(String filterValue){
 		ArrayList<String> splitValue;
 		int start = findStartNumberInFilterValue(filterValue);	;
 		if(filterValue.startsWith("and") || filterValue.startsWith("or")) {
@@ -84,36 +86,36 @@ public class DPFilterFieldsPage extends DPSettingPage{
 		for (String x : operator) {
 			if(filterValue.contains(x)) {
 				int end = filterValue.indexOf(x);
-				splitValue.add(filterValue.substring(start, end - 1));
+				splitValue.add(filterValue.substring(start, end));
 				splitValue.add(x);
 				splitValue.add(filterValue.substring(end + x.length() + 1, filterValue.length() - 1));
 			}
 		}
-		String[] result = (String[]) splitValue.toArray();
-		return result;
+		return splitValue;
 	}
 	
 	//@author hanh.nguyen
 	public void addDataProfilesFilterFields(String... filterValue) {
 		LOG.info("In Data Profiles \"Filter Fields\" page, add filter value: " + filterValue);
 		for (String value : filterValue) {
-			String[] splitValue = splitFilterValue(value);
-			if(splitValue.length == 3)
-				addDataProfilesFilterFields("", splitValue[0], splitValue[1], splitValue[2]);
+			ArrayList<String> splitValue = splitFilterValue(value);
+			if(splitValue.size() == 3)
+				addDataProfilesFilterFields(null, splitValue.get(0), splitValue.get(1), splitValue.get(2));
 			else
-				addDataProfilesFilterFields(splitValue[0], splitValue[1], splitValue[2], splitValue[3]);
+				addDataProfilesFilterFields(splitValue.get(0), splitValue.get(1), splitValue.get(2), splitValue.get(3));
 		}
 	}
 	
 	//@author hanh.nguyen
 	public boolean isFilterFieldsTableDisplayCorrect(String... filterField) {
-		String[] actualValue = (String[]) tableListCondition.getOptions().toArray();
+		ArrayList<String> actualValue = (ArrayList<String>) tableListCondition.getOptions();
 		boolean isCorrect = false;
 		try {
-			if(actualValue.length == 0)
+			if(actualValue.size() == 0)
 				LOG.info("Data Profiles Filter Fields table doesn't has any filter.");
 			else {
-				if(actualValue.equals(filterField))
+				ArrayList<String> expectedValue = new ArrayList<String>(Arrays.asList(filterField));
+				if(actualValue.equals(expectedValue))
 					isCorrect = true;
 			}
 		} catch (Exception error) {
@@ -133,14 +135,21 @@ public class DPFilterFieldsPage extends DPSettingPage{
 	public DPStatisticFieldsPage submitDataProfilesFilterFieldsPage(String... filterValue) {
 		LOG.info("Submit \"Filter Fields\" page.");
 		addDataProfilesFilterFields(filterValue);
-		clickButton(GeneralButton.NEXT);
-		btnAdd.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		gotoNextPage();
 		return new DPStatisticFieldsPage();
 	}
 	
 	//@author hanh.nguyen
 	public DPStatisticFieldsPage submitDataProfilesFilterFieldsPage(DataProfile dataProfile) {
 		submitDataProfilesFilterFieldsPage(dataProfile.getFilterField());
+		return new DPStatisticFieldsPage();
+	}
+	
+	//@author hanh.nguyen	
+	public DPStatisticFieldsPage gotoNextPage() {
+		LOG.info("From \"Filter Fields\" page, click \"Next\" to go to \"Statistic Fields\" page.");
+		btnNext.click();
+		btnAdd.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPStatisticFieldsPage();
 	}
 

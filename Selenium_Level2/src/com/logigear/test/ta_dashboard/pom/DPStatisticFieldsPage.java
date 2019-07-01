@@ -1,14 +1,17 @@
 package com.logigear.test.ta_dashboard.pom;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.logigear.test.ta_dashboard.data_object.DataProfile;
+import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
-public class DPStatisticFieldsPage extends DPSettingPage{
+public class DPStatisticFieldsPage extends GeneralPage{
 	
 	protected Element chkStatisticField;
 	protected Element lblStatisticField;
+	protected Element btnFinish;
 	protected Element lnkCheckAll;
 	protected Element lnkUncheckAll;
 	
@@ -19,6 +22,7 @@ public class DPStatisticFieldsPage extends DPSettingPage{
 	@Override
 	public void initPageElements() {
 		super.initPageElements();	
+		this.btnFinish = new Element(getLocator("btnFinish").getBy());
 		this.lnkCheckAll = new Element(getLocator("lnkCheckAll").getBy());
 		this.lnkUncheckAll = new Element(getLocator("lnkUncheckAll").getBy());
 	}
@@ -44,7 +48,7 @@ public class DPStatisticFieldsPage extends DPSettingPage{
 	public DataProfilesPage submitDataProfilesStatisticFieldPage(String... statisticField) {
 		LOG.info("Submit \"Statistic Fields\" page.");
 		selectDataProfilesStatisticField(statisticField);
-		clickButton(GeneralButton.FINISH);
+		submitNewDataProfile();
 		return new DataProfilesPage();
 	}
 	
@@ -77,13 +81,14 @@ public class DPStatisticFieldsPage extends DPSettingPage{
 	 */
 	
 	public boolean isStatisticItemTypeDisplayCorrect(String... statisticField) {
-		String[] actualValue = (String[]) lblStatisticField.getOptions().toArray();
+		ArrayList<String> actualValue = (ArrayList<String>) lblStatisticField.getOptions();
 		boolean isCorrect = false;
 		try {
-			if(actualValue.length == 0)
+			if(actualValue.size() == 0)
 				LOG.info("Data Profiles Statistic Fields table doesn't has any filter.");
 			else {
-				if(actualValue.equals(statisticField))
+				ArrayList<String> expectedValue = new ArrayList<String>(Arrays.asList(statisticField));
+				if(actualValue.equals(expectedValue))
 					isCorrect = true;
 			}
 		} catch (Exception error) {
@@ -101,6 +106,14 @@ public class DPStatisticFieldsPage extends DPSettingPage{
 	public boolean isStatisticItemTypeDisplayCorrect(DataProfile dataProfile) {
 		boolean isCorrect = isStatisticItemTypeDisplayCorrect(dataProfile.getStatisticField());
 		return isCorrect;
+	}
+	
+	//@author hanh.nguyen	
+	public DataProfilesPage submitNewDataProfile() {
+		LOG.info("From \"Statistic Fields\" page, click \"Finish\" to sumit a new data profile and go to \"Data Profiles\" page.");
+		btnFinish.click();
+		btnFinish.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		return new DataProfilesPage();
 	}
 
 }

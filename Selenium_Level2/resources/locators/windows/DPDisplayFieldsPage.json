@@ -1,9 +1,5 @@
 {
 	"default": {
-		"lnkMenuOption": {
-			"type": "xpath",
-			"value": "//ul[@id='wstep']/li[text()='%s']"
-		},
 		"btnBack": {
 			"type": "xpath",
 			"value": "//input[@value='Back']"
