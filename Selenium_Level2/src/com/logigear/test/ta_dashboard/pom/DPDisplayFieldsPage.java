@@ -3,13 +3,16 @@ package com.logigear.test.ta_dashboard.pom;
 import java.util.ArrayList;
 
 import com.logigear.test.ta_dashboard.data_object.DataProfile;
+import com.logigear.test.ta_dashboard.pom.DPGeneralSettingsPage.TableNavigatedPage;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 
-public class DPDisplayFieldsPage extends DPSettingPage{
+public class DPDisplayFieldsPage extends GeneralPage{
 	
 	protected Element chkDisplayField;
 	protected Element lblHeaderDisplayFields;
+	protected Element btnNext;
+	protected DPGeneralSettingsPage dpGeneralSettingsPage = new DPGeneralSettingsPage();
 	
 	public DPDisplayFieldsPage() {
 		super(DPDisplayFieldsPage.class);
@@ -19,6 +22,7 @@ public class DPDisplayFieldsPage extends DPSettingPage{
 	public void initPageElements() {
 		super.initPageElements();	
 		this.lblHeaderDisplayFields = new Element(getLocator("lblHeaderDisplayFields").getBy());
+		this.btnNext = new Element(getLocator("btnNext").getBy());
 	}
 	
 	public void chkDisplayField(String chkValue) {
@@ -69,8 +73,7 @@ public class DPDisplayFieldsPage extends DPSettingPage{
 	public DPSortFieldsPage submitDataProfilesDisplayFieldPage(String... displayField) {
 		LOG.info("Submit \"Display Fields\" page.");
 		selectDataProfilesDisplayField(displayField);
-		clickButton(GeneralButton.NEXT);
-		lblHeaderDisplayFields.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		gotoNextPage();
 		return new DPSortFieldsPage();
 	}
 	
@@ -95,6 +98,18 @@ public class DPDisplayFieldsPage extends DPSettingPage{
 			LOG.info("The Display Field checkboxes are checked all.");
 			return true;
 		}
+	}
+	
+	public Object gotoDataProfileSettingsPage(TableNavigatedPage pageName) {
+		return dpGeneralSettingsPage.gotoDataProfileSettingsPage(pageName);
+	}
+	
+	//@author hanh.nguyen	
+	public DPSortFieldsPage gotoNextPage() {
+		LOG.info("From \"Display Fields\" page, click \"Next\" to go to \"Sort Fields\" page.");
+		btnNext.click();
+		lblHeaderDisplayFields.waitForDisappear(Common.ELEMENT_TIMEOUT);
+		return new DPSortFieldsPage();
 	}
 
 }

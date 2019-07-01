@@ -4,9 +4,9 @@
 			"type": "xpath",
 			"value": "//ul[@id='wstep']/li[text()='%s']"
 		},
-		"rowItem": {
+		"lblHeader": {
 			"type": "xpath",
-			"value": "//table[@id='profilesettings']/tbody/tr/td/input[@value='%s']"
+			"value": "//td[@class='profilesettingheader' and text()='%s']"
 		},
 		"txtName": {
 			"type": "xpath",
@@ -23,6 +23,10 @@
 		"cbbRelatedData": {
 			"type": "xpath",
 			"value": "//select[@id='cbbSubReport']"
+		},
+		"btnGeneral": {
+			"type": "xpath",
+			"value": "//input[@type='button' and @value='%s']"
 		}
 	}
 }

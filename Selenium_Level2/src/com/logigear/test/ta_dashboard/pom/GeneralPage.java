@@ -265,5 +265,12 @@ public class GeneralPage extends BasePOM {
 		return this;
 	}
 	
+	//@author hanh.nguyen
+	public DataProfilesPage gotoDataProfilesPage() {
+		LOG.info("Go to Data Profiles Page.");
+		selectMenuItem(lnkAdminister, lnkDataProfile);
+		return new DataProfilesPage();
+	}
+	
 }
 
