@@ -76,37 +76,25 @@ public class DPStatisticFieldsPage extends GeneralPage{
 	
 	/**
 	 * @author: tien.duc.tran
-	 * @Description: isStatisticItemTypeDisplayCorrect (check checkboxes display properly)
-	 * @param: String... statisticField
-	 */
-	
-	public boolean isStatisticItemTypeDisplayCorrect(String... statisticField) {
-		ArrayList<String> actualValue = (ArrayList<String>) lblStatisticField.getOptions();
-		boolean isCorrect = false;
-		try {
-			if(actualValue.size() == 0)
-				LOG.info("Data Profiles Statistic Fields table doesn't has any filter.");
-			else {
-				ArrayList<String> expectedValue = new ArrayList<String>(Arrays.asList(statisticField));
-				if(actualValue.equals(expectedValue))
-					isCorrect = true;
-			}
-		} catch (Exception error) {
-			LOG.severe("Has error when checking Statistic Fields table.");
-		}
-		LOG.info("Is Statistic Fields table displayed correctly: " + isCorrect);
-		return isCorrect;
-	}
-	
-	/**
-	 * @author: tien.duc.tran
-	 * @Description: isStatisticItemTypeDisplayCorrect (check checkboxes display properly)
+	 * @Description: isStatisticItemTypeDisplayCorrect (check checkboxes display properly follow Item Type)
 	 * @param: DataProfile dataProfile
 	 */
-	public boolean isStatisticItemTypeDisplayCorrect(DataProfile dataProfile) {
-		boolean isCorrect = isStatisticItemTypeDisplayCorrect(dataProfile.getStatisticField());
-		return isCorrect;
+	
+	public boolean isAllStatisticFieldsDisplayCorrect(DataProfile dataProfile) {
+		ArrayList<Boolean> isCorrect = new ArrayList<Boolean>(dataProfile.getStatisticField().length);
+		for (String value : dataProfile.getStatisticField()) {
+			lblStatisticField(value);
+			isCorrect.add(lblStatisticField.isDisplayed());
+		}
+		if (isCorrect.contains(false)) {
+			LOG.info("The Statistic Field checkboxes do not display properly.");
+			return false;
+		} else {
+			LOG.info("The Statistic Field checkboxes display properly.");
+			return true;
+		}
 	}
+	
 	
 	//@author hanh.nguyen	
 	public DataProfilesPage submitNewDataProfile() {

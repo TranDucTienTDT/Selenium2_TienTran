@@ -1,19 +1,22 @@
-package com.logigear.test.ta_dashboard.testcases;
+package com.logigear.test.ta_dashboard.testcases.DataProfileTCs;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.logigear.test.ta_dashboard.data_object.DataProfile;
-import com.logigear.test.ta_dashboard.pom.HomePage;
 import com.logigear.test.ta_dashboard.pom.DPGeneralSettingsPage;
-import com.logigear.test.ta_dashboard.pom.DPGeneralSettingsPage.TableNavigatedPage;
 import com.logigear.test.ta_dashboard.pom.DPStatisticFieldsPage;
+import com.logigear.test.ta_dashboard.pom.HomePage;
+import com.logigear.test.ta_dashboard.testcases.Precondition;
+import com.logigear.test.ta_dashboard.pom.DPGeneralSettingsPage.TableNavigatedPage;
 
-public class DataProfileTest_Tien extends Precondition{
-
+public class DA_DP_TC095 extends Precondition{
+	
 	@Test
 	public void DA_DP_TC095() {
 
+		LOG.info("Verify that all fields of selected \"Item Type\" item are populated correctly ");
+		//init data
 		String[] displayFieldList = {""};
 		String[] sortFieldList = {""};
 		String[] filterFieldList = {""};
