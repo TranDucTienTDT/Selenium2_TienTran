@@ -14,11 +14,14 @@ public class DataProfileTest_Tien extends Precondition{
 	@Test
 	public void DA_DP_TC095() {
 
-		DataProfile dataProfile = new DataProfile("Test", "test modules", "None");
-		String[] statisticItemList = {"Name", "Description", "Version", "Priority", "Last update date", "Creation date", 
+		String[] displayFieldList = {""};
+		String[] sortFieldList = {""};
+		String[] filterFieldList = {""};
+		String[] statisticFieldList = {"Name", "Description", "Version", "Priority", "Last update date", "Creation date", 
 				"Notes", "Check out machine", "Location", "Recent result", "Assigned user", 
 				"Status", "Last updated by", "Created by", "Check out user"};
-
+		DataProfile dataProfile = new DataProfile("Test", "test modules", "None", displayFieldList, sortFieldList, filterFieldList, statisticFieldList);
+		
 		/*
 		 * Log in Dashboard
 		 * Navigate to Data Profiles page
@@ -31,26 +34,27 @@ public class DataProfileTest_Tien extends Precondition{
 		 * Status, Last updated by, Created by, Check out user
 		 */ 
 		HomePage homePage = preconditionLoginValid();
-		DPStatisticFieldsPage statisFielsPage = (DPStatisticFieldsPage) homePage.gotoGeneralSettingsPageByMenuItem()
+		DPStatisticFieldsPage statisFieldsPage = (DPStatisticFieldsPage) homePage.gotoGeneralSettingsPageByMenuItem()
 				.submitDataProfilesGeneralSettingsPage(dataProfile)
 				.navigateSettingPage(TableNavigatedPage.STATISTIC_FIELDS);
-		boolean expectedResult =  statisFielsPage.isStatisticItemTypeDisplayCorrect(statisticItemList);
-		Assert.assertTrue(expectedResult, "The item types don't display as expected");
+		boolean actualResult =  statisFieldsPage.isStatisticItemTypeDisplayCorrect(dataProfile);
+		Assert.assertTrue(actualResult, "The item types don't display as expected");
 
 		/* Navigate to General Settings page
 		 * Click "Item Type" dropped down menu and choose Test Cases
 		 * Navigate to Statistic page
 		 * VP: Check all fields of selected "Item Type" item are populated correctly
 		 * Name, Title, Notes, Location, Recent result
-		 */ 
-		dataProfile = new DataProfile("Test", "test case", "None");
-		statisticItemList = new String[]{"Name", "Title","Notes", "Location", "Recent result"};
-		expectedResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFielsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
+		 */
+		statisticFieldList = new String[]{"Name", "Title","Notes", "Location", "Recent result"};
+		dataProfile = new DataProfile("Test", "test case", "None", displayFieldList, sortFieldList, filterFieldList, statisticFieldList);
+		
+		actualResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFieldsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
 				.submitDataProfilesGeneralSettingsPage(dataProfile)
 				.navigateSettingPage(TableNavigatedPage.STATISTIC_FIELDS))
-				.isStatisticItemTypeDisplayCorrect(statisticItemList);
+				.isStatisticItemTypeDisplayCorrect(dataProfile);
 
-		Assert.assertTrue(expectedResult, "The item types don't display as expected");
+		Assert.assertTrue(actualResult, "The item types don't display as expected");
 		
 		/* Navigate to General Settings page
 		 * Click "Item Type" dropped down menu and choose Test Objectives
@@ -58,14 +62,15 @@ public class DataProfileTest_Tien extends Precondition{
 		 * VP: Check all fields of selected "Item Type" item are populated correctly
 		 * Name, Title, Notes, Location, Recent result, Source
 		 */ 
-		dataProfile = new DataProfile("Test", "test objectives", "None");
-		statisticItemList = new String[]{"Name", "Title","Notes", "Location", "Recent result", "Source"};
-		expectedResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFielsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
+		statisticFieldList = new String[]{"Name", "Title","Notes", "Location", "Recent result", "Source"};
+		dataProfile = new DataProfile("Test", "test objectives", "None", displayFieldList, sortFieldList, filterFieldList, statisticFieldList);
+		
+		actualResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFieldsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
 				.submitDataProfilesGeneralSettingsPage(dataProfile)
 				.navigateSettingPage(TableNavigatedPage.STATISTIC_FIELDS))
-				.isStatisticItemTypeDisplayCorrect(statisticItemList);
+				.isStatisticItemTypeDisplayCorrect(statisticFieldList);
 
-		Assert.assertTrue(expectedResult, "The item types don't display as expected");
+		Assert.assertTrue(actualResult, "The item types don't display as expected");
 		
 		/* Navigate to General Settings page
 		 * Click "Item Type" dropped down menu and choose Data Sets
@@ -74,15 +79,16 @@ public class DataProfileTest_Tien extends Precondition{
 		 * Name, Description, Assigned user, Last update date, Creation date, Notes, 
 		 * Check out machine, Location, Version, Status, Last updated by, Created by, Check out user
 		 */ 
-		dataProfile = new DataProfile("Test", "test objectives", "None");
-		statisticItemList = new String[]{"Name", "Desscription", "Assigned user", "Last update date","Last updated by", "Creation date", "Notes", "Check out machine"
+		statisticFieldList = new String[]{"Name", "Description", "Assigned user", "Last update date","Last updated by", "Creation date", "Notes", "Check out machine"
 				,"Location", "Version", "Status", "Last updated by", "Created by", "Check out user"};
-		expectedResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFielsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
+		dataProfile = new DataProfile("Test", "data sets", "None", displayFieldList, sortFieldList, filterFieldList, statisticFieldList);
+
+		actualResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFieldsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
 				.submitDataProfilesGeneralSettingsPage(dataProfile)
 				.navigateSettingPage(TableNavigatedPage.STATISTIC_FIELDS))
-				.isStatisticItemTypeDisplayCorrect(statisticItemList);
+				.isStatisticItemTypeDisplayCorrect(statisticFieldList);
 
-		Assert.assertTrue(expectedResult, "The item types don't display as expected");
+		Assert.assertTrue(actualResult, "The item types don't display as expected");
 
 		/* Navigate to General Settings page
 		 * Click "Item Type" dropped down menu and choose Actions
@@ -92,15 +98,16 @@ public class DataProfileTest_Tien extends Precondition{
 		 * Check out machine, Location, Version, Status, 
 		 * Last updated by, Created by, Verbose description, Check out user
 		 */ 
-		dataProfile = new DataProfile("Test", "test objectives", "None");
-		statisticItemList = new String[]{"Name", "Desscription", "Assigned user", "Last update date","Last updated by", "Creation date", "Notes", "Check out machine"
-				,"Location", "Version", "Status", "Last updated by", "Created by", "Check out user"};
-		expectedResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFielsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
+		statisticFieldList = new String[]{"Name", "Description", "Assigned user", "Last update date", "Creation date", "Notes", "Check out machine"
+				,"Location", "Version", "Status", "Last updated by", "Created by", "Verbose description", "Check out user"};
+		dataProfile = new DataProfile("Test", "actions", "None", displayFieldList, sortFieldList, filterFieldList, statisticFieldList);
+
+		actualResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFieldsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
 				.submitDataProfilesGeneralSettingsPage(dataProfile)
 				.navigateSettingPage(TableNavigatedPage.STATISTIC_FIELDS))
-				.isStatisticItemTypeDisplayCorrect(statisticItemList);
+				.isStatisticItemTypeDisplayCorrect(statisticFieldList);
 
-		Assert.assertTrue(expectedResult, "The item types don't display as expected");
+		Assert.assertTrue(actualResult, "The item types don't display as expected");
 
 		/* Navigate to General Settings page
 		 * Click "Item Type" dropped down menu and choose Interface Entities
@@ -109,15 +116,16 @@ public class DataProfileTest_Tien extends Precondition{
 		 * Name, Description, Assigned user, Last update date, Creation date, Notes, 
 		 * Check out machine, Location, Version, Status, Last updated by, Created by, Check out user
 		 */ 
-		dataProfile = new DataProfile("Test", "test objectives", "None");
-		statisticItemList = new String[]{"Name", "Desscription", "Assigned user", "Last update date","Last updated by", "Creation date", "Notes", "Check out machine"
+		statisticFieldList = new String[]{"Name", "Desscription", "Assigned user", "Last update date", "Creation date", "Notes", "Check out machine"
 				,"Location", "Version", "Status", "Last updated by", "Created by", "Check out user"};
-		expectedResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFielsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
+		dataProfile = new DataProfile("Test", "interface entities", "None", displayFieldList, sortFieldList, filterFieldList, statisticFieldList);
+
+		actualResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFieldsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
 				.submitDataProfilesGeneralSettingsPage(dataProfile)
 				.navigateSettingPage(TableNavigatedPage.STATISTIC_FIELDS))
-				.isStatisticItemTypeDisplayCorrect(statisticItemList);
+				.isStatisticItemTypeDisplayCorrect(statisticFieldList);
 
-		Assert.assertTrue(expectedResult, "The item types don't display as expected");
+		Assert.assertTrue(actualResult, "The item types don't display as expected");
 
 		/* Navigate to General Settings page
 		 * Click "Item Type" dropped down menu and choose Test Results
@@ -126,15 +134,16 @@ public class DataProfileTest_Tien extends Precondition{
 		 * Name, Reported by, Start time, Duration, Variation, Passed, Warnings, Automated/Manual, 
 		 * Notes, Location, Date of run, End time, Comment, Result, Failed, Errors, Run Machine
 		 */
-		dataProfile = new DataProfile("Test", "test objectives", "None");
-		statisticItemList = new String[]{"Name", "Desscription", "Assigned user", "Last update date","Last updated by", "Creation date", "Notes", "Check out machine"
-				,"Location", "Version", "Status", "Last updated by", "Created by", "Check out user"};
-		expectedResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFielsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
+		statisticFieldList = new String[]{"Name", "Reported by", "Start time", "Duration","Variation", "Passed", "Warnings", "Automated/Manual", "Notes"
+				,"Location", "Date of run", "End time", "Comment", "Results", "Failed", "Errors", "Run Machine"};
+		dataProfile = new DataProfile("Test", "test results", "None", displayFieldList, sortFieldList, filterFieldList, statisticFieldList);
+
+		actualResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFieldsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
 				.submitDataProfilesGeneralSettingsPage(dataProfile)
 				.navigateSettingPage(TableNavigatedPage.STATISTIC_FIELDS))
-				.isStatisticItemTypeDisplayCorrect(statisticItemList);
+				.isStatisticItemTypeDisplayCorrect(statisticFieldList);
 
-		Assert.assertTrue(expectedResult, "The item types don't display as expected");
+		Assert.assertTrue(actualResult, "The item types don't display as expected");
 
 		/* Navigate to General Settings page
 		 * Click "Item Type" dropped down menu and choose Test Case Results
@@ -142,14 +151,14 @@ public class DataProfileTest_Tien extends Precondition{
 		 * VP: Check all fields of selected "Item Type" item are populated correctly
 		 * Name, Date of run, Passed, Warnings, Notes, Location, Result, Failed, Errors
 		 */
-		dataProfile = new DataProfile("Test", "test objectives", "None");
-		statisticItemList = new String[]{"Name", "Desscription", "Assigned user", "Last update date","Last updated by", "Creation date", "Notes", "Check out machine"
-				,"Location", "Version", "Status", "Last updated by", "Created by", "Check out user"};
-		expectedResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFielsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
+		statisticFieldList = new String[]{"Name", "Date of run", "Passed", "Warnings", "Notes", "Location", "Result", "Failed", "Errors"};
+		dataProfile = new DataProfile("Test", "test case results", "None", displayFieldList, sortFieldList, filterFieldList, statisticFieldList);
+		
+		actualResult = ((DPStatisticFieldsPage) ((DPGeneralSettingsPage) statisFieldsPage.navigateSettingPage(TableNavigatedPage.GENERAL_SETTINGS))
 				.submitDataProfilesGeneralSettingsPage(dataProfile)
 				.navigateSettingPage(TableNavigatedPage.STATISTIC_FIELDS))
-				.isStatisticItemTypeDisplayCorrect(statisticItemList);
+				.isStatisticItemTypeDisplayCorrect(statisticFieldList);
 
-		Assert.assertTrue(expectedResult, "The item types don't display as expected");
+		Assert.assertTrue(actualResult, "The item types don't display as expected");
 	}
 }

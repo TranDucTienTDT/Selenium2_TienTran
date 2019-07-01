@@ -64,16 +64,6 @@ public class GeneralPage extends BasePOM {
 	public void lnkInChoosePanels(String lnkText) {
 		this.lnkInChoosePanels = new Element(getLocator("lnkInChoosePanels").getByWithAltCode(lnkText));
 	}
-	
-//	public PanelPage clickMenu()
-//	{
-//		//..
-//		return new PanelPage();
-//	}
-	
-//	public int getNumbersOfLinkedButtonInSecondLine() {
-//		return Element(getLocator("allLnkInSecondLine").getBy());
-//	}
 
 	/**
 	 * Open Add New Page dialog or Edit Page dialog.

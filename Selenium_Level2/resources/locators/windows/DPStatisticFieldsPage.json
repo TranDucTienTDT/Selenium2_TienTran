@@ -8,6 +8,10 @@
 			"type": "xpath",
 			"value": "//td[normalize-space(text())='%s']/input"
 		},
+		"lblStatisticField": {
+			"type": "xpath",
+			"value": "//td[normalize-space(text())='%s']"
+		},
 		"btnBack": {
 			"type": "xpath",
 			"value": "//input[@value='Back']"

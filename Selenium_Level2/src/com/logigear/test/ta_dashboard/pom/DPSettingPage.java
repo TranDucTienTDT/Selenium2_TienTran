@@ -51,6 +51,7 @@ public class DPSettingPage extends BasePOM {
 
 		lnkSettingOption = new Element(getLocator("lnkMenuOption").getBy(option.getValue()));
 		lnkSettingOption.click();
+		lnkSettingOption.waitForDisplay(Common.ELEMENT_TIMEOUT);
 
 		if(option == TableNavigatedPage.GENERAL_SETTINGS) {
 			return new DPGeneralSettingsPage();

@@ -8,6 +8,7 @@ import com.logigear.testfw.element.Element;
 public class DPStatisticFieldsPage extends DPSettingPage{
 	
 	protected Element chkStatisticField;
+	protected Element lblStatisticField;
 	protected Element lnkCheckAll;
 	protected Element lnkUncheckAll;
 	
@@ -24,6 +25,10 @@ public class DPStatisticFieldsPage extends DPSettingPage{
 	
 	public void chkStatisticField(String statisticField) {
 		this.chkStatisticField = new Element(getLocator("chkStatisticField").getBy(statisticField));
+	}
+	
+	public void lblStatisticField(String statisticField) {
+		this.lblStatisticField = new Element(getLocator("lblStatisticField").getBy(statisticField));
 	}
 	
 	//@author hanh.nguyen
@@ -72,7 +77,7 @@ public class DPStatisticFieldsPage extends DPSettingPage{
 	 */
 	
 	public boolean isStatisticItemTypeDisplayCorrect(String... statisticField) {
-		String[] actualValue = (String[]) chkStatisticField.getOptions().toArray();
+		String[] actualValue = (String[]) lblStatisticField.getOptions().toArray();
 		boolean isCorrect = false;
 		try {
 			if(actualValue.length == 0)
@@ -94,7 +99,7 @@ public class DPStatisticFieldsPage extends DPSettingPage{
 	 * @param: DataProfile dataProfile
 	 */
 	public boolean isStatisticItemTypeDisplayCorrect(DataProfile dataProfile) {
-		boolean isCorrect = isStatisticItemTypeDisplayCorrect(dataProfile.getFilterField());
+		boolean isCorrect = isStatisticItemTypeDisplayCorrect(dataProfile.getStatisticField());
 		return isCorrect;
 	}
 
