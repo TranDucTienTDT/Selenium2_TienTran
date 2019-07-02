@@ -1,7 +1,6 @@
 package com.logigear.test.ta_dashboard.pom;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import com.logigear.test.ta_dashboard.data_object.DataProfile;
 import com.logigear.testfw.common.Common;

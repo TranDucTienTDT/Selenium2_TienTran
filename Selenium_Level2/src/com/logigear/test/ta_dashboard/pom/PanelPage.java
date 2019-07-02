@@ -19,6 +19,10 @@ public class PanelPage extends GeneralPage {
 	public PanelPage() {
 		super(PanelPage.class);
 	}
+	
+	public PanelPage(Class<?> clzz) {
+		super(clzz);
+	}
 
 	@Override
 	public void initPageElements() {
