@@ -1,0 +1,28 @@
+﻿#clone git repository with specific branch
+git clone {git_repository_server_url}
+git checkout {branch_name}
+#or
+git clone -b {branch_name} {git_repository_server_url}
+
+# pull all changes from server to local repository
+git pull
+
+#clean up all untracked files
+git clean -f
+git reset --hard
+
+#push all changes from local branch (origin) to remote branch
+git push origin {current_local_branch_name}:{new_remote_branch_name}
+
+# Add or stage your changes.
+git add .
+#or
+git add "path_to_file"
+
+# Commit your changes with a comment.
+git commit -m "This is my comment"
+
+#credential storage configuration 
+git config --global user.name "Quang Tran"
+git config --global user.email "ngocquang.tran@logigear.com"
+git config --global credential.helper store
