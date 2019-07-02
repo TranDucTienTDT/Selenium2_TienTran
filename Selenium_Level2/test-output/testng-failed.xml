@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="methods">
+  <test thread-count="2" name="FirstTest(failed)" parallel="methods">
+    <parameter name="environment" value="windows-chrome"/>
+    <classes>
+      <class name="com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien">
+        <methods>
+          <include name="DA_DP_TC095"/>
+          <include name="cleanUp"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien -->
+    </classes>
+  </test> <!-- FirstTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->
