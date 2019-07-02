@@ -4,13 +4,14 @@
   <test thread-count="2" name="FirstTest(failed)" parallel="methods">
     <parameter name="environment" value="windows-chrome"/>
     <classes>
-      <class name="com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien">
+      <class name="com.logigear.test.ta_dashboard.testcases.DataProfileTest">
         <methods>
-          <include name="DA_DP_TC095"/>
+          <include name="TC_DA_DP_TC097"/>
           <include name="cleanUp"/>
           <include name="beforeMethod"/>
+          <include name="postCondition"/>
         </methods>
-      </class> <!-- com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien -->
+      </class> <!-- com.logigear.test.ta_dashboard.testcases.DataProfileTest -->
     </classes>
   </test> <!-- FirstTest(failed) -->
 </suite> <!-- Failed suite [Suite] -->

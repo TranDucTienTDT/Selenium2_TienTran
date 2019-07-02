@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Suite">
-                    <span>C:\Users\Tien\git\Selenium2_HanhNguyen_TienTran\Selenium_Level2\test-run-chrome-TienTran.xml</span>
+                    <span>C:\Users\Tien\git\Selenium2_HanhNguyen_TienTran\Selenium_Level2\test-run-chrome.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,7 +102,7 @@
                     <div class="method-list-content failed suite-Suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien" hash-for-method="DA_DP_TC095">DA_DP_TC095</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.logigear.test.ta_dashboard.testcases.DataProfileTest" hash-for-method="TC_DA_DP_TC097">TC_DA_DP_TC097</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Suite -->
@@ -120,28 +120,28 @@
           <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien</span>
+              <span class="class-name">com.logigear.test.ta_dashboard.testcases.DataProfileTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="DA_DP_TC095">
-                  </a> <!-- DA_DP_TC095 -->
-                  <span class="method-name">DA_DP_TC095</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.xpath: //td[@class=&apos;profilesettingheader&apos; and text()=&apos;Statistic Fields&apos;] (tried for 30 second(s) with 500 milliseconds interval)
-Build info: version: &apos;3.14.0&apos;, revision: &apos;aacccce0&apos;, time: &apos;2018-08-02T20:19:58.91Z&apos;
-System info: host: &apos;HAYABUSA&apos;, ip: &apos;192.168.161.2&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\Tien\AppData\Local...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:52173}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 75.0.3770.100, webStorageEnabled: true}
-Session ID: ae12c880e2dc807b611fa9fc0f17d2dc
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:113)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:283)
-	at com.logigear.testfw.driver.BaseDriver.waitForInvisibility(BaseDriver.java:125)
-	at com.logigear.testfw.element.BaseElement.waitForDisappear(BaseElement.java:86)
-	at com.logigear.testfw.element.Element.waitForDisappear(Element.java:1)
-	at com.logigear.test.ta_dashboard.pom.DPGeneralSettingsPage.gotoDataProfileSettingsPage(DPGeneralSettingsPage.java:84)
-	at com.logigear.test.ta_dashboard.pom.DPDisplayFieldsPage.gotoDataProfileSettingsPage(DPDisplayFieldsPage.java:104)
-	at com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien.DA_DP_TC095(DataProfileTest_Tien.java:36)
+                  <a name="TC_DA_DP_TC097">
+                  </a> <!-- TC_DA_DP_TC097 -->
+                  <span class="method-name">TC_DA_DP_TC097</span>
+                  <div class="stack-trace">java.lang.NullPointerException
+	at java.util.Objects.requireNonNull(Objects.java:203)
+	at org.openqa.selenium.support.ui.FluentWait.&lt;init&gt;(FluentWait.java:115)
+	at org.openqa.selenium.support.ui.WebDriverWait.&lt;init&gt;(WebDriverWait.java:102)
+	at org.openqa.selenium.support.ui.WebDriverWait.&lt;init&gt;(WebDriverWait.java:45)
+	at com.logigear.testfw.driver.BaseDriver.waitForDisplay(BaseDriver.java:111)
+	at com.logigear.testfw.element.BaseElement.waitForDisplay(BaseElement.java:77)
+	at com.logigear.testfw.element.Element.waitForDisplay(Element.java:1)
+	at com.logigear.testfw.element.Element.selection(Element.java:203)
+	at com.logigear.testfw.element.Element.selectByValue(Element.java:277)
+	at com.logigear.testfw.element.Element.selectByValue(Element.java:291)
+	at com.logigear.test.ta_dashboard.pom.LoginPage.login(LoginPage.java:37)
+	at com.logigear.test.ta_dashboard.testcases.Precondition.preconditionLoginValid(Precondition.java:21)
+	at com.logigear.test.ta_dashboard.testcases.DataProfileTest.TC_DA_DP_TC097(DataProfileTest.java:47)
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
@@ -154,7 +154,7 @@ Session ID: ae12c880e2dc807b611fa9fc0f17d2dc
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Tien\git\Selenium2_HanhNguyen_TienTran\Selenium_Level2\test-run-chrome-TienTran.xml</span>
+            <span class="header-content">C:\Users\Tien\git\Selenium2_HanhNguyen_TienTran\Selenium_Level2\test-run-chrome.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -164,7 +164,7 @@ Session ID: ae12c880e2dc807b611fa9fc0f17d2dc
   &lt;test thread-count=&quot;2&quot; name=&quot;FirstTest&quot; parallel=&quot;methods&quot;&gt;
     &lt;parameter name=&quot;environment&quot; value=&quot;windows-chrome&quot;/&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien&quot;/&gt;
+      &lt;class name=&quot;com.logigear.test.ta_dashboard.testcases.DataProfileTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- FirstTest --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
@@ -206,14 +206,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'DA_DP_TC095')
-data.setCell(0, 2, 'com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien')
-data.setCell(0, 3, 35454);
+data.setCell(0, 1, 'TC_DA_DP_TC097')
+data.setCell(0, 2, 'com.logigear.test.ta_dashboard.testcases.DataProfileTest')
+data.setCell(0, 3, 94);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 35 seconds</span>
+              <span class="suite-total-time">Total running time: 94 ms</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -239,20 +239,26 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.logigear.test.ta_dashboard.testcases.DataProfileTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
-                <span class="method-name">beforeMethod(windows-chrome, public void com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien.DA_DP_TC09...)</span>
+                <span class="method-name">beforeMethod(windows-chrome, public void com.logigear.test.ta_dashboard.testcases.DataProfileTest.TC_DA_DP_TC097(...)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">DA_DP_TC095</span>
-                <span class="method-start">3360 ms</span>
+                <span class="method-name">TC_DA_DP_TC097</span>
+                <span class="method-start">21650 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">cleanUp([TestResult name=DA_DP_TC095 status=FAILURE method=DataProfileTest_Tien.DA_DP_TC095()[pri:0, instanc...)</span>
-                <span class="method-start">38823 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">postCondition</span>
+                <span class="method-start">21759 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method after">
+                <span class="method-name">cleanUp([TestResult name=TC_DA_DP_TC097 status=FAILURE method=DataProfileTest.TC_DA_DP_TC097()[pri:0, instan...)</span>
+                <span class="method-start">21790 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

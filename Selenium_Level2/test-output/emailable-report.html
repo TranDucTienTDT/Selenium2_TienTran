@@ -9,24 +9,35 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">Suite</th></tr>
-<tr><td><a href="#t0">FirstTest</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">39.593</td><td></td><td></td></tr>
+<tr><td><a href="#t0">FirstTest</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">21.822</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">FirstTest &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien</td><td><a href="#m0">DA_DP_TC095</a></td><td rowspan="1">1561999676535</td><td rowspan="1">35454</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">FirstTest &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="1">com.logigear.test.ta_dashboard.testcases.DataProfileTest</td><td><a href="#m0">postCondition</a></td><td rowspan="1">1562085641030</td><td rowspan="1">31</td></tr><tr><th colspan="4">FirstTest &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.logigear.test.ta_dashboard.testcases.DataProfileTest</td><td><a href="#m1">TC_DA_DP_TC097</a></td><td rowspan="1">1562085640921</td><td rowspan="1">94</td></tr></tbody>
 </table>
-<h2>FirstTest</h2><h3 id="m0">com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien#DA_DP_TC095</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.xpath: //td[@class=&apos;profilesettingheader&apos; and text()=&apos;Statistic Fields&apos;] (tried for 30 second(s) with 500 milliseconds interval)
-Build info: version: &apos;3.14.0&apos;, revision: &apos;aacccce0&apos;, time: &apos;2018-08-02T20:19:58.91Z&apos;
-System info: host: &apos;HAYABUSA&apos;, ip: &apos;192.168.161.2&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\Tien\AppData\Local...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:52173}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 75.0.3770.100, webStorageEnabled: true}
-Session ID: ae12c880e2dc807b611fa9fc0f17d2dc
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:113)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:283)
-	at com.logigear.testfw.driver.BaseDriver.waitForInvisibility(BaseDriver.java:125)
-	at com.logigear.testfw.element.BaseElement.waitForDisappear(BaseElement.java:86)
-	at com.logigear.testfw.element.Element.waitForDisappear(Element.java:1)
-	at com.logigear.test.ta_dashboard.pom.DPGeneralSettingsPage.gotoDataProfileSettingsPage(DPGeneralSettingsPage.java:84)
-	at com.logigear.test.ta_dashboard.pom.DPDisplayFieldsPage.gotoDataProfileSettingsPage(DPDisplayFieldsPage.java:104)
-	at com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien.DA_DP_TC095(DataProfileTest_Tien.java:36)
+<h2>FirstTest</h2><h3 id="m0">com.logigear.test.ta_dashboard.testcases.DataProfileTest#postCondition</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.util.MissingFormatArgumentException: Format specifier &apos;%d&apos;
+	at java.util.Formatter.format(Formatter.java:2519)
+	at java.util.Formatter.format(Formatter.java:2455)
+	at java.lang.String.format(String.java:2940)
+	at com.logigear.test.ta_dashboard.pom.GeneralPage.selectMenuItem(GeneralPage.java:91)
+	at com.logigear.test.ta_dashboard.pom.GeneralPage.gotoDataProfilesPage(GeneralPage.java:271)
+	at com.logigear.test.ta_dashboard.testcases.DataProfileTest.postCondition(DataProfileTest.java:88)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+... Removed 13 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.logigear.test.ta_dashboard.testcases.DataProfileTest#TC_DA_DP_TC097</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException
+	at java.util.Objects.requireNonNull(Objects.java:203)
+	at org.openqa.selenium.support.ui.FluentWait.&lt;init&gt;(FluentWait.java:115)
+	at org.openqa.selenium.support.ui.WebDriverWait.&lt;init&gt;(WebDriverWait.java:102)
+	at org.openqa.selenium.support.ui.WebDriverWait.&lt;init&gt;(WebDriverWait.java:45)
+	at com.logigear.testfw.driver.BaseDriver.waitForDisplay(BaseDriver.java:111)
+	at com.logigear.testfw.element.BaseElement.waitForDisplay(BaseElement.java:77)
+	at com.logigear.testfw.element.Element.waitForDisplay(Element.java:1)
+	at com.logigear.testfw.element.Element.selection(Element.java:203)
+	at com.logigear.testfw.element.Element.selectByValue(Element.java:277)
+	at com.logigear.testfw.element.Element.selectByValue(Element.java:291)
+	at com.logigear.test.ta_dashboard.pom.LoginPage.login(LoginPage.java:37)
+	at com.logigear.test.ta_dashboard.testcases.Precondition.preconditionLoginValid(Precondition.java:21)
+	at com.logigear.test.ta_dashboard.testcases.DataProfileTest.TC_DA_DP_TC097(DataProfileTest.java:47)
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)

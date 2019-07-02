@@ -4,19 +4,23 @@
 	<test name="FirstTest">
 		<parameter name="environment" value="windows-chrome" />
 		<classes>
-			<class name="com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien" />
+			<class name="com.logigear.test.ta_dashboard.testcases.DataProfileTCs.DA_DPTC095" />
+			<class name="com.logigear.test.ta_dashboard.testcases.DataProfileTCs.DA_DPTC097" />
+			<class name="com.logigear.test.ta_dashboard.testcases.ModifyPageTCs.DA_MP_TC024" />
 		</classes>
 	</test>
 	<test name="SecondTest">
 		<parameter name="environment" value="windows-firefox" />
 		<classes>
-			<class name="com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien" />
+			<class name="com.logigear.test.ta_dashboard.testcases.PanelTCs.DA_PANEL_TC060" />
+			<class name="com.logigear.test.ta_dashboard.testcases.PanelTCs.DA_PANEL_TC064" />
 		</classes>
 	</test>
 	<test name="ThirdTest">
 		<parameter name="environment" value="windows-egde" />
 		<classes>
-			<class name="com.logigear.test.ta_dashboard.testcases.DataProfileTest_Tien" />
+			<class name="com.logigear.test.ta_dashboard.testcases.PanelTCs.DA_PANEL_TC031" />
+			<class name="com.logigear.test.ta_dashboard.testcases.PanelTCs.DA_PANEL_TC063" />
 		</classes>
 	</test>
 </suite>

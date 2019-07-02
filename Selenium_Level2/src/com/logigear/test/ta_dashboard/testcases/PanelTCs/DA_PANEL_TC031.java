@@ -1,4 +1,4 @@
-package com.logigear.test.ta_dashboard.testcases;
+package com.logigear.test.ta_dashboard.testcases.PanelTCs;
 
 import org.testng.annotations.Test;
 
@@ -6,11 +6,11 @@ import com.logigear.test.ta_dashboard.pom.HomePage;
 import com.logigear.test.ta_dashboard.pom.PanelDialog;
 import com.logigear.test.ta_dashboard.pom.PanelDialog.PanelSettingType;
 import com.logigear.test.ta_dashboard.pom.PanelPage.LinkedText;
-
+import com.logigear.test.ta_dashboard.testcases.Precondition;
 
 import org.testng.Assert;
 
-public class PanelTest_Tien extends Precondition{
+public class DA_PANEL_TC031 extends Precondition{
 	@Test
 	public void DA_PANEL_TC031() {
 /*
