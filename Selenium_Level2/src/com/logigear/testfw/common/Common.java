@@ -8,6 +8,6 @@ public class Common {
 	public static final String CONFIG_FILE_DRIVER = "config/driver/capabilities-config.properties";
 	public static final String CONFIG_FILE_LOG = "config/log/logging.properties";
 	
-	public static final int ELEMENT_TIMEOUT = 5;
+	public static final int ELEMENT_TIMEOUT = 30;
 	public static final int ELEMENT_LONG_TIMEOUT = 60;
 }

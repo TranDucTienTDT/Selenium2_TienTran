@@ -29,7 +29,15 @@ public class Element extends BaseElement {
 	public Element(String xpath) {
 		super(xpath);
 	}
-
+	
+	/**
+	 * @author: tien.duc.tran
+	 * @Description: Constructor for dynamic locator 
+	 * @param: dynamicLocator, placeValue
+	 */
+	public Element(String dynamicLocator, String placeValue) {
+		super(dynamicLocator, placeValue);
+	}
 
 	public void enter(String text) {
 		clear();
@@ -195,7 +203,7 @@ public class Element extends BaseElement {
 		Select selection = new Select(waitForDisplay(timeOutInSeconds));
 		return selection;
 	}
-	
+
 	public void check() {
 		while (!isSelected()) {
 			click();
@@ -282,6 +290,68 @@ public class Element extends BaseElement {
 	public void selectByValue(String value) {
 		selectByValue(Common.ELEMENT_LONG_TIMEOUT, value);
 	}
+	
+	//@author hanh.nguyen
+	public void selectByTextContains(int timeOutInSeconds, String value) {
+		if (timeOutInSeconds <= 0) {
+			LOG.severe("The time out is invalid. It must greater than 0");
+			return;
+		}
+		Stopwatch sw = Stopwatch.createStarted();
+		try {
+			LOG.info(String.format("Select the option of the control %s by text contains", getLocator().toString()));
+			List<WebElement> options = selection(timeOutInSeconds).getOptions();
+			for (WebElement option : options) {
+			    if (option.getText().contains(value))
+			        option.click();
+			}
+		} catch (StaleElementReferenceException ex) {
+			if (sw.elapsed(TimeUnit.SECONDS) <= (long) timeOutInSeconds) {
+				LOG.warning(String.format("Try to select the option of the control %s by text contains",
+						getLocator().toString()));
+				selectByValue(timeOutInSeconds - (int) sw.elapsed(TimeUnit.SECONDS), value);
+			}
+		} catch (Exception error) {
+			LOG.severe(String.format("Has error with control '%s': %s", getLocator().toString(), error.getMessage()));
+			throw error;
+		}
+	}
+	
+	//@author hanh.nguyen
+	public void selectByTextContains(String value) {
+		selectByTextContains(Common.ELEMENT_LONG_TIMEOUT, value);
+	}
+	
+	//@author hanh.nguyen
+	public void selectByTextIgnoreCase(int timeOutInSeconds, String value) {
+		if (timeOutInSeconds <= 0) {
+			LOG.severe("The time out is invalid. It must greater than 0");
+			return;
+		}
+		Stopwatch sw = Stopwatch.createStarted();
+		try {
+			LOG.info(String.format("Select the option of the control %s by text ignore case", getLocator().toString()));
+			List<WebElement> options = selection(timeOutInSeconds).getOptions();
+			for (WebElement option : options) {
+				if (option.getText().equalsIgnoreCase(value))
+					option.click();
+			}
+		} catch (StaleElementReferenceException ex) {
+			if (sw.elapsed(TimeUnit.SECONDS) <= (long) timeOutInSeconds) {
+				LOG.warning(String.format("Try to select the option of the control %s by text ignore case",
+						getLocator().toString()));
+				selectByValue(timeOutInSeconds - (int) sw.elapsed(TimeUnit.SECONDS), value);
+			}
+		} catch (Exception error) {
+			LOG.severe(String.format("Has error with control '%s': %s", getLocator().toString(), error.getMessage()));
+			throw error;
+		}
+	}
+
+	// @author hanh.nguyen
+	public void selectByTextIgnoreCase(String value) {
+		selectByTextIgnoreCase(Common.ELEMENT_LONG_TIMEOUT, value);
+	}
 
 	public String getSelectedOption(int timeOutInSeconds) {
 		String selected = null;
@@ -305,7 +375,7 @@ public class Element extends BaseElement {
 		}
 		return selected;
 	}
-
+	
 	public String getSelectedOption() {
 		return getSelectedOption(Common.ELEMENT_LONG_TIMEOUT);
 	}
@@ -339,6 +409,5 @@ public class Element extends BaseElement {
 	public List<String> getOptions() {
 		return getOptions(Common.ELEMENT_LONG_TIMEOUT);
 	}
-
 
 }
