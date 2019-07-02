@@ -2,7 +2,7 @@
 	"capabilities": [
 		{
 			"browserName": "chrome",
-			"version": 71,
+			"version": 72,
 			"maxInstances": 3,
 			"platform": "WINDOWS"
 		},

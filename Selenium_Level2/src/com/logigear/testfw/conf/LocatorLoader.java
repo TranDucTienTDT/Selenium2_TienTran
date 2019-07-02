@@ -73,6 +73,8 @@ public class LocatorLoader {
 				.append(className + ".json")
 				.toString();
 		try {
+			if(new File(filePath).exists() == false)
+				return locators;
 			String text = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
 			
 			JSONObject jObject = new JSONObject(text);
@@ -93,18 +95,10 @@ public class LocatorLoader {
 				}
 			}
 			
-		}catch(JSONException e) {
-			// invalid format or value not found. Ignore
-			e.printStackTrace();
-		}
-		catch(NoSuchFileException e) {
-			// invalid format or value not found. Ignore
-			e.printStackTrace();
 		}
 		catch(Exception e) {
 			// file not exit or invalid format
 			LogWrapper.createLogger(LocatorLoader.class.getName()).severe(e.getMessage());
-			e.printStackTrace();
 		}		
 		
 		return locators;
