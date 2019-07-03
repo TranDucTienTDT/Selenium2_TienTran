@@ -1,0 +1,10 @@
+/.metadata/
+/.recommenders/
+/.recommenders/caches/
+/.RemoteSystemsTempFiles/
+/.Selenium_Level2/target/classes/META-INF/
+*.prefs
+*.MF
+*.class
+*.properties
+.recommenders/caches/identified-project-coordinates.json

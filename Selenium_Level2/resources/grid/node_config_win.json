@@ -1,0 +1,25 @@
+{
+	"capabilities": [
+		{
+			"browserName": "chrome",
+			"version": 72,
+			"maxInstances": 1,
+			"platform": "WINDOWS"
+		},
+		{
+			"browserName": "firefox",
+			"version": 71,
+			"maxInstances": 1,
+			"platform": "WINDOWS"
+		},
+		{
+			"browserName": "edge",
+			"version": 42,
+			"maxInstances": 1,
+			"platform": "WINDOWS"
+		}
+	],
+	"maxSession": 20,
+	"port": -1,
+	"hub": "http://192.168.172.163:4445"
+}
