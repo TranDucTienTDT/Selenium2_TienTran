@@ -42,23 +42,23 @@ public class PageDialog extends BasePOM {
 	public void fillInfoInPageDialog(String pageName, String parentName, String numberOfColumns,
 			String displayAfter, boolean isPublic) {
 		if ((pageName != null) && (txtPageName.getText() != null || txtPageName.getText() != pageName)) {
-			LOG.info("In \"Page Name\" textbox, enter: " + pageName);
+			logger.printMessage("In \"Page Name\" textbox, enter: " + pageName);
 			txtPageName.enter(pageName);
 		}
 		if (parentName != null && cboParentPage.getText() != parentName) {
-			LOG.info("In \"Parent Page\" combobox, select: " + parentName);
+			logger.printMessage("In \"Parent Page\" combobox, select: " + parentName);
 			cboParentPage.selectByTextContains(parentName);
 		}
 		if (numberOfColumns != null && cboParentPage.getText() != numberOfColumns) {
-			LOG.info("In \"Number of Columns\" combobox, select: " + numberOfColumns);
+			logger.printMessage("In \"Number of Columns\" combobox, select: " + numberOfColumns);
 			cboNumberOfColumns.selectByText(numberOfColumns);
 		}
 		if (displayAfter != null && cboParentPage.getText() != displayAfter) {
-			LOG.info("In \"Display After\" combobox, select: " + displayAfter);
+			logger.printMessage("In \"Display After\" combobox, select: " + displayAfter);
 			cboDisplayAfter.selectByText(displayAfter);
 		}
 		if (chkIsPublic.isSelected() != isPublic) {
-			LOG.info("In \"Public\" checkbox, check it: " + isPublic);
+			logger.printMessage("In \"Public\" checkbox, check it: " + isPublic);
 			if(isPublic)
 				chkIsPublic.check();
 			else if (!isPublic) {

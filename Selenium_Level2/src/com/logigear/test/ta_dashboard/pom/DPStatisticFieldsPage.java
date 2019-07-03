@@ -36,7 +36,7 @@ public class DPStatisticFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen
 	public void selectDataProfilesStatisticField(String... statisticField) {
-		LOG.info("In \"Statistic Fields\" page, check on: " + statisticField);
+		logger.printMessage("In \"Statistic Fields\" page, check on: " + statisticField);
 		for(String item : statisticField) {
 			chkStatisticField(item);
 			chkStatisticField.check();
@@ -45,7 +45,7 @@ public class DPStatisticFieldsPage extends GeneralPage{
 		
 	//@author hanh.nguyen
 	public DataProfilesPage submitDataProfilesStatisticFieldPage(String... statisticField) {
-		LOG.info("Submit \"Statistic Fields\" page.");
+		logger.printMessage("Submit \"Statistic Fields\" page.");
 		selectDataProfilesStatisticField(statisticField);
 		submitNewDataProfile();
 		return new DataProfilesPage();
@@ -65,10 +65,10 @@ public class DPStatisticFieldsPage extends GeneralPage{
 			isCorrect.add(chkStatisticField.isSelected());
 		}
 		if (isCorrect.contains(false)) {
-			LOG.info("The Statistic Field checkboxes are not checked all.");
+			logger.printMessage("The Statistic Field checkboxes are not checked all.");
 			return false;
 		} else {
-			LOG.info("The Statistic Field checkboxes are checked all.");
+			logger.printMessage("The Statistic Field checkboxes are checked all.");
 			return true;
 		}
 	}
@@ -86,10 +86,10 @@ public class DPStatisticFieldsPage extends GeneralPage{
 			isCorrect.add(lblStatisticField.isDisplayed());
 		}
 		if (isCorrect.contains(false)) {
-			LOG.info("The Statistic Field checkboxes do not display properly.");
+			logger.printMessage("The Statistic Field checkboxes do not display properly.");
 			return false;
 		} else {
-			LOG.info("The Statistic Field checkboxes display properly.");
+			logger.printMessage("The Statistic Field checkboxes display properly.");
 			return true;
 		}
 	}
@@ -97,7 +97,7 @@ public class DPStatisticFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen	
 	public DataProfilesPage submitNewDataProfile() {
-		LOG.info("From \"Statistic Fields\" page, click \"Finish\" to sumit a new data profile and go to \"Data Profiles\" page.");
+		logger.printMessage("From \"Statistic Fields\" page, click \"Finish\" to sumit a new data profile and go to \"Data Profiles\" page.");
 		btnFinish.click();
 		btnFinish.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DataProfilesPage();

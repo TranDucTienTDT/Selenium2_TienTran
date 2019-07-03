@@ -75,19 +75,19 @@ public class PanelPage extends GeneralPage {
 	//@author hanh.nguyen
 	public Object clickLinkedText(LinkedText text) {
 		if(text.equals(LinkedText.ADD_NEW)) {
-			LOG.info("Click \"Add New\" linked text.");
+			logger.printMessage("Click \"Add New\" linked text.");
 			lnkAddNew.click();
 		}
 		if(text.equals(LinkedText.DELETE_IN_TOP)) {
-			LOG.info("Click \"Delete\" linked text on top of page.");
+			logger.printMessage("Click \"Delete\" linked text on top of page.");
 			lnkDeleteInTopPage.click();
 		}
 		if(text.equals(LinkedText.CHECK_ALL)) {
-			LOG.info("Click \"Check All\" linked text.");
+			logger.printMessage("Click \"Check All\" linked text.");
 			lnkCheckAll.click();
 		}
 		if(text.equals(LinkedText.UNCHECK_ALL)) {
-			LOG.info("Click \"Uncheck All\" linked text.");
+			logger.printMessage("Click \"Uncheck All\" linked text.");
 			lnkUncheckAll.click();
 		}
 		if(text.equals(LinkedText.ADD_NEW))
@@ -100,7 +100,7 @@ public class PanelPage extends GeneralPage {
 	public boolean isPanelCheckboxChecked(String panelName) {
 		lnkPanelName(panelName);
 		boolean isChecked = this.lnkPanelName.isSelected();
-		LOG.info("The checkbox of panel \"" + panelName + "\" is checked: " + isChecked);
+		logger.printMessage("The checkbox of panel \"" + panelName + "\" is checked: " + isChecked);
 		return isChecked;
 	}
 	
@@ -111,18 +111,18 @@ public class PanelPage extends GeneralPage {
 			Collections.fill(areCheck, isPanelCheckboxChecked(pageNames[i]));
 		}
 		if(areCheck.contains(false)) {
-			LOG.info("The panel checkboxes are not checked all.");
+			logger.printMessage("The panel checkboxes are not checked all.");
 			return false;
 		}
 		else {
-			LOG.info("The panel checkboxes are checked all.");
+			logger.printMessage("The panel checkboxes are checked all.");
 			return true;
 		}
 	}
 	
 	//@author hanh.nguyen
 	public PanelPage deleteAllPanels() {
-		LOG.info("Delete all panels in Panel Page.");
+		logger.printMessage("Delete all panels in Panel Page.");
 		clickLinkedText(LinkedText.CHECK_ALL);
 		clickLinkedText(LinkedText.DELETE_IN_TOP);
 		acceptAlertPopup();
@@ -131,7 +131,7 @@ public class PanelPage extends GeneralPage {
 	
 	//@author hanh.nguyen
 	public PanelDialog clickEditLinkedText(String panelName) {
-		LOG.info("Click in \"Edit\" linked text of panel: " + panelName);
+		logger.printMessage("Click in \"Edit\" linked text of panel: " + panelName);
 		lnkEdit(panelName);
 		lnkEdit.click();
 		return new PanelDialog();

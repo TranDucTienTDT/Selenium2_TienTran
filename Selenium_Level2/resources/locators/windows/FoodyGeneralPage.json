@@ -1,0 +1,44 @@
+{
+	"default": {
+		"cbbLocation": {
+			"type": "xpath",
+			"value": "//div[@id='head-province']"
+		},
+		"cbbCategory": {
+			"type": "xpath",
+			"value": "//div[@id='head-navigation']"
+		},
+		"mneCategory": {
+			"type": "xpath",
+			"value": "//div[@id='head-navigation']//li[a[span[text()='%s']]]//a[@title='%s']"
+		},
+		"txtSearch": {
+			"type": "xpath",
+			"value": "//div[input[@id='pkeywords']]"
+		},
+		"btnSearch": {
+			"type": "xpath",
+			"value": "//a[@class='ico-search']"
+		},
+		"btnFilter": {
+			"type": "xpath",
+			"value": "//a[@class='ico-nofilter']"
+		},
+		"btnSelectType": {
+			"type": "xpath",
+			"value": "//ul[@class='nav-place-menu']"
+		},
+		"btnChangeLanguage": {
+			"type": "xpath",
+			"value": "//div[@class='language-dropdown-container']"
+		},
+		"mneLanguage": {
+			"type": "xpath",
+			"value": "//div[@class='language-dropdown-container']//a[@title='%s']"
+		},
+		"tblDelivery": {
+			"type": "xpath",
+			"value": "//div[@id='box-delivery']"
+		}
+	}	
+}

@@ -62,7 +62,7 @@ public class DPDisplayFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen
 	public void selectDataProfilesDisplayField(String... displayField) {
-		LOG.info("In \"Display Fields\" page, check on: " + displayField);
+		logger.printMessage("In \"Display Fields\" page, check on: " + displayField);
 		for(String item : displayField) {
 			chkDisplayField(item);
 			chkDisplayField.check();
@@ -71,7 +71,7 @@ public class DPDisplayFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen
 	public DPSortFieldsPage submitDataProfilesDisplayFieldPage(String... displayField) {
-		LOG.info("Submit \"Display Fields\" page.");
+		logger.printMessage("Submit \"Display Fields\" page.");
 		selectDataProfilesDisplayField(displayField);
 		gotoNextPage();
 		return new DPSortFieldsPage();
@@ -91,11 +91,11 @@ public class DPDisplayFieldsPage extends GeneralPage{
 			isCorrect.add(chkDisplayField.isSelected());
 		}
 		if(isCorrect.contains(false)) {
-			LOG.info("The Display Field checkboxes are not checked all.");
+			logger.printMessage("The Display Field checkboxes are not checked all.");
 			return false;
 		}
 		else {
-			LOG.info("The Display Field checkboxes are checked all.");
+			logger.printMessage("The Display Field checkboxes are checked all.");
 			return true;
 		}
 	}
@@ -106,7 +106,7 @@ public class DPDisplayFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen	
 	public DPSortFieldsPage gotoNextPage() {
-		LOG.info("From \"Display Fields\" page, click \"Next\" to go to \"Sort Fields\" page.");
+		logger.printMessage("From \"Display Fields\" page, click \"Next\" to go to \"Sort Fields\" page.");
 		btnNext.click();
 		lblHeaderDisplayFields.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPSortFieldsPage();

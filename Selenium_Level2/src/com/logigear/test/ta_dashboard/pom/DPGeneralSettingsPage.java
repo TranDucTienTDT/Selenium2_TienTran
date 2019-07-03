@@ -82,7 +82,7 @@ public class DPGeneralSettingsPage extends GeneralPage{
 		lnkMenuOption.click();
 		lblHeader(pageName.getValue());
 		lblHeader.waitForDisappear(Common.ELEMENT_TIMEOUT);
-		LOG.info("Navigate to Data Profile page: " + pageName);
+		logger.printMessage("Navigate to Data Profile page: " + pageName);
 
 		if(pageName == TableNavigatedPage.GENERAL_SETTINGS) {
 			return new DPGeneralSettingsPage();
@@ -102,22 +102,22 @@ public class DPGeneralSettingsPage extends GeneralPage{
 	//@author hanh.nguyen
 	public void fillInDataProfilesGeneralSettingsPage(String name, String itemType, String relatedData) {
 		if((name != null) && (txtName.getText() != null || txtName.getText() != name)) {
-			LOG.info("In \"Name\" textbox, enter: " + name);
+			logger.printMessage("In \"Name\" textbox, enter: " + name);
 			txtName.enter(name);
 		}
 		if(itemType != null && cbbItemType.getText() != itemType) {
-			LOG.info("In \"Item Type\" combobox, select: " + itemType);
+			logger.printMessage("In \"Item Type\" combobox, select: " + itemType);
 			cbbItemType.selectByTextIgnoreCase(itemType);
 		}
 		if(relatedData != null && cbbRelatedData.getText() != relatedData) {
-			LOG.info("In \"Related Data\" combobox, select: " + relatedData);
+			logger.printMessage("In \"Related Data\" combobox, select: " + relatedData);
 			cbbRelatedData.selectByTextIgnoreCase(relatedData);
 		}
 	}
 	
 	//@author hanh.nguyen
 	public DPDisplayFieldsPage submitDataProfilesGeneralSettingsPage(String name, String itemType, String relatedData) {
-		LOG.info("Submit \"General Settings\" page.");
+		logger.printMessage("Submit \"General Settings\" page.");
 		fillInDataProfilesGeneralSettingsPage(name, itemType, relatedData);
 		gotoNextPage();
 		return new DPDisplayFieldsPage();
@@ -139,7 +139,7 @@ public class DPGeneralSettingsPage extends GeneralPage{
 		String expectedValue = dataProfile.getName() + dataProfile.getItemType() + relatedData;
 		if(actualValue.equals(expectedValue))
 			isCorrect = true;
-		LOG.info("Is Data Profiles \"General Settings\" page display correct: " + isCorrect);
+		logger.printMessage("Is Data Profiles \"General Settings\" page display correct: " + isCorrect);
 		return isCorrect;
 	}
 	
@@ -177,7 +177,7 @@ public class DPGeneralSettingsPage extends GeneralPage{
 		
 	//@author hanh.nguyen	
 	public DPDisplayFieldsPage gotoNextPage() {
-		LOG.info("From \"General Settings\" page, click \"Next\" to go to \"Display Fields\" page.");
+		logger.printMessage("From \"General Settings\" page, click \"Next\" to go to \"Display Fields\" page.");
 		btnNext.click();
 		txtName.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPDisplayFieldsPage();

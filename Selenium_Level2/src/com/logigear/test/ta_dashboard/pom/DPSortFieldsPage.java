@@ -32,7 +32,7 @@ public class DPSortFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen
 	public void selectDataProfilesSortFields(String... sortField) {
-		LOG.info("In \"Sort Fields\" page, select: " + sortField);
+		logger.printMessage("In \"Sort Fields\" page, select: " + sortField);
 		for(String item : sortField) {
 			cbbField.selectByText(item);
 			btnAddLevel.click();
@@ -43,7 +43,7 @@ public class DPSortFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen
 	public DPFilterFieldsPage submitDataProfilesSortFieldsPage(String... sortField) {
-		LOG.info("Submit \"Sort Fields\" page.");
+		logger.printMessage("Submit \"Sort Fields\" page.");
 		selectDataProfilesSortFields(sortField);
 		gotoNextPage();
 		return new DPFilterFieldsPage();
@@ -63,17 +63,17 @@ public class DPSortFieldsPage extends GeneralPage{
 			isCorrect.add(lblSortFieldValue.isDisplayed());
 		}
 		if (isCorrect.contains(false)) {
-			LOG.info("The Sort Field values are not displayed correctly.");
+			logger.printMessage("The Sort Field values are not displayed correctly.");
 			return false;
 		} else {
-			LOG.info("The Sort Field values are displayed correctly.");
+			logger.printMessage("The Sort Field values are displayed correctly.");
 			return true;
 		}
 	}
 	
 	//@author hanh.nguyen	
 	public DPFilterFieldsPage gotoNextPage() {
-		LOG.info("From \"Sort Fields\" page, click \"Next\" to go to \"Filter Fields\" page.");
+		logger.printMessage("From \"Sort Fields\" page, click \"Next\" to go to \"Filter Fields\" page.");
 		btnNext.click();
 		btnAddLevel.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPFilterFieldsPage();

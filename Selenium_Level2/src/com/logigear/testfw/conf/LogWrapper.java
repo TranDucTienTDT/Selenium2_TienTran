@@ -27,4 +27,9 @@ public class LogWrapper {
 	public static final Logger createLogger(String className) {
 		return Logger.getLogger(className);
 	}
+	
+	//@author hanh.nguyen
+	public void printMessage(String message) {
+		System.out.println(message);
+	}
 }	

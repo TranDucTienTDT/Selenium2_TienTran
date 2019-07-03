@@ -50,19 +50,19 @@ public class DataProfilesPage extends GeneralPage {
 	//@author hanh.nguyen
 	public Object clickLinkedText(LinkedText text) {
 		if(text.equals(LinkedText.ADD_NEW)) {
-			LOG.info("Click \"Add New\" linked text.");
+			logger.printMessage("Click \"Add New\" linked text.");
 			lnkAddNew.click();
 		}
 		if(text.equals(LinkedText.DELETE_IN_TOP)) {
-			LOG.info("Click \"Delete\" linked text on top of page.");
+			logger.printMessage("Click \"Delete\" linked text on top of page.");
 			lnkDeleteInTopPage.click();
 		}
 		if(text.equals(LinkedText.CHECK_ALL)) {
-			LOG.info("Click \"Check All\" linked text.");
+			logger.printMessage("Click \"Check All\" linked text.");
 			lnkCheckAll.click();
 		}
 		if(text.equals(LinkedText.UNCHECK_ALL)) {
-			LOG.info("Click \"Uncheck All\" linked text.");
+			logger.printMessage("Click \"Uncheck All\" linked text.");
 			lnkUncheckAll.click();
 		}
 		if(text.equals(LinkedText.ADD_NEW))
@@ -75,7 +75,7 @@ public class DataProfilesPage extends GeneralPage {
 	public boolean isDataProfileCheckboxChecked(String dataProfileName) {
 		lnkDataProfilesName(dataProfileName);
 		boolean isChecked = this.lnkDataProfilesName.isSelected();
-		LOG.info("The checkbox of data profile \"" + dataProfileName + "\" is checked: " + isChecked);
+		logger.printMessage("The checkbox of data profile \"" + dataProfileName + "\" is checked: " + isChecked);
 		return isChecked;
 	}
 	
@@ -86,18 +86,18 @@ public class DataProfilesPage extends GeneralPage {
 			Collections.fill(areCheck, isDataProfileCheckboxChecked(dataProfileNames[i]));
 		}
 		if(areCheck.contains(false)) {
-			LOG.info("The data profile checkboxes are not checked all.");
+			logger.printMessage("The data profile checkboxes are not checked all.");
 			return false;
 		}
 		else {
-			LOG.info("The data profile checkboxes are checked all.");
+			logger.printMessage("The data profile checkboxes are checked all.");
 			return true;
 		}
 	}
 	
 	//@author hanh.nguyen
 	public DataProfilesPage deleteAllDataProfiles() {
-		LOG.info("Delete all data profiles in \"Data Profile\" Page.");
+		logger.printMessage("Delete all data profiles in \"Data Profile\" Page.");
 		clickLinkedText(LinkedText.CHECK_ALL);
 		clickLinkedText(LinkedText.DELETE_IN_TOP);
 		acceptAlertPopup();
@@ -106,7 +106,7 @@ public class DataProfilesPage extends GeneralPage {
 	
 	//@author hanh.nguyen
 	public DPGeneralSettingsPage clickEditLinkedText(String dataProfileNames) {
-		LOG.info("Click in \"Edit\" linked text of data profile: " + dataProfileNames);
+		logger.printMessage("Click in \"Edit\" linked text of data profile: " + dataProfileNames);
 		lnkEdit(dataProfileNames);
 		lnkEdit.click();
 		return new DPGeneralSettingsPage();
@@ -114,7 +114,7 @@ public class DataProfilesPage extends GeneralPage {
 	
 	//@author hanh.nguyen
 	public DataProfilesPage deleteDataProfile(String... dataProfileName) {
-		LOG.info("Delete data profile: " + dataProfileName);
+		logger.printMessage("Delete data profile: " + dataProfileName);
 		for (String name : dataProfileName) {
 			chkDataProfilesName(name);
 			chkDataProfilesName.check();

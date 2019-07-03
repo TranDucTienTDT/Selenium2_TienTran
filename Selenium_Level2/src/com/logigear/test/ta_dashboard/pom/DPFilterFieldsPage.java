@@ -1,6 +1,5 @@
 package com.logigear.test.ta_dashboard.pom;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -39,19 +38,19 @@ public class DPFilterFieldsPage extends GeneralPage{
 	//@author hanh.nguyen
 	public void addDataProfilesFilterFields(String andOrCondition, String field, String operator, String value) {
 		if(andOrCondition != null && cbbAndOrCondition.getText() != andOrCondition) {
-			LOG.info("In \"And/Or\" combobox, select: " + andOrCondition);
+			logger.printMessage("In \"And/Or\" combobox, select: " + andOrCondition);
 			cbbAndOrCondition.selectByText(andOrCondition);
 		}
 		if(field != null && cbbField.getText() != field) {
-			LOG.info("In \"Field\" combobox, select: " + field);
+			logger.printMessage("In \"Field\" combobox, select: " + field);
 			cbbField.selectByText(field);
 		}
 		if(operator != null && cbbOperator.getText() != operator) {
-			LOG.info("In \"Operator\" combobox, select: " + operator);
+			logger.printMessage("In \"Operator\" combobox, select: " + operator);
 			cbbOperator.selectByText(operator);
 		}
 		if((value != null) && (txtValue.getText() != null || txtValue.getText() != value)) {
-			LOG.info("In \"Value\" textbox, enter: " + value);
+			logger.printMessage("In \"Value\" textbox, enter: " + value);
 			txtValue.enter(value);
 		}
 		btnAdd.click();
@@ -96,7 +95,7 @@ public class DPFilterFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen
 	public void addDataProfilesFilterFields(String... filterValue) {
-		LOG.info("In Data Profiles \"Filter Fields\" page, add filter value: " + filterValue);
+		logger.printMessage("In Data Profiles \"Filter Fields\" page, add filter value: " + filterValue);
 		for (String value : filterValue) {
 			ArrayList<String> splitValue = splitFilterValue(value);
 			if(splitValue.size() == 3)
@@ -112,7 +111,7 @@ public class DPFilterFieldsPage extends GeneralPage{
 		boolean isCorrect = false;
 		try {
 			if(actualValue.size() == 0)
-				LOG.info("Data Profiles Filter Fields table doesn't has any filter.");
+				logger.printMessage("Data Profiles Filter Fields table doesn't has any filter.");
 			else {
 				ArrayList<String> expectedValue = new ArrayList<String>(Arrays.asList(filterField));
 				if(actualValue.equals(expectedValue))
@@ -121,7 +120,7 @@ public class DPFilterFieldsPage extends GeneralPage{
 		} catch (Exception error) {
 			LOG.severe("Has error when checking Filter Fields table.");
 		}
-		LOG.info("Is Filter Fields table displayed correctly: " + isCorrect);
+		logger.printMessage("Is Filter Fields table displayed correctly: " + isCorrect);
 		return isCorrect;
 	}
 	
@@ -133,7 +132,7 @@ public class DPFilterFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen
 	public DPStatisticFieldsPage submitDataProfilesFilterFieldsPage(String... filterValue) {
-		LOG.info("Submit \"Filter Fields\" page.");
+		logger.printMessage("Submit \"Filter Fields\" page.");
 		addDataProfilesFilterFields(filterValue);
 		gotoNextPage();
 		return new DPStatisticFieldsPage();
@@ -147,7 +146,7 @@ public class DPFilterFieldsPage extends GeneralPage{
 	
 	//@author hanh.nguyen	
 	public DPStatisticFieldsPage gotoNextPage() {
-		LOG.info("From \"Filter Fields\" page, click \"Next\" to go to \"Statistic Fields\" page.");
+		logger.printMessage("From \"Filter Fields\" page, click \"Next\" to go to \"Statistic Fields\" page.");
 		btnNext.click();
 		btnAdd.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new DPStatisticFieldsPage();

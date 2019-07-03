@@ -3,7 +3,7 @@
 		{
 			"browserName": "chrome",
 			"version": 72,
-			"maxInstances": 3,
+			"maxInstances": 1,
 			"platform": "WINDOWS"
 		},
 		{
@@ -21,5 +21,5 @@
 	],
 	"maxSession": 20,
 	"port": -1,
-	"hub": "http://192.168.161.2:4445"
+	"hub": "http://192.168.172.163:4445"
 }

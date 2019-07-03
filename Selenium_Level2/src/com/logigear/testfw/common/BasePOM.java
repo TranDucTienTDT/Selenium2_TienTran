@@ -17,6 +17,7 @@ public abstract class BasePOM {
 	
 	private Map<String, Locator> locators = null;
 	protected static final Logger LOG = LogWrapper.createLogger(BaseDriver.class.getName());
+	protected LogWrapper logger = new LogWrapper();
 
 	public BasePOM(Class<?> derivedClass) {
 		String platform = TestExecutor.getInstance().getEnvironmentConf().getPlatform().toString();

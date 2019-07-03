@@ -38,7 +38,7 @@ public class HomePage extends GeneralPage {
 	 */
 	public HomePage waitForLoading(int timeOutInSeconds) {
 		tabExecutionDashboard.waitForDisplay(timeOutInSeconds);
-		LOG.info("Page is loaded successfully");
+		logger.printMessage("Page is loaded successfully");
 		return this;
 	}
 
@@ -64,14 +64,14 @@ public class HomePage extends GeneralPage {
 	
 	//@author hanh.nguyen
 	public PanelDialog clickEditIcon(String panelName) {
-		LOG.info("Click in \"Edit\" icon of panel: " + panelName);
+		logger.printMessage("Click in \"Edit\" icon of panel: " + panelName);
 		iconEdit(panelName);
 		iconEdit.click();
 		return new PanelDialog();
 	}
 	
 	public HomePage deletePanel(String panelName) {
-		LOG.info("Delete panel: " + panelName);
+		logger.printMessage("Delete panel: " + panelName);
 		iconMore(panelName);
 		iconMore.moveToElement();
 		iconRemove(panelName);

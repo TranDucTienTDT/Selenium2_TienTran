@@ -124,19 +124,19 @@ public class PanelDialog extends BasePOM{
 	//@author hanh.nguyen
 	public void selectPanelType(PanelType panelType) {
 		if(panelType == PanelType.CHART) {
-			LOG.info("Select \"Chart\" radio button");
+			logger.printMessage("Select \"Chart\" radio button");
 			radChart.check();
 		}
 		if(panelType == PanelType.INDICATOR) {
-			LOG.info("Select \"Indicator\" radio button");
+			logger.printMessage("Select \"Indicator\" radio button");
 			radIndicator.check();
 		}
 		if(panelType == PanelType.REPORT) {
-			LOG.info("Select \"Report\" radio button");
+			logger.printMessage("Select \"Report\" radio button");
 			radReport.check();
 		}
 		if(panelType == PanelType.HEAT_MAP) {
-			LOG.info("Select \"Heat Map\" radio button");
+			logger.printMessage("Select \"Heat Map\" radio button");
 			radHeatMap.check();
 		}
 	}
@@ -144,11 +144,11 @@ public class PanelDialog extends BasePOM{
 	//@author hanh.nguyen
 	public void fillInforInGeneralPanelDialog(String dataProfile, String displayName) {
 		if(dataProfile != null && dataProfile != txtDisplayName.getText()) {
-			LOG.info("In \"Display Name\" combobox, select: " + dataProfile);
+			logger.printMessage("In \"Display Name\" combobox, select: " + dataProfile);
 			cbbDataProfile.selectByText(dataProfile);
 		}
 		if(displayName != null && (txtDisplayName.getText() == null || txtDisplayName.getText() != displayName)) {
-			LOG.info("In \"Display Name\" textbox, enter: " + displayName);
+			logger.printMessage("In \"Display Name\" textbox, enter: " + displayName);
 			txtDisplayName.enter(displayName);
 		}
 	}
@@ -159,28 +159,28 @@ public class PanelDialog extends BasePOM{
 		fillInforInGeneralPanelDialog(chartPanel.getDataProfile(), chartPanel.getDisplayName());
 		if(chartPanel.getChartTitle() != null && (txtChartTitle.getText() == null || txtChartTitle.getText() != chartPanel.getChartTitle()))
 		{
-			LOG.info("In \"Chart Title\" textbox, enter: " + chartPanel.getChartTitle());
+			logger.printMessage("In \"Chart Title\" textbox, enter: " + chartPanel.getChartTitle());
 			txtChartTitle.enter(chartPanel.getChartTitle());
 		}
 		if(chartPanel.getIsShowTitle() == true) {
-			LOG.info("Check in checkbox \"Show Title\".");
+			logger.printMessage("Check in checkbox \"Show Title\".");
 			chkShowTitle.check();
 		}
 		else if (chartPanel.getIsShowTitle() == false) {
-			LOG.info("Uncheck in checkbox \"Show Title\".");
+			logger.printMessage("Uncheck in checkbox \"Show Title\".");
 			chkShowTitle.uncheck();
 		}
 		selectChartType(chartPanel.getChartType());
 		if(chartPanel.getStyle() == Style.STYLE2D) {
-			LOG.info("Check in radio button \"2D\".");
+			logger.printMessage("Check in radio button \"2D\".");
 			radChartStyle2D.check();
 		}
 		else if (chartPanel.getStyle() == Style.STYLE3D) {
-			LOG.info("Check in radio button \"3D\".");
+			logger.printMessage("Check in radio button \"3D\".");
 			radChartStyle3D.check();
 		}
 		if(chartPanel.getSeries() != null && chartPanel.getSeries() != cbbSeriesField.getText()) {
-			LOG.info("In \"Series\" combobox, select: " + chartPanel.getSeries());
+			logger.printMessage("In \"Series\" combobox, select: " + chartPanel.getSeries());
 			cbbSeriesField.selectByValue(chartPanel.getSeries().toLowerCase());
 		}
 		selectLegendsField(chartPanel.getLegends());
@@ -216,7 +216,7 @@ public class PanelDialog extends BasePOM{
 			}
 		}
 		isDisplayed = fdPanelSettings.isDisplayed();
-		LOG.info("Is Panel Setting From displayed: " + isDisplayed);
+		logger.printMessage("Is Panel Setting From displayed: " + isDisplayed);
 		return isDisplayed;
 	}
 	
@@ -246,7 +246,7 @@ public class PanelDialog extends BasePOM{
 	//@author hanh.nguyen
 	public PanelDialog selectChartType(String chartType) {
 		if(chartType != cbbChartType.getText() && chartType != null) {
-			LOG.info("In \"Chart Type\" combobox, select: " + chartType);
+			logger.printMessage("In \"Chart Type\" combobox, select: " + chartType);
 			cbbChartType.selectByText(chartType);
 		}
 		return this;
@@ -258,13 +258,13 @@ public class PanelDialog extends BasePOM{
 		String actualValue = cbbChartType.getSelectedOption();
 		if(expectedValue.equalsIgnoreCase(actualValue))
 			isCorrect = true;
-		LOG.info("\"Chart Type\" combobox displayed correctly: " + isCorrect);
+		logger.printMessage("\"Chart Type\" combobox displayed correctly: " + isCorrect);
 		return isCorrect;
 	}
 	
 	//@author hanh.nguyen
 	public GeneralPage closePanelDialog() {
-		LOG.info("Close Panel dialog.");
+		logger.printMessage("Close Panel dialog.");
 		btnCancel.click();
 		btnCancel.waitForDisappear(Common.ELEMENT_TIMEOUT);
 		return new GeneralPage(GeneralPage.class);
@@ -348,30 +348,30 @@ public class PanelDialog extends BasePOM{
 	
 	public PanelDialog selectLegendsField(Legends legend) {
 		if(legend == Legends.NONE) {
-			LOG.info("Select \"None\" radio button");
+			logger.printMessage("Select \"None\" radio button");
 			radLegendsNone.check();
 		}
 		if(legend == Legends.TOP) {
-			LOG.info("Select \"Top\" radio button");
+			logger.printMessage("Select \"Top\" radio button");
 			radLegendsTop.check();
 		}
 		if(legend == Legends.RIGHT) {
-			LOG.info("Select \"Right\" radio button");
+			logger.printMessage("Select \"Right\" radio button");
 			radLegendsRight.check();
 		}
 		if(legend == Legends.BOTTOM) {
-			LOG.info("Select \"Bottom\" radio button");
+			logger.printMessage("Select \"Bottom\" radio button");
 			radLegendsBottom.check();
 		}
 		if(legend == Legends.LEFT) {
-			LOG.info("Select \"Left\" radio button");
+			logger.printMessage("Select \"Left\" radio button");
 			radLegendsLeft.check();
 		}
 		return this;
 	}
 	
 	public PanelPage addChartPanel(ChartPanel chartPanel) {
-		LOG.info("Add a Chart Panel: " + chartPanel.getDisplayName());
+		logger.printMessage("Add a Chart Panel: " + chartPanel.getDisplayName());
 		fillInforInChartPanelDialog(chartPanel);
 		btnOK.click();
 		btnOK.waitForDisappear(Common.ELEMENT_TIMEOUT);

@@ -71,7 +71,7 @@ public class GeneralPage extends BasePOM {
 	 * @author hanh.nguyen
 	 */
 	public PageDialog openPageDialog() {
-		LOG.info("Open \"New Page\" or \"Edit Page\" dialog.");
+		logger.printMessage("Open \"New Page\" or \"Edit Page\" dialog.");
 		lnkGlobalSetting.click();
 		lnkAddPage.click();
 		return new PageDialog();
@@ -100,7 +100,7 @@ public class GeneralPage extends BasePOM {
 	public boolean isPageOpened(String pageName) {
 		String actualTitle = TestExecutor.getInstance().getCurrentDriver().getTitle();
 		boolean isOpened = actualTitle.contains(pageName);
-		LOG.info("Is page \"" + pageName + "\" opened: " + isOpened);
+		logger.printMessage("Is page \"" + pageName + "\" opened: " + isOpened);
 		return isOpened;
 	}
 
@@ -135,7 +135,7 @@ public class GeneralPage extends BasePOM {
 	 */
 	
 	public PanelDialog openPanelDialog(boolean isFromChoosePanels) {
-		LOG.info("Open \"Add New Panel\" dialog.");
+		logger.printMessage("Open \"Add New Panel\" dialog.");
 		if (isFromChoosePanels) {
 			openChoosePanelsTab();
 			btnCreateNewPanel.click();
@@ -147,7 +147,7 @@ public class GeneralPage extends BasePOM {
 	
 	//@author hanh.nguyen
 	public DPGeneralSettingsPage gotoGeneralSettingsPageByMenuItem() {
-		LOG.info("Open \"General Settings\" page by selecting menu item.");
+		logger.printMessage("Open \"General Settings\" page by selecting menu item.");
 		selectMenuItem(lnkGlobalSetting, lnkCreateDataProfile);
 		return new DPGeneralSettingsPage();
 	}
@@ -155,7 +155,7 @@ public class GeneralPage extends BasePOM {
 	//@author hanh.nguyen
 	public GeneralPage addNewPage(Page page)
 	{
-		LOG.info("Add a Page: " + page.getPageName());
+		logger.printMessage("Add a Page: " + page.getPageName());
 		openPageDialog();
 		pageDialog.fillInfoInPageDialog(page);
 		pageDialog.btnOK.click();
@@ -178,7 +178,7 @@ public class GeneralPage extends BasePOM {
 	
 	//@author hanh.nguyen
 	public GeneralPage deletePage(String pageName) {
-		LOG.info("Delete page: " + pageName);
+		logger.printMessage("Delete page: " + pageName);
 		clickPage(pageName);
 		selectMenuItem(lnkGlobalSetting, lnkDelete);
 		acceptAlertPopup();
@@ -215,7 +215,7 @@ public class GeneralPage extends BasePOM {
 	
 	//@author hanh.nguyen
 	public PanelPage gotoPanelPage() {
-		LOG.info("Go to Panel Page.");
+		logger.printMessage("Go to Panel Page.");
 		selectMenuItem(lnkAdminister, lnkPanels);
 		return new PanelPage();
 	}
@@ -223,7 +223,7 @@ public class GeneralPage extends BasePOM {
 	//@author hanh.nguyen
 	public GeneralPage openChoosePanelsTab() {
 		if(lnkChoosePanels.isAttributePresent("class")) {
-			LOG.info("Click in \"Choose Panels\" button to open \"Choose Panels\" tab.");
+			logger.printMessage("Click in \"Choose Panels\" button to open \"Choose Panels\" tab.");
 			lnkChoosePanels.moveToElement();
 			lnkChoosePanels.click();
 		}
@@ -232,7 +232,7 @@ public class GeneralPage extends BasePOM {
 	
 	//@author hanh.nguyen
 	public PanelConfigurationDialog clickLinkedTextInChoosePanelsTab(String lnkText) {
-		LOG.info("In \"Choose Panels\" tab, click: " + lnkText);
+		logger.printMessage("In \"Choose Panels\" tab, click: " + lnkText);
 		lnkInChoosePanels(lnkText);
 		lnkInChoosePanels.click();
 		return new PanelConfigurationDialog();
@@ -246,7 +246,7 @@ public class GeneralPage extends BasePOM {
 	
 	//@author hanh.nguyen
 	public GeneralPage clickPage(String pageName) {
-		LOG.info("Select page: " + pageName);
+		logger.printMessage("Select page: " + pageName);
 		lnkPage(pageName);
 		lnkPage.click();
 		lnkPage.waitForDisplay(Common.ELEMENT_TIMEOUT);
@@ -255,7 +255,7 @@ public class GeneralPage extends BasePOM {
 	
 	//@author hanh.nguyen
 	public GeneralPage clickSubPage(String... pageNames) {
-		LOG.info("Select pages: " + pageNames);
+		logger.printMessage("Select pages: " + pageNames);
 		for (int i = 0; i < (pageNames.length - 2); i++) {
 			lnkPage(pageNames[i]);
 			lnkPage.moveToElement();
@@ -267,7 +267,7 @@ public class GeneralPage extends BasePOM {
 	
 	//@author hanh.nguyen
 	public DataProfilesPage gotoDataProfilesPage() {
-		LOG.info("Go to Data Profiles Page.");
+		logger.printMessage("Go to Data Profiles Page.");
 		selectMenuItem(lnkAdminister, lnkDataProfile);
 		return new DataProfilesPage();
 	}
